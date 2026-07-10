@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>GULISTORY · админ-панель</title>
+  <title>GULISTORY · оплата по QR</title>
+  <!-- БИБЛИОТЕКА QR-КОДА -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -52,7 +54,6 @@
       padding-top: 0.5rem;
     }
 
-    /* Панель администратора */
     .admin-panel {
       background: #eaf1e8;
       border-radius: 20px;
@@ -76,10 +77,6 @@
       gap: 6px;
     }
 
-    .admin-panel .admin-label .lock-icon {
-      font-size: 1.1rem;
-    }
-
     .admin-toggle {
       background: #ffffff;
       border: 1.5px solid #5a7a5a;
@@ -90,23 +87,11 @@
       font-size: 0.8rem;
       cursor: pointer;
       transition: all 0.25s;
-      letter-spacing: 0.5px;
     }
 
     .admin-toggle.active {
       background: #4a6a4a;
       color: #ffffff;
-      border-color: #4a6a4a;
-    }
-
-    .admin-toggle:hover {
-      background: #4a6a4a;
-      color: #ffffff;
-      border-color: #4a6a4a;
-    }
-
-    .admin-toggle.active:hover {
-      background: #3a5a3a;
     }
 
     .admin-hint {
@@ -115,10 +100,8 @@
       background: #ffffffcc;
       padding: 0.2rem 0.7rem;
       border-radius: 20px;
-      border: 1px solid #c8dac8;
     }
 
-    /* Карточка товара */
     .card {
       background: #ffffff;
       border: 1px solid #dce8dc;
@@ -128,13 +111,6 @@
       display: flex;
       flex-direction: column;
       box-shadow: 0 8px 24px rgba(60, 80, 60, 0.06);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .card:hover {
-      box-shadow: 0 12px 32px rgba(60, 80, 60, 0.12);
-      border-color: #b4ccb4;
     }
 
     .product-image {
@@ -152,7 +128,6 @@
       border: 1px solid #d4e2d4;
       position: relative;
       overflow: hidden;
-      transition: background 0.2s;
     }
 
     .product-image .image-overlay {
@@ -167,9 +142,6 @@
       backdrop-filter: blur(2px);
       border-radius: 18px;
       color: #fff;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      font-weight: 300;
       cursor: pointer;
     }
 
@@ -181,12 +153,10 @@
       background: #2d3a2ccc;
       padding: 0.4rem 1.2rem;
       border-radius: 30px;
-      border: 1px solid #ffffff88;
     }
 
     .product-emoji {
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
-      opacity: 0.9;
       z-index: 2;
       pointer-events: none;
     }
@@ -204,10 +174,7 @@
       padding: 0.25rem 0.8rem;
       border-radius: 20px;
       font-size: 0.7rem;
-      letter-spacing: 1px;
       color: #4a6a4a;
-      font-weight: 500;
-      border: 1px solid #c0d4c0;
       z-index: 3;
     }
 
@@ -215,7 +182,6 @@
       font-size: 1.25rem;
       font-weight: 500;
       color: #2d3a2c;
-      letter-spacing: 0.5px;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -229,7 +195,6 @@
       background: #edf5ed;
       padding: 0.25rem 0.9rem;
       border-radius: 30px;
-      letter-spacing: 0.5px;
     }
 
     .description {
@@ -253,7 +218,6 @@
     .material-tag {
       color: #8aa08a;
       font-size: 0.8rem;
-      letter-spacing: 0.5px;
       background: #f4f8f2;
       padding: 0.25rem 0.7rem;
       border-radius: 14px;
@@ -266,8 +230,6 @@
       padding: 0.5rem 1.5rem;
       border-radius: 30px;
       font-weight: 500;
-      font-size: 0.9rem;
-      letter-spacing: 0.8px;
       cursor: pointer;
       transition: all 0.25s;
     }
@@ -275,14 +237,12 @@
     .choose-btn:hover {
       background: #4a6a4a;
       color: #ffffff;
-      border-color: #4a6a4a;
     }
 
-    /* Замок на фото для не-админа */
     .product-image .lock-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(60, 70, 60, 0.25);
+      background: rgba(60,70,60,0.25);
       backdrop-filter: blur(1.5px);
       display: flex;
       align-items: center;
@@ -291,7 +251,6 @@
       color: #fff;
       font-size: 1.8rem;
       opacity: 0;
-      transition: opacity 0.3s;
       pointer-events: none;
       z-index: 5;
     }
@@ -311,18 +270,10 @@
       font-size: 0.6rem;
       color: #4a5a4a;
       cursor: pointer;
-      opacity: 0.7;
-      transition: 0.2s;
       z-index: 6;
-      backdrop-filter: blur(4px);
-    }
-    .reset-photo-btn:hover {
-      opacity: 1;
-      background: #fff;
     }
 
-    /* ====== СТИЛИ ДЛЯ АДМИН-РЕДАКТИРОВАНИЯ ====== */
-    .admin-edit-input {
+    .admin-edit-input, .admin-edit-textarea {
       width: 100%;
       padding: 0.4rem 0.7rem;
       border: 1.5px dashed #5a7a5a;
@@ -332,57 +283,18 @@
       color: #2d3a2c;
       outline: none;
       font-family: inherit;
-      transition: 0.2s;
     }
-    .admin-edit-input:focus {
-      border-color: #3a5a3a;
-      background: #fff;
-      border-style: solid;
+
+    .admin-edit-textarea {
+      resize: vertical;
+      min-height: 50px;
     }
+
     .admin-edit-price {
       width: 100px;
       text-align: right;
     }
-    .admin-edit-textarea {
-      width: 100%;
-      padding: 0.4rem 0.7rem;
-      border: 1.5px dashed #5a7a5a;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      background: #fafff7;
-      color: #2d3a2c;
-      outline: none;
-      font-family: inherit;
-      resize: vertical;
-      min-height: 50px;
-      transition: 0.2s;
-    }
-    .admin-edit-textarea:focus {
-      border-color: #3a5a3a;
-      background: #fff;
-      border-style: solid;
-    }
-    .admin-save-btn {
-      background: #4a6a4a;
-      color: #fff;
-      border: none;
-      padding: 0.3rem 1rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      cursor: pointer;
-      letter-spacing: 0.5px;
-      transition: 0.2s;
-    }
-    .admin-save-btn:hover {
-      background: #3a5a3a;
-    }
-    .admin-edit-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 0.3rem;
-      flex-wrap: wrap;
-    }
+
     .admin-edit-label {
       font-size: 0.7rem;
       color: #5a7a5a;
@@ -390,12 +302,28 @@
       text-transform: uppercase;
     }
 
-    /* Корзина */
+    .save-indicator {
+      display: inline-block;
+      background: #4a6a4a;
+      color: #fff;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.65rem;
+      animation: fadeOut 2s forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      70% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* КОРЗИНА */
     .cart-panel {
       margin-top: 1.8rem;
       background: #ffffff;
       border-radius: 24px;
-      padding: 1.2rem 1.2rem 1.4rem;
+      padding: 1.2rem;
       border: 1px solid #dce8dc;
       text-align: center;
       box-shadow: 0 8px 24px rgba(60, 80, 60, 0.06);
@@ -406,7 +334,6 @@
       letter-spacing: 2px;
       color: #5a7a5a;
       margin-bottom: 0.8rem;
-      font-size: 0.9rem;
       text-transform: uppercase;
     }
 
@@ -418,7 +345,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: #2d3a2c;
       font-size: 0.9rem;
     }
 
@@ -430,20 +356,12 @@
       padding: 0.2rem 0.9rem;
       font-size: 0.75rem;
       cursor: pointer;
-      transition: 0.2s;
-      letter-spacing: 0.5px;
-    }
-
-    .remove-btn:hover {
-      background: #e8efe4;
-      color: #5a4a3a;
     }
 
     .empty-cart {
       color: #a0b0a0;
       font-style: italic;
       padding: 0.8rem;
-      font-size: 0.9rem;
     }
 
     .total-box {
@@ -455,6 +373,124 @@
       justify-content: space-between;
       border-top: 1px solid #dce8dc;
       padding-top: 0.9rem;
+    }
+
+    /* ====== QR И ОПЛАТА ====== */
+    .payment-section {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f7faf5;
+      border-radius: 20px;
+      border: 1px solid #dce8dc;
+    }
+
+    .payment-section h4 {
+      color: #3a5a3a;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .phone-input-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+      align-items: center;
+    }
+
+    .phone-input-row input {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border: 1.5px solid #d4e2d4;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      outline: none;
+      background: #fff;
+    }
+
+    .phone-input-row input:focus {
+      border-color: #5a7a5a;
+    }
+
+    .phone-input-row label {
+      font-size: 0.8rem;
+      color: #5a7a5a;
+      white-space: nowrap;
+    }
+
+    .qr-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0.8rem 0;
+    }
+
+    .qr-box {
+      background: #fff;
+      padding: 10px;
+      border-radius: 16px;
+      display: inline-block;
+      border: 1px solid #dce8dc;
+    }
+
+    .qr-label {
+      font-size: 0.7rem;
+      color: #8aa08a;
+      margin-top: 0.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    .pay-btn {
+      width: 100%;
+      padding: 0.9rem;
+      border-radius: 30px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: all 0.25s;
+    }
+
+    .pay-btn-qr {
+      background: #2d3a2c;
+      color: #fff;
+    }
+
+    .pay-btn-qr:hover {
+      background: #1a2a1a;
+    }
+
+    .pay-btn-app {
+      background: #4a6a4a;
+      color: #fff;
+    }
+
+    .pay-btn-app:hover {
+      background: #3a5a3a;
+    }
+
+    .bank-select {
+      display: flex;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .bank-option {
+      background: #fff;
+      border: 1.5px solid #d4e2d4;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .bank-option.active {
+      background: #4a6a4a;
+      color: #fff;
+      border-color: #4a6a4a;
     }
 
     .footer-note {
@@ -480,17 +516,13 @@
       border-radius: 20px;
       font-size: 0.8rem;
       cursor: pointer;
-      letter-spacing: 0.5px;
-      transition: 0.2s;
     }
 
     .tab-btn.active {
       background: #4a6a4a;
       color: #ffffff;
-      border-color: #4a6a4a;
     }
 
-    /* Стиль для пароля */
     .password-popup {
       background: #ffffff;
       border-radius: 20px;
@@ -505,13 +537,6 @@
       display: block;
     }
 
-    .password-popup label {
-      font-size: 0.85rem;
-      color: #3a5a3a;
-      display: block;
-      margin-bottom: 0.4rem;
-    }
-
     .password-popup input {
       width: 100%;
       padding: 0.6rem 1rem;
@@ -520,10 +545,6 @@
       font-size: 0.9rem;
       outline: none;
       margin-bottom: 0.6rem;
-    }
-
-    .password-popup input:focus {
-      border-color: #5a7a5a;
     }
 
     .password-popup .pwd-actions {
@@ -537,16 +558,7 @@
       border: 1.5px solid #5a7a5a;
       padding: 0.35rem 1.2rem;
       border-radius: 30px;
-      font-weight: 500;
       cursor: pointer;
-      transition: 0.2s;
-      font-size: 0.8rem;
-    }
-
-    .password-popup .pwd-actions button:hover {
-      background: #4a6a4a;
-      color: #fff;
-      border-color: #4a6a4a;
     }
 
     .password-popup .pwd-actions button.primary {
@@ -554,35 +566,14 @@
       color: #fff;
     }
 
-    .password-popup .pwd-actions button.primary:hover {
-      background: #3a5a3a;
-    }
-
-    .password-popup .error-msg {
+    .error-msg {
       color: #b55a5a;
       font-size: 0.75rem;
-      margin-top: 0.2rem;
       display: none;
     }
 
-    .password-popup .error-msg.show {
+    .error-msg.show {
       display: block;
-    }
-
-    .save-indicator {
-      display: inline-block;
-      background: #4a6a4a;
-      color: #fff;
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
-      font-size: 0.65rem;
-      letter-spacing: 0.5px;
-      animation: fadeOut 2s forwards;
-    }
-    @keyframes fadeOut {
-      0% { opacity: 1; }
-      70% { opacity: 1; }
-      100% { opacity: 0; }
     }
   </style>
 </head>
@@ -593,20 +584,16 @@
     <div class="subtitle">сумки & платки</div>
   </div>
 
-  <!-- Панель администратора -->
   <div class="admin-panel">
-    <div class="admin-label">
-      <span class="lock-icon">🔐</span> Режим администратора
-    </div>
+    <div class="admin-label">🔐 Режим администратора</div>
     <div>
       <button class="admin-toggle" id="adminToggle">Войти</button>
       <span class="admin-hint" id="adminStatus">⚪ гость</span>
     </div>
   </div>
 
-  <!-- POPUP для пароля -->
   <div class="password-popup" id="passwordPopup">
-    <label for="pwdInput">Введите пароль администратора</label>
+    <label>Введите пароль администратора</label>
     <input type="password" id="pwdInput" placeholder="••••••••" autocomplete="off">
     <div class="error-msg" id="pwdError">Неверный пароль</div>
     <div class="pwd-actions">
@@ -615,17 +602,14 @@
     </div>
   </div>
 
-  <!-- Фильтр -->
   <div class="category-tabs">
     <button class="tab-btn active" data-category="all">всё</button>
     <button class="tab-btn" data-category="bag">👜 сумки</button>
     <button class="tab-btn" data-category="scarf">🧣 платки</button>
   </div>
 
-  <!-- Каталог -->
   <div id="catalog"></div>
 
-  <!-- Корзина -->
   <div class="cart-panel" id="cartPanel">
     <h3>✧ моя корзина ✧</h3>
     <div id="cartContainer">
@@ -635,10 +619,46 @@
       <span>Итого</span>
       <span id="totalPrice">0 ₽</span>
     </div>
+
+    <!-- ====== БЛОК ОПЛАТЫ ====== -->
+    <div class="payment-section" id="paymentSection" style="display: none;">
+      <h4>💳 Оплата заказа</h4>
+
+      <div class="phone-input-row">
+        <label>📱 Номер телефона продавца:</label>
+        <input type="tel" id="sellerPhone" placeholder="+7 (999) 123-45-67" value="+79001234567">
+      </div>
+
+      <div class="phone-input-row">
+        <label>🏦 Номер счёта:</label>
+        <input type="text" id="sellerAccount" placeholder="40817810099910004312" value="40817810099910004312">
+      </div>
+
+      <div class="bank-select">
+        <span style="font-size:0.75rem;color:#5a7a5a;">Банк:</span>
+        <button class="bank-option active" data-bank="sber">Сбер</button>
+        <button class="bank-option" data-bank="tinkoff">Тинькофф</button>
+        <button class="bank-option" data-bank="alfa">Альфа</button>
+        <button class="bank-option" data-bank="other">Другой</button>
+      </div>
+
+      <!-- QR-КОД -->
+      <div class="qr-container">
+        <div class="qr-box" id="qrBox"></div>
+        <div class="qr-label">📷 Наведи камеру на QR-код для оплаты</div>
+      </div>
+
+      <!-- КНОПКИ ОПЛАТЫ -->
+      <button class="pay-btn pay-btn-app" id="payByApp">📱 Открыть приложение банка</button>
+      <button class="pay-btn pay-btn-qr" id="regenerateQr">🔄 Обновить QR-код</button>
+    </div>
   </div>
+
   <div class="footer-note">gulistory -- тихая роскошь</div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js">
+</script>
 <script>
   // ---------- КОНФИГ ----------
   const ADMIN_PASSWORD = 'gulistory2026';
@@ -647,16 +667,14 @@
   let isAdmin = false;
   let cart = [];
   let currentCategory = 'all';
+  let selectedBank = 'sber';
   const photoMap = new Map();
 
-  // Загружаем сохранённые правки товаров
   function loadProductEdits() {
     try {
       const saved = localStorage.getItem('gulistory_product_edits');
       return saved ? JSON.parse(saved) : {};
-    } catch(e) {
-      return {};
-    }
+    } catch(e) { return {}; }
   }
 
   function saveProductEdits(edits) {
@@ -677,18 +695,23 @@
   const pwdError = document.getElementById('pwdError');
   const pwdCancel = document.getElementById('pwdCancel');
   const pwdConfirm = document.getElementById('pwdConfirm');
+  const paymentSection = document.getElementById('paymentSection');
+  const sellerPhoneInput = document.getElementById('sellerPhone');
+  const sellerAccountInput = document.getElementById('sellerAccount');
+  const qrBox = document.getElementById('qrBox');
+  const payByApp = document.getElementById('payByApp');
+  const regenerateQr = document.getElementById('regenerateQr');
 
-  // ---------- ТОВАРЫ (базовые) ----------
+  // ---------- ТОВАРЫ ----------
   const baseProducts = [
-    { id: 1, category: 'bag', title: 'Сумка «Тишина»', price: 8900, material: 'натуральная кожа', desc: 'Мягкая сумка-тоут спокойного оливкового оттенка. Вместительная, с внутренним карманом.', emoji: '👜', badge: 'хит' },
-    { id: 2, category: 'bag', title: 'Сумка «Шалфей»', price: 12400, material: 'замша', desc: 'Элегантная кросс-боди сумка цвета сухого шалфея. Регулируемый ремешок.', emoji: '👝', badge: 'новинка' },
-    { id: 3, category: 'scarf', title: 'Платок «Луговой»', price: 4200, material: 'шёлк 100%', desc: 'Нежный платок с растительным принтом. Ручная роспись, размер 90×90 см.', emoji: '🧣', badge: '' },
-    { id: 4, category: 'scarf', title: 'Платок «Мята»', price: 3800, material: 'хлопок/шёлк', desc: 'Лёгкий платок мятного оттенка. Идеален для прохладных вечеров.', emoji: '🧣', badge: '' },
-    { id: 5, category: 'bag', title: 'Сумка «Роща»', price: 7600, material: 'экокожа', desc: 'Структурированная сумка глубокого зелёного цвета. Золотая фурнитура.', emoji: '👜', badge: '' },
-    { id: 6, category: 'scarf', title: 'Платок «Ива»', price: 5100, material: 'кашемир', desc: 'Тёплый платок с нежным плетением. Цвет -- серебристая полынь.', emoji: '🧣', badge: 'хит' }
+    { id: 1, category: 'bag', title: 'Сумка «Тишина»', price: 8900, material: 'натуральная кожа', desc: 'Мягкая сумка-тоут спокойного оливкового оттенка.', emoji: '👜', badge: 'хит' },
+    { id: 2, category: 'bag', title: 'Сумка «Шалфей»', price: 12400, material: 'замша', desc: 'Элегантная кросс-боди сумка цвета сухого шалфея.', emoji: '👝', badge: 'новинка' },
+    { id: 3, category: 'scarf', title: 'Платок «Луговой»', price: 4200, material: 'шёлк 100%', desc: 'Нежный платок с растительным принтом. 90×90 см.', emoji: '🧣', badge: '' },
+    { id: 4, category: 'scarf', title: 'Платок «Мята»', price: 3800, material: 'хлопок/шёлк', desc: 'Лёгкий платок мятного оттенка.', emoji: '🧣', badge: '' },
+    { id: 5, category: 'bag', title: 'Сумка «Роща»', price: 7600, material: 'экокожа', desc: 'Структурированная сумка глубокого зелёного цвета.', emoji: '👜', badge: '' },
+    { id: 6, category: 'scarf', title: 'Платок «Ива»', price: 5100, material: 'кашемир', desc: 'Тёплый платок с нежным плетением.', emoji: '🧣', badge: 'хит' }
   ];
 
-  // Получаем актуальные товары с учётом правок
   function getProducts() {
     return baseProducts.map(p => {
       const edit = productEdits[p.id];
@@ -703,18 +726,12 @@
     return getProducts().find(p => p.id === id);
   }
 
-  // ---------- АДМИН-ФУНКЦИИ ----------
+  // ---------- АДМИН ----------
   function setAdminMode(enabled) {
     isAdmin = enabled;
-    if (isAdmin) {
-      adminToggle.textContent = 'Выйти';
-      adminToggle.classList.add('active');
-      adminStatus.textContent = '🔓 админ';
-    } else {
-      adminToggle.textContent = 'Войти';
-      adminToggle.classList.remove('active');
-      adminStatus.textContent = '⚪ гость';
-    }
+    adminToggle.textContent = enabled ? 'Выйти' : 'Войти';
+    adminToggle.classList.toggle('active', enabled);
+    adminStatus.textContent = enabled ? '🔓 админ' : '⚪ гость';
     renderCatalog();
   }
 
@@ -730,39 +747,16 @@
   }
 
   function tryAdminLogin() {
-    const entered = pwdInput.value.trim();
-    if (entered === ADMIN_PASSWORD) {
+    if (pwdInput.value.trim() === ADMIN_PASSWORD) {
       setAdminMode(true);
       hidePasswordPopup();
     } else {
       pwdError.classList.add('show');
       pwdInput.value = '';
-      pwdInput.focus();
     }
   }
 
-  // ---------- СОХРАНЕНИЕ ПРАВОК ----------
-  function saveEdit(productId, field, value) {
-    if (!productEdits[productId]) {
-      productEdits[productId] = {};
-    }
-    if (field === 'price') {
-      productEdits[productId].price = parseFloat(value) || 0;
-    } else {
-      productEdits[productId][field] = value;
-    }
-    saveProductEdits(productEdits);
-  }
-
-  // ---------- СОБЫТИЯ АДМИН-ПАНЕЛИ ----------
-  adminToggle.addEventListener('click', function() {
-    if (isAdmin) {
-      setAdminMode(false);
-    } else {
-      showPasswordPopup();
-    }
-  });
-
+  adminToggle.addEventListener('click', () => isAdmin ? setAdminMode(false) : showPasswordPopup());
   pwdCancel.addEventListener('click', hidePasswordPopup);
   pwdConfirm.addEventListener('click', tryAdminLogin);
   pwdInput.addEventListener('keydown', (e) => {
@@ -770,13 +764,17 @@
     if (e.key === 'Escape') hidePasswordPopup();
   });
 
+  function saveEdit(productId, field, value) {
+    if (!productEdits[productId]) productEdits[productId] = {};
+    productEdits[productId][field] = field === 'price' ? (parseFloat(value) || 0) : value;
+    saveProductEdits(productEdits);
+  }
+
   // ---------- ОТРИСОВКА КАТАЛОГА ----------
   function renderCatalog() {
     catalogDiv.innerHTML = '';
     const products = getProducts();
-    const filtered = currentCategory === 'all'
-      ? products
-      : products.filter(p => p.category === currentCategory);
+    const filtered = currentCategory === 'all' ? products : products.filter(p => p.category === currentCategory);
 
     if (filtered.length === 0) {
       catalogDiv.innerHTML = '<p style="text-align:center;color:#a0b0a0;padding:2rem;">Товаров пока нет</p>';
@@ -786,41 +784,16 @@
     filtered.forEach(product => {
       const card = document.createElement('div');
       card.className = 'card';
-
       const userPhoto = photoMap.get(product.id);
-      let imageStyle = '';
-      if (userPhoto) {
-        imageStyle = `background-image: url('${userPhoto}'); background-size: cover; background-position: center;`;
-      }
-
-      const badgeHtml = product.badge
-        ? `<span class="product-badge">${product.badge}</span>`
-        : '';
-
+      const imageStyle = userPhoto ? `background-image: url('${userPhoto}'); background-size: cover; background-position: center;` : '';
       const inputId = `photo-input-${product.id}`;
       const showLock = !isAdmin && userPhoto;
 
-      // Админские поля или обычный текст
       let titleHtml, priceHtml, descHtml;
       if (isAdmin) {
-        titleHtml = `
-          <div style="flex:1;">
-            <span class="admin-edit-label">название</span>
-            <input class="admin-edit-input" id="edit-title-${product.id}" value="${escapeHtml(product.title)}" data-field="title" data-id="${product.id}">
-          </div>
-        `;
-        priceHtml = `
-          <div>
-            <span class="admin-edit-label">цена</span>
-            <input class="admin-edit-input admin-edit-price" id="edit-price-${product.id}" type="number" value="${product.price}" data-field="price" data-id="${product.id}" step="100" min="0">
-          </div>
-        `;
-        descHtml = `
-          <div style="margin:0.5rem 0 0.5rem 0; padding-left:0.8rem; border-left:2px dashed #5a7a5a;">
-            <span class="admin-edit-label">описание</span>
-            <textarea class="admin-edit-textarea" id="edit-desc-${product.id}" data-field="desc" data-id="${product.id}">${escapeHtml(product.desc)}</textarea>
-          </div>
-        `;
+        titleHtml = `<div style="flex:1;"><span class="admin-edit-label">название</span><input class="admin-edit-input" value="${escapeHtml(product.title)}" data-field="title" data-id="${product.id}"></div>`;
+        priceHtml = `<div><span class="admin-edit-label">цена</span><input class="admin-edit-input admin-edit-price" type="number" value="${product.price}" data-field="price" data-id="${product.id}" step="100"></div>`;
+        descHtml = `<div style="margin:0.5rem 0;padding-left:0.8rem;border-left:2px dashed #5a7a5a;"><span class="admin-edit-label">описание</span><textarea class="admin-edit-textarea" data-field="desc" data-id="${product.id}">${escapeHtml(product.desc)}</textarea></div>`;
       } else {
         titleHtml = `<span>${product.title}</span>`;
         priceHtml = `<span class="price">${product.price.toLocaleString()} ₽</span>`;
@@ -830,20 +803,13 @@
       card.innerHTML = `
         <div class="product-image" style="${imageStyle}" id="image-container-${product.id}">
           ${!userPhoto ? `<span class="product-emoji">${product.emoji}</span>` : ''}
-          ${badgeHtml}
-          ${isAdmin ? `
-            <label class="image-overlay" for="${inputId}" style="cursor:pointer;">
-              <span>📷 загрузить фото</span>
-            </label>
-          ` : ''}
+          ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+          ${isAdmin ? `<label class="image-overlay" for="${inputId}"><span>📷 загрузить фото</span></label>` : ''}
           <div class="lock-overlay ${showLock ? 'show' : ''}">🔒</div>
           ${isAdmin && userPhoto ? `<button class="reset-photo-btn" data-id="${product.id}">✕ сброс</button>` : ''}
           ${isAdmin ? `<input type="file" accept="image/*" class="photo-upload-input" id="${inputId}" data-id="${product.id}">` : ''}
         </div>
-        <div class="product-title" style="${isAdmin ? 'flex-wrap:wrap; gap:0.5rem;' : ''}">
-          ${titleHtml}
-          ${priceHtml}
-        </div>
+        <div class="product-title" style="${isAdmin ? 'flex-wrap:wrap;gap:0.5rem;' : ''}">${titleHtml}${priceHtml}</div>
         ${descHtml}
         <div class="details-row">
           <span class="material-tag">${product.material}</span>
@@ -853,58 +819,36 @@
 
       catalogDiv.appendChild(card);
 
-      // ----- АДМИН: сохранение при вводе -----
       if (isAdmin) {
-        const titleInput = card.querySelector(`#edit-title-${product.id}`);
-        const priceInput = card.querySelector(`#edit-price-${product.id}`);
-        const descInput = card.querySelector(`#edit-desc-${product.id}`);
+        card.querySelectorAll('[data-field]').forEach(input => {
+          input.addEventListener('input', function() {
+            saveEdit(parseInt(this.dataset.id), this.dataset.field, this.value);
+            const indicator = document.createElement('span');
+            indicator.className = 'save-indicator';
+            indicator.textContent = '✓ сохранено';
+            this.parentElement.appendChild(indicator);
+            setTimeout(() => indicator.remove(), 2000);
+          });
+        });
 
-        function onEditChange(e) {
-          const id = parseInt(e.target.dataset.id);
-          const field = e.target.dataset.field;
-          let value = e.target.value;
-          saveEdit(id, field, value);
-          // Показываем индикатор
-          showSaveIndicator(e.target);
-        }
-
-        if (titleInput) titleInput.addEventListener('input', onEditChange);
-        if (priceInput) priceInput.addEventListener('input', onEditChange);
-        if (descInput) descInput.addEventListener('input', onEditChange);
-      }
-
-      // ----- ФОТО -----
-      if (isAdmin) {
         const fileInput = card.querySelector(`#${inputId}`);
         if (fileInput) {
           fileInput.addEventListener('change', function(e) {
             const file = this.files[0];
             if (!file) return;
             const reader = new FileReader();
-            reader.onload = function(ev) {
-              photoMap.set(product.id, ev.target.result);
-              renderCatalog();
-            };
+            reader.onload = function(ev) { photoMap.set(product.id, ev.target.result); renderCatalog(); };
             reader.readAsDataURL(file);
-            this.value = '';
           });
         }
+
         const resetBtn = card.querySelector('.reset-photo-btn');
         if (resetBtn) {
-          resetBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            photoMap.delete(product.id);
-            renderCatalog();
-          });
+          resetBtn.addEventListener('click', () => { photoMap.delete(product.id); renderCatalog(); });
         }
       }
 
-      // Кнопка "В корзину"
-      const chooseBtn = card.querySelector('.choose-btn');
-      chooseBtn.addEventListener('click', (e) => {
-        const id = parseInt(e.currentTarget.dataset.id, 10);
-        addToCart(id);
-      });
+      card.querySelector('.choose-btn').addEventListener('click', () => addToCart(product.id));
     });
   }
 
@@ -912,23 +856,9 @@
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  function showSaveIndicator(target) {
-    // Удаляем старые индикаторы рядом
-    const existing = target.parentElement.querySelector('.save-indicator');
-    if (existing) existing.remove();
-    const indicator = document.createElement('span');
-    indicator.className = 'save-indicator';
-    indicator.textContent = '✓ сохранено';
-    target.parentElement.appendChild(indicator);
-    setTimeout(() => indicator.remove(), 2000);
-  }
-
   // ---------- КОРЗИНА ----------
   function addToCart(productId) {
-    if (cart.includes(productId)) {
-      alert('Этот товар уже в корзине ✧');
-      return;
-    }
+    if (cart.includes(productId)) { alert('Уже в корзине ✧'); return; }
     cart.push(productId);
     renderCart();
   }
@@ -938,30 +868,36 @@
     renderCart();
   }
 
+  function getCartTotal() {
+    return cart.reduce((sum, id) => {
+      const p = getProductById(id);
+      return sum + (p ? p.price : 0);
+    }, 0);
+  }
+
   function renderCart() {
     if (cart.length === 0) {
       cartContainer.innerHTML = '<div class="empty-cart">Вы пока ничего не выбрали</div>';
       totalBox.style.display = 'none';
+      paymentSection.style.display = 'none';
       return;
     }
 
     totalBox.style.display = 'flex';
-    let total = 0;
+    paymentSection.style.display = 'block';
+    const total = getCartTotal();
     let html = '';
 
     cart.forEach(id => {
       const product = getProductById(id);
       if (product) {
-        total += product.price;
-        html += `
-          <div class="cart-item">
-            <span>${product.emoji} ${product.title}</span>
-            <span style="display:flex;align-items:center;gap:0.6rem;">
-              <span style="color:#3a5a3a;font-weight:500;">${product.price.toLocaleString()} ₽</span>
-              <button class="remove-btn" data-id="${product.id}">убрать</button>
-            </span>
-          </div>
-        `;
+        html += `<div class="cart-item">
+          <span>${product.emoji} ${product.title}</span>
+          <span style="display:flex;align-items:center;gap:0.6rem;">
+            <span style="color:#3a5a3a;font-weight:500;">${product.price.toLocaleString()} ₽</span>
+            <button class="remove-btn" data-id="${product.id}">убрать</button>
+          </span>
+        </div>`;
       }
     });
 
@@ -969,12 +905,87 @@
     totalPriceSpan.textContent = total.toLocaleString() + ' ₽';
 
     document.querySelectorAll('.remove-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const id = parseInt(e.currentTarget.dataset.id, 10);
-        removeFromCart(id);
-      });
+      btn.addEventListener('click', () => removeFromCart(parseInt(btn.dataset.id)));
+    });
+
+    generateQR();
+  }
+
+  // ---------- QR-КОД И ОПЛАТА ----------
+  function getPaymentData() {
+    const phone = sellerPhoneInput.value.trim();
+    const account = sellerAccountInput.value.trim();
+    const total = getCartTotal();
+    const bankNames = { sber: 'СберБанк', tinkoff: 'Тинькофф', alfa: 'Альфа-Банк', other: 'Банк' };
+    const bank = bankNames[selectedBank] || 'Банк';
+
+    // Формат для оплаты: ссылка на перевод
+    const paymentString = `ST00012|Name=GULISTORY|PersonalAcc=${account}|BankName=${bank}|PersAcc=${phone}|Sum=${total * 100}`;
+
+    return {
+      qrData: `https://qr.nspk.ru/${encodeURIComponent(paymentString)}?sum=${total}`,
+      phone: phone,
+      account: account,
+      total: total,
+      bank: selectedBank
+    };
+  }
+
+  function generateQR() {
+    qrBox.innerHTML = '';
+    const data = getPaymentData();
+    if (data.total <= 0) return;
+
+    new QRCode(qrBox, {
+      text: data.qrData,
+      width: 150,
+      height: 150,
+      colorDark: '#2d3a2c',
+      colorLight: '#ffffff'
     });
   }
+
+  function openBankApp() {
+    const data = getPaymentData();
+    const total = data.total;
+    const phone = data.phone.replace(/\D/g, '');
+    const account = data.account;
+
+    let url = '';
+
+    switch(data.bank) {
+      case 'sber':
+        // СберБанк онлайн
+        url = `https://online.sberbank.ru/CSAFront/transfer/phone?phone=${phone}&amount=${total}`;
+        break;
+      case 'tinkoff':
+        url = `https://www.tinkoff.ru/payments/form/?sum=${total}&account=${account}`;
+        break;
+      case 'alfa':
+        url = `https://click.alfabank.ru/transfer?phone=${phone}&sum=${total}`;
+        break;
+      default:
+        // Универсальная ссылка
+        url = `bank://transfer?amount=${total}&account=${phone}`;
+    }
+
+    window.open(url, '_blank');
+  }
+
+  payByApp.addEventListener('click', openBankApp);
+  regenerateQr.addEventListener('click', generateQR);
+  sellerPhoneInput.addEventListener('input', generateQR);
+  sellerAccountInput.addEventListener('input', generateQR);
+
+  // Выбор банка
+  document.querySelectorAll('.bank-option').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.bank-option').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      selectedBank = this.dataset.bank;
+      generateQR();
+    });
+  });
 
   // ---------- ФИЛЬТРЫ ----------
   document.querySelectorAll('.tab-btn').forEach(btn => {
