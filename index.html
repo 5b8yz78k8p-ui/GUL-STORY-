@@ -21,6 +21,20 @@
     .header h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: 5px; color: #3a5a3a; text-transform: uppercase; font-family: 'Times New Roman', Georgia, serif; }
     .header .subtitle { font-size: 0.85rem; color: #6b8b6b; letter-spacing: 3px; border-top: 1px solid #c8dac8; padding-top: 0.5rem; display: inline-block; }
 
+    /* АДМИН-ПАНЕЛЬ */
+    .admin-panel { background: #eaf1e8; border-radius: 20px; padding: 0.8rem 1rem; margin-bottom: 1.5rem; border: 1px solid #c0d4c0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem; }
+    .admin-toggle { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.35rem 1rem; border-radius: 30px; cursor: pointer; font-size: 0.8rem; }
+    .admin-toggle.active { background: #4a6a4a; color: #fff; }
+    .admin-hint { font-size: 0.7rem; color: #6b8b6b; }
+
+    .password-popup { background: #fff; border-radius: 20px; padding: 1.5rem; border: 1px solid #c0d4c0; margin-bottom: 1rem; display: none; }
+    .password-popup.open { display: block; }
+    .password-popup input { width: 100%; padding: 0.6rem 1rem; border: 1.5px solid #d4e2d4; border-radius: 30px; font-size: 0.9rem; outline: none; margin-bottom: 0.6rem; }
+    .pwd-actions { display: flex; gap: 0.6rem; justify-content: flex-end; }
+    .pwd-actions button { background: #fff; border: 1.5px solid #5a7a5a; padding: 0.35rem 1.2rem; border-radius: 30px; cursor: pointer; }
+    .pwd-actions button.primary { background: #4a6a4a; color: #fff; }
+
+    /* КАТАЛОГ */
     .card { background: #fff; border: 1px solid #dce8dc; border-radius: 24px; padding: 1rem; margin-bottom: 1.4rem; box-shadow: 0 8px 24px rgba(60,80,60,0.06); }
     .product-image { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 18px; margin-bottom: 0.9rem; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; background-color: #eaf2e8; position: relative; overflow: hidden; }
     .product-emoji { z-index: 2; pointer-events: none; }
@@ -34,48 +48,33 @@
     .choose-btn:active { background: #4a6a4a; color: #fff; }
     .remove-btn { background: none; border: 1px solid #c8d8c0; color: #8a7a6a; border-radius: 20px; padding: 0.2rem 0.7rem; font-size: 0.7rem; cursor: pointer; }
 
+    /* ФОТО */
+    .photo-upload-input { display: none; }
+    .image-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; border-radius: 18px; color: #fff; cursor: pointer; }
+    .product-image:hover .image-overlay { opacity: 1; }
+    .image-overlay span { background: #2d3a2ccc; padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.8rem; }
+    .lock-overlay { position: absolute; inset: 0; background: rgba(60,70,60,0.25); display: flex; align-items: center; justify-content: center; border-radius: 18px; color: #fff; font-size: 1.5rem; opacity: 0; pointer-events: none; z-index: 5; }
+    .lock-overlay.show { opacity: 1; }
+    .reset-photo-btn { position: absolute; bottom: 8px; right: 10px; background: #ffffffdd; border: 1px solid #b0c8b0; border-radius: 20px; padding: 0.15rem 0.6rem; font-size: 0.6rem; cursor: pointer; z-index: 6; }
+
+    /* АДМИН-РЕДАКТИРОВАНИЕ */
+    .admin-edit-input, .admin-edit-textarea { width: 100%; padding: 0.35rem 0.6rem; border: 1.5px dashed #5a7a5a; border-radius: 12px; font-size: 0.85rem; background: #fafff7; outline: none; font-family: inherit; }
+    .admin-edit-textarea { resize: vertical; min-height: 40px; }
+    .admin-edit-price { width: 90px; text-align: right; }
+    .save-indicator { display: inline-block; background: #4a6a4a; color: #fff; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.6rem; animation: fadeOut 2s forwards; }
+    @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
+
+    /* КОРЗИНА */
     .cart-panel { margin-top: 1.5rem; background: #fff; border-radius: 24px; padding: 1.2rem; border: 1px solid #dce8dc; text-align: center; }
     .cart-panel h3 { font-size: 0.9rem; letter-spacing: 2px; color: #5a7a5a; margin-bottom: 0.5rem; text-transform: uppercase; }
     .cart-item { background: #f7faf5; border-radius: 16px; padding: 0.6rem 0.8rem; margin: 0.3rem 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
     .total-box { margin-top: 0.8rem; font-size: 1.1rem; font-weight: 500; color: #3a5a3a; display: flex; justify-content: space-between; border-top: 1px solid #dce8dc; padding-top: 0.8rem; }
 
-    /* Платёжка - просто и чисто */
-    .pay-box {
-      margin-top: 1rem;
-      padding: 1.2rem;
-      background: #fffbe6;
-      border-radius: 20px;
-      border: 2px solid #FFDD2D;
-      text-align: center;
-    }
-    .pay-box .pay-title { font-size: 0.9rem; font-weight: 600; color: #3a5a3a; margin-bottom: 0.5rem; }
-    .pay-box .pay-phone {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: #000;
-      background: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 15px;
-      display: inline-block;
-      border: 2px dashed #4a6a4a;
-      margin: 0.5rem 0;
-    }
+    /* ПЛАТЁЖКА */
+    .pay-box { margin-top: 1rem; padding: 1.2rem; background: #fffbe6; border-radius: 20px; border: 2px solid #FFDD2D; text-align: center; }
+    .pay-box .pay-phone { font-size: 1.8rem; font-weight: 700; letter-spacing: 3px; color: #000; background: #fff; padding: 0.5rem 1rem; border-radius: 15px; display: inline-block; border: 2px dashed #4a6a4a; margin: 0.5rem 0; }
     .pay-box .pay-sum { font-size: 1.2rem; font-weight: 600; color: #4a6a4a; margin: 0.5rem 0; }
-    .pay-box .pay-bank { font-size: 0.85rem; color: #888; }
-    .pay-box .pay-hint { font-size: 0.75rem; color: #aaa; margin: 0.5rem 0; }
-
-    .copy-btn {
-      width: 100%;
-      padding: 1rem;
-      border-radius: 30px;
-      border: none;
-      font-size: 1.1rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 0.6rem;
-      transition: 0.2s;
-    }
+    .copy-btn { width: 100%; padding: 1rem; border-radius: 30px; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 0.6rem; transition: 0.2s; }
     .copy-btn:active { transform: scale(0.96); }
     .btn-num { background: #FFDD2D; color: #000; }
     .btn-sum { background: #2d3a2c; color: #fff; }
@@ -83,7 +82,6 @@
     .category-tabs { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
     .tab-btn { background: #fff; border: 1px solid #d4e2d4; color: #5a7a5a; padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
     .tab-btn.active { background: #4a6a4a; color: #fff; }
-
     .footer-note { font-size: 0.7rem; color: #a0b8a0; text-align: center; margin-top: 1rem; }
   </style>
 </head>
@@ -92,6 +90,22 @@
   <div class="header">
     <h1>GULISTORY</h1>
     <div class="subtitle">сумки & платки</div>
+  </div>
+
+  <!-- АДМИН-ПАНЕЛЬ -->
+  <div class="admin-panel">
+    <span>🔐 Админ</span>
+    <button class="admin-toggle" id="adminToggle">Войти</button>
+    <span class="admin-hint" id="adminStatus">гость</span>
+  </div>
+
+  <div class="password-popup" id="passwordPopup">
+    <label>Пароль:</label>
+    <input type="password" id="pwdInput" placeholder="••••••••">
+    <div class="pwd-actions">
+      <button id="pwdCancel">Отмена</button>
+      <button class="primary" id="pwdConfirm">Войти</button>
+    </div>
   </div>
 
   <div class="category-tabs">
@@ -110,13 +124,12 @@
       <span id="totalPrice">0 ₽</span>
     </div>
 
-    <!-- ПЛАТЁЖКА -->
     <div class="pay-box" id="payBox" style="display:none;">
-      <div class="pay-title">💳 Перевод на номер:</div>
+      <div style="font-weight:600;color:#3a5a3a;margin-bottom:0.5rem;">💳 Перевод на номер:</div>
       <div class="pay-phone">89280048199</div>
-      <div class="pay-bank">Т-Банк (Тинькофф)</div>
+      <div style="color:#888;font-size:0.85rem;">Т-Банк (Тинькофф)</div>
       <div class="pay-sum">Сумма: <span id="paySum">0 ₽</span></div>
-      <div class="pay-hint">Открой приложение банка → Перевод по номеру телефона</div>
+      <div style="font-size:0.75rem;color:#aaa;margin:0.5rem 0;">Открой Т-Банк → Перевод по номеру телефона</div>
       <button class="copy-btn btn-num" id="copyPhone">📋 Скопировать номер</button>
       <button class="copy-btn btn-sum" id="copyAll">📋 Скопировать номер и сумму</button>
     </div>
@@ -125,11 +138,19 @@
 </div>
 
 <script>
+  const ADMIN_PASSWORD = 'gulistory2026';
   const SELLER_PHONE = '89280048199';
+  
+  let isAdmin = false;
   let cart = [];
   let currentCategory = 'all';
+  const photoMap = new Map();
 
-  const products = [
+  function loadEdits() { try { return JSON.parse(localStorage.getItem('gulistory_edits') || '{}'); } catch(e) { return {}; } }
+  function saveEdits(e) { localStorage.setItem('gulistory_edits', JSON.stringify(e)); }
+  let productEdits = loadEdits();
+
+  const baseProducts = [
     { id: 1, category: 'bag', title: 'Сумка «Тишина»', price: 8900, material: 'натуральная кожа', desc: 'Мягкая сумка-тоут оливкового оттенка.', emoji: '👜', badge: 'хит' },
     { id: 2, category: 'bag', title: 'Сумка «Шалфей»', price: 12400, material: 'замша', desc: 'Кросс-боди цвета сухого шалфея.', emoji: '👝', badge: 'новинка' },
     { id: 3, category: 'scarf', title: 'Платок «Луговой»', price: 4200, material: 'шёлк 100%', desc: 'Нежный платок с принтом. 90×90 см.', emoji: '🧣', badge: '' },
@@ -138,36 +159,85 @@
     { id: 6, category: 'scarf', title: 'Платок «Ива»', price: 5100, material: 'кашемир', desc: 'Тёплый платок, серебристая полынь.', emoji: '🧣', badge: 'хит' }
   ];
 
-  function getProductById(id) { return products.find(p => p.id === id); }
+  function getProducts() {
+    return baseProducts.map(p => {
+      const e = productEdits[p.id];
+      return e ? { ...p, title: e.title || p.title, price: e.price || p.price, desc: e.desc || p.desc } : p;
+    });
+  }
+  function getProductById(id) { return getProducts().find(p => p.id === id); }
   function getTotal() { return cart.reduce((s, id) => { const p = getProductById(id); return s + (p ? p.price : 0); }, 0); }
+
+  // АДМИН
+  document.getElementById('adminToggle').addEventListener('click', () => {
+    if (isAdmin) { isAdmin = false; document.getElementById('adminToggle').classList.remove('active'); document.getElementById('adminToggle').textContent = 'Войти'; document.getElementById('adminStatus').textContent = 'гость'; renderCatalog(); }
+    else document.getElementById('passwordPopup').classList.add('open');
+  });
+  document.getElementById('pwdCancel').addEventListener('click', () => document.getElementById('passwordPopup').classList.remove('open'));
+  document.getElementById('pwdConfirm').addEventListener('click', () => {
+    if (document.getElementById('pwdInput').value === ADMIN_PASSWORD) {
+      isAdmin = true;
+      document.getElementById('adminToggle').textContent = 'Выйти';
+      document.getElementById('adminToggle').classList.add('active');
+      document.getElementById('adminStatus').textContent = 'админ';
+      document.getElementById('passwordPopup').classList.remove('open');
+      renderCatalog();
+    } else alert('Неверный пароль!');
+  });
+
+  function saveEdit(id, field, value) {
+    if (!productEdits[id]) productEdits[id] = {};
+    productEdits[id][field] = field === 'price' ? (parseFloat(value) || 0) : value;
+    saveEdits(productEdits);
+  }
 
   // КАТАЛОГ
   function renderCatalog() {
     const div = document.getElementById('catalog');
     div.innerHTML = '';
-    const filtered = currentCategory === 'all' ? products : products.filter(p => p.category === currentCategory);
+    const filtered = currentCategory === 'all' ? getProducts() : getProducts().filter(p => p.category === currentCategory);
     filtered.forEach(p => {
+      const photo = photoMap.get(p.id);
+      const bg = photo ? `background-image:url(${photo});background-size:cover;background-position:center;` : '';
       const card = document.createElement('div');
       card.className = 'card';
       card.innerHTML = `
-        <div class="product-image" style="background-color:#eaf2e8;">
-          <span class="product-emoji">${p.emoji}</span>
+        <div class="product-image" style="${bg}">
+          ${!photo ? `<span class="product-emoji">${p.emoji}</span>` : ''}
           ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+          ${isAdmin ? `<label class="image-overlay" for="ph-${p.id}"><span>📷 фото</span></label>` : ''}
+          ${!isAdmin && photo ? '<div class="lock-overlay show">🔒</div>' : ''}
+          ${isAdmin && photo ? `<button class="reset-photo-btn" data-id="${p.id}">✕</button>` : ''}
+          ${isAdmin ? `<input type="file" accept="image/*" class="photo-upload-input" id="ph-${p.id}" data-id="${p.id}">` : ''}
         </div>
         <div class="product-title">
-          <span>${p.title}</span>
-          <span class="price">${p.price.toLocaleString()} ₽</span>
+          ${isAdmin ? `<input class="admin-edit-input" value="${p.title.replace(/"/g,'&quot;')}" data-field="title" data-id="${p.id}">` : `<span>${p.title}</span>`}
+          ${isAdmin ? `<input class="admin-edit-input admin-edit-price" type="number" value="${p.price}" data-field="price" data-id="${p.id}">` : `<span class="price">${p.price.toLocaleString()} ₽</span>`}
         </div>
-        <div class="description">${p.desc}</div>
+        ${isAdmin ? `<textarea class="admin-edit-textarea" data-field="desc" data-id="${p.id}">${p.desc.replace(/"/g,'&quot;')}</textarea>` : `<div class="description">${p.desc}</div>`}
         <div class="details-row">
           <span class="material-tag">${p.material}</span>
           <button class="choose-btn" data-id="${p.id}">В корзину</button>
         </div>
       `;
       div.appendChild(card);
-      card.querySelector('.choose-btn').addEventListener('click', () => {
-        if (!cart.includes(p.id)) { cart.push(p.id); renderCart(); }
-      });
+      if (isAdmin) {
+        card.querySelectorAll('[data-field]').forEach(inp => inp.addEventListener('input', function() {
+          saveEdit(+this.dataset.id, this.dataset.field, this.value);
+          const s = document.createElement('span'); s.className = 'save-indicator'; s.textContent = '✓';
+          this.parentElement.appendChild(s); setTimeout(() => s.remove(), 2000);
+        }));
+        const fi = card.querySelector(`#ph-${p.id}`);
+        if (fi) fi.addEventListener('change', function(e) {
+          const f = this.files[0]; if (!f) return;
+          const r = new FileReader();
+          r.onload = ev => { photoMap.set(p.id, ev.target.result); renderCatalog(); };
+          r.readAsDataURL(f);
+        });
+        const rb = card.querySelector('.reset-photo-btn');
+        if (rb) rb.addEventListener('click', () => { photoMap.delete(p.id); renderCatalog(); });
+      }
+      card.querySelector('.choose-btn').addEventListener('click', () => { if (!cart.includes(p.id)) { cart.push(p.id); renderCart(); } });
     });
   }
 
@@ -176,58 +246,29 @@
     const cont = document.getElementById('cartContainer');
     const tb = document.getElementById('totalBox');
     const pb = document.getElementById('payBox');
-    
-    if (cart.length === 0) {
-      cont.innerHTML = '<div style="color:#a0b0a0;padding:0.5rem;">пусто</div>';
-      tb.style.display = 'none';
-      pb.style.display = 'none';
-      return;
-    }
-    
-    tb.style.display = 'flex';
-    pb.style.display = 'block';
-    
+    if (cart.length === 0) { cont.innerHTML = '<div style="color:#a0b0a0;padding:0.5rem;">пусто</div>'; tb.style.display = 'none'; pb.style.display = 'none'; return; }
+    tb.style.display = 'flex'; pb.style.display = 'block';
     const total = getTotal();
     document.getElementById('totalPrice').textContent = total.toLocaleString() + ' ₽';
     document.getElementById('paySum').textContent = total.toLocaleString() + ' ₽';
-    
     cont.innerHTML = cart.map(id => {
       const p = getProductById(id);
       return p ? `<div class="cart-item"><span>${p.emoji} ${p.title}</span><span>${p.price.toLocaleString()} ₽ <button class="remove-btn" data-id="${p.id}">убрать</button></span></div>` : '';
     }).join('');
-    
-    document.querySelectorAll('.remove-btn').forEach(b => {
-      b.addEventListener('click', () => {
-        cart = cart.filter(i => i !== +b.dataset.id);
-        renderCart();
-      });
-    });
+    document.querySelectorAll('.remove-btn').forEach(b => b.addEventListener('click', () => { cart = cart.filter(i => i !== +b.dataset.id); renderCart(); }));
   }
 
   // КНОПКИ
-  document.getElementById('copyPhone').addEventListener('click', () => {
-    navigator.clipboard.writeText(SELLER_PHONE).then(() => {
-      alert('✅ Номер скопирован: ' + SELLER_PHONE + '\n\nОткрой Т-Банк → Перевод по номеру телефона → Вставь.');
-    });
-  });
-
-  document.getElementById('copyAll').addEventListener('click', () => {
-    const total = getTotal();
-    const text = SELLER_PHONE + ' — ' + total + '₽';
-    navigator.clipboard.writeText(text).then(() => {
-      alert('✅ Скопировано: ' + text + '\n\nОткрой Т-Банк и вставь.');
-    });
-  });
+  document.getElementById('copyPhone').addEventListener('click', () => navigator.clipboard.writeText(SELLER_PHONE).then(() => alert('✅ ' + SELLER_PHONE + '\nОткрой Т-Банк → Перевод по номеру телефона')));
+  document.getElementById('copyAll').addEventListener('click', () => navigator.clipboard.writeText(SELLER_PHONE + ' ' + getTotal() + '₽').then(() => alert('✅ Скопировано!\nОткрой Т-Банк и вставь.')));
 
   // ФИЛЬТРЫ
-  document.querySelectorAll('.tab-btn').forEach(b => {
-    b.addEventListener('click', function() {
-      document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
-      this.classList.add('active');
-      currentCategory = this.dataset.category;
-      renderCatalog();
-    });
-  });
+  document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', function() {
+    document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+    currentCategory = this.dataset.category;
+    renderCatalog();
+  }));
 
   renderCatalog();
   renderCart();
