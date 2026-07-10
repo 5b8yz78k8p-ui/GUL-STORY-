@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>GULISTORY · оплата</title>
+  <title>GULISTORY</title>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,11 +21,11 @@
     .header { text-align: center; margin-bottom: 1.5rem; padding-top: 1rem; }
     .header h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: 5px; color: #3a5a3a; text-transform: uppercase; font-family: 'Times New Roman', Georgia, serif; }
     .header .subtitle { font-size: 0.85rem; color: #6b8b6b; letter-spacing: 3px; border-top: 1px solid #c8dac8; padding-top: 0.5rem; display: inline-block; }
-    
+
     .admin-panel { background: #eaf1e8; border-radius: 20px; padding: 0.8rem 1rem; margin-bottom: 1.5rem; border: 1px solid #c0d4c0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem; }
     .admin-toggle { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.35rem 1rem; border-radius: 30px; cursor: pointer; }
     .admin-toggle.active { background: #4a6a4a; color: #fff; }
-    
+
     .card { background: #fff; border: 1px solid #dce8dc; border-radius: 24px; padding: 1rem; margin-bottom: 1.4rem; box-shadow: 0 8px 24px rgba(60,80,60,0.06); }
     .product-image { width: 100%; height: 220px; background-size: cover; background-position: center; border-radius: 18px; margin-bottom: 0.9rem; display: flex; align-items: center; justify-content: center; font-size: 4rem; background-color: #eaf2e8; position: relative; overflow: hidden; }
     .product-emoji { z-index: 2; pointer-events: none; }
@@ -38,45 +38,86 @@
     .choose-btn { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.5rem 1.5rem; border-radius: 30px; cursor: pointer; }
     .choose-btn:active { background: #4a6a4a; color: #fff; }
     .remove-btn { background: none; border: 1px solid #c8d8c0; color: #8a7a6a; border-radius: 20px; padding: 0.2rem 0.9rem; font-size: 0.75rem; cursor: pointer; }
-    
+
     .cart-panel { margin-top: 1.8rem; background: #fff; border-radius: 24px; padding: 1.2rem; border: 1px solid #dce8dc; text-align: center; }
     .cart-item { background: #f7faf5; border-radius: 16px; padding: 0.7rem 0.9rem; margin: 0.4rem 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
     .total-box { margin-top: 1rem; font-size: 1.1rem; font-weight: 500; color: #3a5a3a; display: flex; justify-content: space-between; border-top: 1px solid #dce8dc; padding-top: 0.9rem; }
-    
-    .payment-section { margin-top: 1rem; padding: 1rem; background: #f7faf5; border-radius: 20px; border: 1px solid #dce8dc; }
-    .payment-section h4 { color: #3a5a3a; margin-bottom: 0.8rem; }
-    .input-row { display: flex; gap: 0.5rem; margin-bottom: 0.6rem; align-items: center; }
-    .input-row label { font-size: 0.75rem; color: #5a7a5a; white-space: nowrap; }
-    .input-row input { flex: 1; padding: 0.6rem 0.8rem; border: 1.5px solid #d4e2d4; border-radius: 20px; font-size: 0.85rem; outline: none; background: #fff; }
-    .input-row input:focus { border-color: #5a7a5a; }
-    
-    .qr-center { text-align: center; margin: 0.8rem 0; }
-    .qr-box { background: #fff; padding: 12px; border-radius: 16px; display: inline-block; border: 2px solid #4a6a4a; }
-    .qr-label { font-size: 0.7rem; color: #8aa08a; margin-top: 0.3rem; }
-    
-    .big-btn {
-      width: 100%; padding: 1rem; border-radius: 30px; border: none; font-size: 1rem;
-      font-weight: 600; letter-spacing: 1px; cursor: pointer; margin-top: 0.6rem; transition: 0.2s;
+
+    /* ====== БЛОК ОПЛАТЫ (ПРОСТОЙ) ====== */
+    .payment-block {
+      margin-top: 1rem;
+      padding: 1.2rem;
+      background: #fffbe6;
+      border-radius: 20px;
+      border: 2px solid #FFDD2D;
+      text-align: center;
     }
-    .big-btn:active { transform: scale(0.97); }
-    
-    .btn-yellow { background: #FFDD2D; color: #000; }
-    .btn-green { background: #2d3a2c; color: #fff; }
-    .btn-white { background: #fff; border: 2px solid #4a6a4a; color: #3a5a3a; }
-    
-    .copy-btn { display: block; text-align: center; color: #4a6a4a; font-size: 0.8rem; margin-top: 0.6rem; cursor: pointer; text-decoration: underline; }
-    
+    .payment-block .pay-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #3a5a3a;
+      margin-bottom: 0.8rem;
+    }
+    .payment-block .pay-phone {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: 2px;
+      margin: 0.5rem 0;
+      background: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 15px;
+      display: inline-block;
+      border: 2px dashed #4a6a4a;
+    }
+    .payment-block .pay-sum {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #4a6a4a;
+      margin: 0.5rem 0;
+    }
+    .payment-block .pay-bank {
+      font-size: 0.9rem;
+      color: #6b8b6b;
+      margin-bottom: 0.8rem;
+    }
+    .payment-block .pay-hint {
+      font-size: 0.8rem;
+      color: #8a8a8a;
+      margin: 0.5rem 0;
+      line-height: 1.4;
+    }
+
+    .copy-btn-big {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 30px;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: 0.2s;
+      letter-spacing: 1px;
+    }
+    .copy-btn-big:active { transform: scale(0.96); }
+    .btn-copy-phone { background: #FFDD2D; color: #000; }
+    .btn-copy-all { background: #2d3a2c; color: #fff; margin-top: 0.4rem; }
+
+    .qr-mini { margin: 0.8rem auto; display: inline-block; }
+    .qr-mini canvas { border-radius: 12px; }
+
     .category-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
     .tab-btn { background: #fff; border: 1px solid #d4e2d4; color: #5a7a5a; padding: 0.4rem 1.1rem; border-radius: 20px; font-size: 0.8rem; cursor: pointer; }
     .tab-btn.active { background: #4a6a4a; color: #fff; }
-    
+
     .password-popup { background: #fff; border-radius: 20px; padding: 1.5rem; border: 1px solid #c0d4c0; margin-bottom: 1rem; display: none; }
     .password-popup.open { display: block; }
     .password-popup input { width: 100%; padding: 0.6rem 1rem; border: 1.5px solid #d4e2d4; border-radius: 30px; font-size: 0.9rem; outline: none; margin-bottom: 0.6rem; }
     .pwd-actions { display: flex; gap: 0.6rem; justify-content: flex-end; }
     .pwd-actions button { background: #fff; border: 1.5px solid #5a7a5a; padding: 0.35rem 1.2rem; border-radius: 30px; cursor: pointer; }
     .pwd-actions button.primary { background: #4a6a4a; color: #fff; }
-    
+
     .footer-note { font-size: 0.7rem; color: #a0b8a0; text-align: center; margin-top: 1.5rem; }
     .photo-upload-input { display: none; }
     .image-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; border-radius: 18px; color: #fff; cursor: pointer; }
@@ -88,7 +129,6 @@
     .admin-edit-input, .admin-edit-textarea { width: 100%; padding: 0.4rem 0.7rem; border: 1.5px dashed #5a7a5a; border-radius: 12px; font-size: 0.9rem; background: #fafff7; outline: none; font-family: inherit; }
     .admin-edit-textarea { resize: vertical; min-height: 50px; }
     .admin-edit-price { width: 100px; text-align: right; }
-    .admin-edit-label { font-size: 0.7rem; color: #5a7a5a; }
     .save-indicator { display: inline-block; background: #4a6a4a; color: #fff; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.65rem; animation: fadeOut 2s forwards; }
     @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
   </style>
@@ -130,25 +170,27 @@
       <span id="totalPrice">0 ₽</span>
     </div>
 
-    <div class="payment-section" id="paymentSection" style="display:none;">
-      <h4>💳 Оплата заказа</h4>
-      <div class="input-row">
-        <label>📱 Телефон:</label>
-        <input type="tel" id="sellerPhone" value="89280048199">
-      </div>
-      <div class="input-row">
-        <label>🏦 Банк:</label>
-        <input type="text" id="sellerBank" value="Т-Банк (Тинькофф)">
-      </div>
+    <!-- ====== ОПЛАТА - ПРОСТО НОМЕР И КНОПКА КОПИРОВАТЬ ====== -->
+    <div class="payment-block" id="paymentBlock" style="display:none;">
+      <div class="pay-title">💳 Для оплаты переведи на номер:</div>
+      <div class="pay-phone" id="displayPhone">89280048199</div>
+      <div class="pay-bank">Т-Банк (Тинькофф)</div>
+      <div class="pay-sum">Сумма: <span id="displaySum">0 ₽</span></div>
       
-      <div class="qr-center">
-        <div class="qr-box" id="qrBox"></div>
-        <div class="qr-label">📷 Наведи камеру банка на QR — реквизиты считаются сами</div>
-      </div>
+      <div class="qr-mini" id="qrMiniBox"></div>
+      <div class="pay-hint">📷 Наведи камеру банка на QR<br>или скопируй номер ниже</div>
 
-      <button class="big-btn btn-yellow" id="btnCopyPhone">📋 Скопировать номер 89280048199</button>
-      <button class="big-btn btn-green" id="btnCopyAll">📋 Скопировать все реквизиты</button>
-      <button class="big-btn btn-white" id="btnOpenBank">🏦 Открыть Т-Банк</button>
+      <button class="copy-btn-big btn-copy-phone" id="btnCopyPhone">
+        📋 Скопировать номер 89280048199
+      </button>
+      <button class="copy-btn-big btn-copy-all" id="btnCopyAll">
+        📋 Скопировать номер и сумму
+      </button>
+      <div class="pay-hint" style="margin-top:0.8rem;">
+        ⚡ Открой приложение Т-Банка<br>
+        → «Перевод по номеру телефона»<br>
+        → Вставь номер и сумму
+      </div>
     </div>
   </div>
   <div class="footer-note">gulistory — тихая роскошь</div>
@@ -157,6 +199,8 @@
 <script>
   const ADMIN_PASSWORD = 'gulistory2026';
   const SELLER_PHONE = '89280048199';
+  const SELLER_BANK = 'Т-Банк (Тинькофф)';
+  
   let isAdmin = false;
   let cart = [];
   let currentCategory = 'all';
@@ -261,62 +305,63 @@
   function renderCart() {
     const cont = document.getElementById('cartContainer');
     const tb = document.getElementById('totalBox');
-    const ps = document.getElementById('paymentSection');
+    const pb = document.getElementById('paymentBlock');
     if (cart.length === 0) {
       cont.innerHTML = '<div style="color:#a0b0a0;padding:0.8rem;">пусто</div>';
-      tb.style.display = 'none'; ps.style.display = 'none'; return;
+      tb.style.display = 'none'; pb.style.display = 'none'; return;
     }
-    tb.style.display = 'flex'; ps.style.display = 'block';
-    document.getElementById('totalPrice').textContent = getTotal().toLocaleString() + ' ₽';
+    tb.style.display = 'flex'; pb.style.display = 'block';
+    const total = getTotal();
+    document.getElementById('totalPrice').textContent = total.toLocaleString() + ' ₽';
+    document.getElementById('displaySum').textContent = total.toLocaleString() + ' ₽';
+    document.getElementById('displayPhone').textContent = SELLER_PHONE;
+    
     cont.innerHTML = cart.map(id => {
       const p = getProductById(id);
       return p ? `<div class="cart-item"><span>${p.emoji} ${p.title}</span><span>${p.price.toLocaleString()} ₽ <button class="remove-btn" data-id="${p.id}">убрать</button></span></div>` : '';
     }).join('');
     document.querySelectorAll('.remove-btn').forEach(b => b.addEventListener('click', () => { cart = cart.filter(i => i !== +b.dataset.id); renderCart(); }));
-    generateQR();
+    
+    updateQR(total);
   }
 
-  // ====== QR-КОД С НОМЕРОМ 89280048199 ======
-  function generateQR() {
-    const box = document.getElementById('qrBox');
+  // QR-код (просто номер и сумма текстом)
+  function updateQR(total) {
+    const box = document.getElementById('qrMiniBox');
     box.innerHTML = '';
-    const phone = SELLER_PHONE;
-    const bank = document.getElementById('sellerBank').value.trim();
-    const total = getTotal();
     if (total <= 0) return;
-
-    const qrText = `ST00012|Name=GULISTORY|PersonalAcc=${phone}|BankName=${bank}|Sum=${total * 100}|Purpose=Оплата заказа GULISTORY`;
+    
+    // Самый простой формат: просто номер телефона и сумма
+    const qrText = `tel:${SELLER_PHONE}?amount=${total}`;
     
     new QRCode(box, {
       text: qrText,
-      width: 160,
-      height: 160,
+      width: 120,
+      height: 120,
       colorDark: '#000000',
       colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.M
+      correctLevel: QRCode.CorrectLevel.L
     });
   }
 
-  // ====== КНОПКИ ======
+  // КНОПКИ КОПИРОВАНИЯ
   document.getElementById('btnCopyPhone').addEventListener('click', () => {
-    navigator.clipboard.writeText(SELLER_PHONE).then(() => alert('✅ Номер ' + SELLER_PHONE + ' скопирован!\n\nОткрой Т-Банк → Перевод по номеру телефона → Вставь номер.'));
+    navigator.clipboard.writeText(SELLER_PHONE).then(() => {
+      alert('✅ Номер ' + SELLER_PHONE + ' скопирован!\n\nОткрой Т-Банк → Перевод по номеру телефона → Вставь номер.');
+    }).catch(() => {
+      alert('Номер: ' + SELLER_PHONE + '\n\nСкопируй вручную и вставь в приложение банка.');
+    });
   });
 
   document.getElementById('btnCopyAll').addEventListener('click', () => {
-    const bank = document.getElementById('sellerBank').value;
     const total = getTotal();
-    const text = `Получатель: GULISTORY\nТелефон: ${SELLER_PHONE}\nБанк: ${bank}\nСумма: ${total} ₽`;
-    navigator.clipboard.writeText(text).then(() => alert('✅ Всё скопировано!\n\n' + text + '\n\nОткрой приложение банка и вставь.'));
+    const text = SELLER_PHONE + '  ' + total + '₽';
+    navigator.clipboard.writeText(text).then(() => {
+      alert('✅ Скопировано: ' + text + '\n\nОткрой Т-Банк и вставь.');
+    }).catch(() => {
+      alert('Номер: ' + SELLER_PHONE + '\nСумма: ' + total.toLocaleString() + ' ₽\n\nВведи вручную в приложении банка.');
+    });
   });
-
-  document.getElementById('btnOpenBank').addEventListener('click', () => {
-    const total = getTotal();
-    const tbankUrl = `https://www.tbank.ru/payments/form/?to=${SELLER_PHONE}&sum=${total}&message=GULISTORY`;
-    window.open(tbankUrl, '_blank');
-  });
-
-  document.getElementById('sellerPhone').addEventListener('input', generateQR);
-  document.getElementById('sellerBank').addEventListener('input', generateQR);
 
   // ФИЛЬТРЫ
   document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', function() {
