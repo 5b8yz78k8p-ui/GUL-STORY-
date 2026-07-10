@@ -70,15 +70,44 @@
     .pay-box { margin-top: 1rem; padding: 1.2rem; background: #fffbe6; border-radius: 20px; border: 2px solid #FFDD2D; text-align: center; }
     .pay-box .pay-phone { font-size: 1.8rem; font-weight: 700; letter-spacing: 3px; color: #000; background: #fff; padding: 0.5rem 1rem; border-radius: 15px; display: inline-block; border: 2px dashed #4a6a4a; margin: 0.5rem 0; }
     .pay-box .pay-sum { font-size: 1.2rem; font-weight: 600; color: #4a6a4a; margin: 0.5rem 0; }
+
+    /* Форма заказа */
+    .order-form { text-align: left; margin: 0.8rem 0; }
+    .order-form label { font-size: 0.8rem; color: #5a7a5a; display: block; margin: 0.4rem 0 0.2rem; font-weight: 500; }
+    .order-form input, .order-form textarea {
+      width: 100%; padding: 0.7rem; border: 1.5px solid #d4e2d4; border-radius: 15px; font-size: 0.9rem; outline: none; background: #fff; font-family: inherit;
+    }
+    .order-form input:focus, .order-form textarea:focus { border-color: #4a6a4a; }
+    .order-form textarea { resize: vertical; min-height: 50px; }
+
+    .delivery-options { display: flex; gap: 0.5rem; margin: 0.5rem 0; }
+    .delivery-option {
+      flex: 1; padding: 0.6rem; border: 2px solid #d4e2d4; border-radius: 15px; cursor: pointer; text-align: center; font-size: 0.8rem; font-weight: 500; transition: 0.2s;
+    }
+    .delivery-option.active { border-color: #4a6a4a; background: #e8f5e9; color: #3a5a3a; }
+    .delivery-option input { display: none; }
+
+    .pickup-address { background: #e8f5e9; padding: 0.6rem 0.8rem; border-radius: 12px; font-size: 0.8rem; color: #3a5a3a; margin: 0.4rem 0; }
+
     .copy-btn { width: 100%; padding: 1rem; border-radius: 30px; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 0.6rem; transition: 0.2s; }
     .copy-btn:active { transform: scale(0.96); }
     .btn-num { background: #FFDD2D; color: #000; }
     .btn-sum { background: #2d3a2c; color: #fff; }
+    .btn-order { background: #4CAF50; color: #fff; }
 
     .category-tabs { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
     .tab-btn { background: #fff; border: 1px solid #d4e2d4; color: #5a7a5a; padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
     .tab-btn.active { background: #4a6a4a; color: #fff; }
     .footer-note { font-size: 0.7rem; color: #a0b8a0; text-align: center; margin-top: 1rem; }
+
+    /* Касса */
+    .kassa-section { background: #f9f9f9; border-radius: 20px; padding: 1rem; margin-top: 1.5rem; border: 1px solid #dce8dc; }
+    .kassa-section h4 { color: #3a5a3a; text-align: center; margin-bottom: 0.5rem; }
+    .kassa-item { background: #fff; border-radius: 12px; padding: 0.7rem; margin: 0.4rem 0; font-size: 0.8rem; border: 1px solid #eee; }
+    .kassa-item .kassa-header { display: flex; justify-content: space-between; font-weight: 600; color: #3a5a3a; }
+    .kassa-item .kassa-body { color: #666; font-size: 0.75rem; margin-top: 0.3rem; }
+    .kassa-empty { text-align: center; color: #aaa; padding: 1rem; font-size: 0.85rem; }
+    .clear-kassa-btn { background: #ff5252; color: #fff; border: none; padding: 0.3rem 1rem; border-radius: 15px; font-size: 0.7rem; cursor: pointer; margin-top: 0.5rem; }
   </style>
 </head>
 <body>
@@ -124,23 +153,64 @@
     </div>
 
     <div class="pay-box" id="payBox" style="display:none;">
-      <div style="font-weight:600;color:#3a5a3a;margin-bottom:0.5rem;">💳 Номер для перевода:</div>
+      <div style="font-weight:600;color:#3a5a3a;margin-bottom:0.5rem;">📦 Оформление заказа</div>
+
+      <!-- ВЫБОР ДОСТАВКИ -->
+      <div class="delivery-options" id="deliveryOptions">
+        <label class="delivery-option active" id="optDelivery">
+          <input type="radio" name="delivery" value="delivery" checked> 🚚 Доставка
+        </label>
+        <label class="delivery-option" id="optPickup">
+          <input type="radio" name="delivery" value="pickup"> 🏠 Самовывоз
+        </label>
+      </div>
+
+      <!-- АДРЕС САМОВЫВОЗА -->
+      <div class="pickup-address" id="pickupAddress" style="display:none;">
+        📍 Адрес самовывоза: <b>скоро напишу</b>
+      </div>
+
+      <!-- ФОРМА -->
+      <div class="order-form" id="deliveryForm">
+        <label>👤 Ваше имя:</label>
+        <input type="text" id="customerName" placeholder="Иван Иванов">
+        <label>📱 Телефон:</label>
+        <input type="tel" id="customerPhone" placeholder="+7 (999) 123-45-67">
+        <label>📍 Адрес доставки:</label>
+        <textarea id="customerAddress" placeholder="Город, улица, дом, квартира"></textarea>
+        <label>📝 Комментарий к заказу:</label>
+        <textarea id="customerComment" placeholder="Пожелания по доставке..."></textarea>
+      </div>
+
+      <div style="font-weight:600;color:#3a5a3a;margin:0.8rem 0 0.3rem;">💳 Номер для перевода:</div>
       <div class="pay-phone">89280048199</div>
       <div class="pay-sum">Сумма: <span id="paySum">0 ₽</span></div>
+
       <button class="copy-btn btn-num" id="copyPhone">📋 Скопировать номер</button>
       <button class="copy-btn btn-sum" id="copyAll">📋 Скопировать номер и сумму</button>
+      <button class="copy-btn btn-order" id="confirmOrder">✅ Подтвердить заказ</button>
     </div>
   </div>
+
+  <!-- КАССА (только для админа) -->
+  <div class="kassa-section" id="kassaSection" style="display:none;">
+    <h4>🧾 Касса · Заказы</h4>
+    <div id="kassaList"><div class="kassa-empty">Заказов пока нет</div></div>
+    <div style="text-align:center;"><button class="clear-kassa-btn" id="clearKassa">🗑 Очистить кассу</button></div>
+  </div>
+
   <div class="footer-note">gulistory — тихая роскошь</div>
 </div>
 
 <script>
   const ADMIN_PASSWORD = 'gulistory2026';
   const SELLER_PHONE = '89280048199';
-  
+  const PICKUP_ADDRESS = 'Адрес появится позже'; // ← ПОТОМ НАПИШЕШЬ СВОЙ АДРЕС
+
   let isAdmin = false;
   let cart = [];
   let currentCategory = 'all';
+  let deliveryMethod = 'delivery';
   const photoMap = new Map();
   let productIdCounter = 100;
 
@@ -164,10 +234,15 @@
     return null;
   }
   function saveProducts(prods) { localStorage.setItem('gulistory_products', JSON.stringify(prods)); }
+  function loadKassa() {
+    try { return JSON.parse(localStorage.getItem('gulistory_kassa') || '[]'); } catch(e) { return []; }
+  }
+  function saveKassa(kassa) { localStorage.setItem('gulistory_kassa', JSON.stringify(kassa)); }
 
   let productEdits = loadEdits();
   cart = loadCart();
   loadPhotos();
+  let kassaOrders = loadKassa();
 
   let baseProducts = loadProducts() || [
     { id: 1, category: 'bag', title: 'Сумка «Тишина»', price: 8900, desc: 'Мягкая сумка-тоут спокойного оливкового оттенка.', emoji: '👜' },
@@ -189,20 +264,18 @@
   function getProductById(id) { return getProducts().find(p => p.id === id); }
   function getTotal() { return cart.reduce((s, id) => { const p = getProductById(id); return s + (p ? p.price : 0); }, 0); }
 
+  // УДАЛИТЬ ТОВАР
   function deleteProduct(id) {
     if (!confirm('Удалить этот товар навсегда?')) return;
     baseProducts = baseProducts.filter(p => p.id !== id);
     photoMap.delete(id);
     if (productEdits[id]) delete productEdits[id];
     cart = cart.filter(i => i !== id);
-    saveProducts(baseProducts);
-    savePhotos();
-    saveEdits(productEdits);
-    saveCart();
-    renderCatalog();
-    renderCart();
+    saveProducts(baseProducts); savePhotos(); saveEdits(productEdits); saveCart();
+    renderCatalog(); renderCart();
   }
 
+  // ДОБАВИТЬ ТОВАР
   function addNewProduct() {
     const title = prompt('Название товара:');
     if (!title) return;
@@ -210,19 +283,99 @@
     if (isNaN(price) || price <= 0) { alert('Нужна нормальная цена!'); return; }
     const desc = prompt('Описание:') || '';
     const cat = prompt('Категория (bag или scarf):') || 'bag';
-    
-    baseProducts.push({
-      id: productIdCounter++,
-      category: cat === 'scarf' ? 'scarf' : 'bag',
-      title: title,
-      price: price,
-      desc: desc,
-      emoji: cat === 'scarf' ? '🧣' : '👜'
-    });
+    baseProducts.push({ id: productIdCounter++, category: cat === 'scarf' ? 'scarf' : 'bag', title, price, desc, emoji: cat === 'scarf' ? '🧣' : '👜' });
     saveProducts(baseProducts);
     renderCatalog();
   }
 
+  // ПОДТВЕРЖДЕНИЕ ЗАКАЗА
+  function confirmOrder() {
+    const name = document.getElementById('customerName').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    const address = deliveryMethod === 'delivery' ? document.getElementById('customerAddress').value.trim() : 'Самовывоз';
+    const comment = document.getElementById('customerComment').value.trim();
+    
+    if (!name) { alert('Введи имя!'); return; }
+    if (!phone) { alert('Введи телефон!'); return; }
+    if (deliveryMethod === 'delivery' && !address) { alert('Введи адрес доставки!'); return; }
+    if (cart.length === 0) { alert('Корзина пуста!'); return; }
+
+    const now = new Date();
+    const timeStr = now.toLocaleString('ru-RU');
+    const items = cart.map(id => getProductById(id)).filter(p => p).map(p => p.title).join(', ');
+    const total = getTotal();
+
+    const order = {
+      id: Date.now(),
+      date: timeStr,
+      name: name,
+      phone: phone,
+      delivery: deliveryMethod === 'delivery' ? 'Доставка' : 'Самовывоз',
+      address: address,
+      comment: comment,
+      items: items,
+      total: total
+    };
+
+    kassaOrders.unshift(order);
+    if (kassaOrders.length > 50) kassaOrders = kassaOrders.slice(0, 50);
+    saveKassa(kassaOrders);
+    renderKassa();
+
+    // Очистка
+    cart = [];
+    saveCart();
+    document.getElementById('customerName').value = '';
+    document.getElementById('customerPhone').value = '';
+    document.getElementById('customerAddress').value = '';
+    document.getElementById('customerComment').value = '';
+    renderCart();
+    renderCatalog();
+
+    alert('✅ Заказ оформлен!\n\nСпособ: ' + order.delivery + '\nСумма: ' + total.toLocaleString() + ' ₽\n\nПереведи ' + total.toLocaleString() + ' ₽ на номер ' + SELLER_PHONE + '\n\nПродавец увидит твой заказ в кассе.');
+  }
+
+  // ОТРИСОВКА КАССЫ
+  function renderKassa() {
+    const list = document.getElementById('kassaList');
+    if (kassaOrders.length === 0) {
+      list.innerHTML = '<div class="kassa-empty">Заказов пока нет</div>';
+      return;
+    }
+    list.innerHTML = kassaOrders.map(o => `
+      <div class="kassa-item">
+        <div class="kassa-header">
+          <span>📅 ${o.date}</span>
+          <span>💰 ${o.total.toLocaleString()} ₽</span>
+        </div>
+        <div class="kassa-body">
+          👤 ${o.name} | 📱 ${o.phone}<br>
+          🚚 ${o.delivery}${o.delivery === 'Доставка' ? ': ' + o.address : ''}<br>
+          🛍 Товары: ${o.items}<br>
+          ${o.comment ? '📝 ' + o.comment : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Выбор доставки
+  document.getElementById('optDelivery').addEventListener('click', () => {
+    deliveryMethod = 'delivery';
+    document.getElementById('optDelivery').classList.add('active');
+    document.getElementById('optPickup').classList.remove('active');
+    document.getElementById('pickupAddress').style.display = 'none';
+    document.getElementById('deliveryForm').style.display = 'block';
+  });
+  document.getElementById('optPickup').addEventListener('click', () => {
+    deliveryMethod = 'pickup';
+    document.getElementById('optPickup').classList.add('active');
+    document.getElementById('optDelivery').classList.remove('active');
+    document.getElementById('pickupAddress').style.display = 'block';
+    document.getElementById('pickupAddress').innerHTML = '📍 Адрес самовывоза: <b>' + PICKUP_ADDRESS + '</b>';
+    document.getElementById('deliveryForm').style.display = 'none';
+  });
+
+  // АДМИН
   document.getElementById('adminToggle').addEventListener('click', () => {
     if (isAdmin) { 
       isAdmin = false; 
@@ -230,6 +383,7 @@
       document.getElementById('adminToggle').textContent = 'Войти'; 
       document.getElementById('adminStatus').textContent = 'гость';
       document.getElementById('addProductSection').style.display = 'none';
+      document.getElementById('kassaSection').style.display = 'none';
       renderCatalog(); 
     } else {
       document.getElementById('passwordPopup').classList.add('open');
@@ -245,13 +399,16 @@
       document.getElementById('passwordPopup').classList.remove('open');
       document.getElementById('pwdInput').value = '';
       document.getElementById('addProductSection').style.display = 'block';
+      document.getElementById('kassaSection').style.display = 'block';
+      renderKassa();
       renderCatalog();
-    } else {
-      alert('Неверный пароль!');
-      document.getElementById('pwdInput').value = '';
-    }
+    } else { alert('Неверный пароль!'); document.getElementById('pwdInput').value = ''; }
   });
   document.getElementById('addProductBtn').addEventListener('click', addNewProduct);
+  document.getElementById('confirmOrder').addEventListener('click', confirmOrder);
+  document.getElementById('clearKassa').addEventListener('click', () => {
+    if (confirm('Очистить всю кассу?')) { kassaOrders = []; saveKassa(kassaOrders); renderKassa(); }
+  });
 
   function saveEdit(id, field, value) {
     if (!productEdits[id]) productEdits[id] = {};
