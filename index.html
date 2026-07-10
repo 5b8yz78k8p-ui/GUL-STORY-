@@ -50,8 +50,6 @@
     .image-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; border-radius: 18px; color: #fff; cursor: pointer; }
     .product-image:hover .image-overlay { opacity: 1; }
     .image-overlay span { background: #2d3a2ccc; padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.8rem; }
-    .lock-overlay { position: absolute; inset: 0; background: rgba(60,70,60,0.25); display: flex; align-items: center; justify-content: center; border-radius: 18px; color: #fff; font-size: 1.5rem; opacity: 0; pointer-events: none; z-index: 5; }
-    .lock-overlay.show { opacity: 1; }
     .reset-photo-btn { position: absolute; bottom: 8px; right: 10px; background: #ffffffdd; border: 1px solid #b0c8b0; border-radius: 20px; padding: 0.15rem 0.6rem; font-size: 0.6rem; cursor: pointer; z-index: 6; }
 
     .admin-edit-input, .admin-edit-textarea { width: 100%; padding: 0.35rem 0.6rem; border: 1.5px dashed #5a7a5a; border-radius: 12px; font-size: 0.85rem; background: #fafff7; outline: none; font-family: inherit; }
@@ -139,42 +137,22 @@
   let currentCategory = 'all';
   const photoMap = new Map();
 
-  // ====== ЗАГРУЗКА ВСЕГО ИЗ LOCALSTORAGE ======
-  function loadEdits() { 
-    try { return JSON.parse(localStorage.getItem('gulistory_edits') || '{}'); } 
-    catch(e) { return {}; } 
-  }
-  function saveEdits(e) { 
-    localStorage.setItem('gulistory_edits', JSON.stringify(e)); 
-  }
-
-  function loadCart() {
-    try { return JSON.parse(localStorage.getItem('gulistory_cart') || '[]'); }
-    catch(e) { return []; }
-  }
-  function saveCart() {
-    localStorage.setItem('gulistory_cart', JSON.stringify(cart));
-  }
-
+  function loadEdits() { try { return JSON.parse(localStorage.getItem('gulistory_edits') || '{}'); } catch(e) { return {}; } }
+  function saveEdits(e) { localStorage.setItem('gulistory_edits', JSON.stringify(e)); }
+  function loadCart() { try { return JSON.parse(localStorage.getItem('gulistory_cart') || '[]'); } catch(e) { return []; } }
+  function saveCart() { localStorage.setItem('gulistory_cart', JSON.stringify(cart)); }
   function loadPhotos() {
     try {
       const saved = localStorage.getItem('gulistory_photos');
-      if (saved) {
-        const obj = JSON.parse(saved);
-        Object.keys(obj).forEach(key => photoMap.set(parseInt(key), obj[key]));
-      }
+      if (saved) { const obj = JSON.parse(saved); Object.keys(obj).forEach(key => photoMap.set(parseInt(key), obj[key])); }
     } catch(e) {}
   }
   function savePhotos() {
     const obj = {};
     photoMap.forEach((val, key) => obj[key] = val);
     try { localStorage.setItem('gulistory_photos', JSON.stringify(obj)); } catch(e) {
-      // Если переполнено — удаляем старые
       const keys = Array.from(photoMap.keys());
-      if (keys.length > 2) {
-        photoMap.delete(keys[0]);
-        savePhotos();
-      }
+      if (keys.length > 2) { photoMap.delete(keys[0]); savePhotos(); }
     }
   }
 
@@ -234,7 +212,7 @@
     saveEdits(productEdits);
   }
 
-  // КАТАЛОГ
+  // КАТАЛОГ (БЕЗ ЗАМКА)
   function renderCatalog() {
     const div = document.getElementById('catalog');
     div.innerHTML = '';
@@ -248,8 +226,7 @@
         <div class="product-image" style="${bg}">
           ${!photo ? `<span class="product-emoji">${p.emoji}</span>` : ''}
           ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
-          ${isAdmin ? `<label class="image-overlay" for="ph-${p.id}"><span>📷 фото</span></label>` : ''}
-          ${!isAdmin && photo ? '<div class="lock-overlay show">🔒</div>' : ''}
+          ${isAdmin ? `<label class="image-overlay" for="ph-${p.id}"><span>📷 загрузить фото</span></label>` : ''}
           ${isAdmin && photo ? `<button class="reset-photo-btn" data-id="${p.id}">✕ сброс</button>` : ''}
           ${isAdmin ? `<input type="file" accept="image/*" class="photo-upload-input" id="ph-${p.id}" data-id="${p.id}">` : ''}
         </div>
@@ -305,12 +282,9 @@
     const pb = document.getElementById('payBox');
     if (cart.length === 0) { 
       cont.innerHTML = '<div style="color:#a0b0a0;padding:0.5rem;">пусто</div>'; 
-      tb.style.display = 'none'; 
-      pb.style.display = 'none'; 
-      return; 
+      tb.style.display = 'none'; pb.style.display = 'none'; return; 
     }
-    tb.style.display = 'flex'; 
-    pb.style.display = 'block';
+    tb.style.display = 'flex'; pb.style.display = 'block';
     const total = getTotal();
     document.getElementById('totalPrice').textContent = total.toLocaleString() + ' ₽';
     document.getElementById('paySum').textContent = total.toLocaleString() + ' ₽';
@@ -325,16 +299,14 @@
     }));
   }
 
-  // КНОПКИ
   document.getElementById('copyPhone').addEventListener('click', () => {
-    navigator.clipboard.writeText(SELLER_PHONE).then(() => alert('✅ Номер скопирован: ' + SELLER_PHONE + '\n\nОткрой Т-Банк → Перевод по номеру телефона → Вставь номер.'));
+    navigator.clipboard.writeText(SELLER_PHONE).then(() => alert('✅ Номер скопирован: ' + SELLER_PHONE + '\n\nОткрой Т-Банк → Перевод по номеру телефона → Вставь.'));
   });
   document.getElementById('copyAll').addEventListener('click', () => {
     const text = SELLER_PHONE + ' — ' + getTotal().toLocaleString() + ' ₽';
     navigator.clipboard.writeText(text).then(() => alert('✅ Скопировано: ' + text + '\n\nОткрой Т-Банк и вставь.'));
   });
 
-  // ФИЛЬТРЫ
   document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', function() {
     document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
     this.classList.add('active');
