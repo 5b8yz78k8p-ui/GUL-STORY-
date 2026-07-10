@@ -43,18 +43,7 @@
     .choose-btn { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.5rem 1.5rem; border-radius: 30px; cursor: pointer; font-size: 0.9rem; font-weight: 500; }
     .choose-btn:active { background: #4a6a4a; color: #fff; }
     .remove-btn { background: none; border: 1px solid #c8d8c0; color: #8a7a6a; border-radius: 20px; padding: 0.2rem 0.7rem; font-size: 0.7rem; cursor: pointer; }
-
-    /* Кнопка удаления товара (админ) */
-    .delete-product-btn {
-      background: #ff5252;
-      color: #fff;
-      border: none;
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      cursor: pointer;
-      font-weight: 600;
-    }
+    .delete-product-btn { background: #ff5252; color: #fff; border: none; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.75rem; cursor: pointer; font-weight: 600; }
     .delete-product-btn:active { background: #d32f2f; }
 
     .photo-upload-input { display: none; }
@@ -69,26 +58,8 @@
     .save-indicator { display: inline-block; background: #4a6a4a; color: #fff; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.6rem; animation: fadeOut 2s forwards; }
     @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
 
-    /* Кнопка Добавить товар */
-    .add-product-section {
-      background: #eaf1e8;
-      border-radius: 20px;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      border: 2px dashed #5a7a5a;
-      text-align: center;
-    }
-    .add-product-btn {
-      background: #4a6a4a;
-      color: #fff;
-      border: none;
-      padding: 0.7rem 2rem;
-      border-radius: 30px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      letter-spacing: 1px;
-    }
+    .add-product-section { background: #eaf1e8; border-radius: 20px; padding: 1rem; margin-bottom: 1.5rem; border: 2px dashed #5a7a5a; text-align: center; }
+    .add-product-btn { background: #4a6a4a; color: #fff; border: none; padding: 0.7rem 2rem; border-radius: 30px; font-size: 1rem; font-weight: 600; cursor: pointer; letter-spacing: 1px; }
     .add-product-btn:active { background: #3a5a3a; }
 
     .cart-panel { margin-top: 1.5rem; background: #fff; border-radius: 24px; padding: 1.2rem; border: 1px solid #dce8dc; text-align: center; }
@@ -138,7 +109,6 @@
     <button class="tab-btn" data-category="scarf">🧣 платки</button>
   </div>
 
-  <!-- Кнопка Добавить товар (видна только админу) -->
   <div class="add-product-section" id="addProductSection" style="display:none;">
     <button class="add-product-btn" id="addProductBtn">➕ Добавить новый товар</button>
   </div>
@@ -154,11 +124,9 @@
     </div>
 
     <div class="pay-box" id="payBox" style="display:none;">
-      <div style="font-weight:600;color:#3a5a3a;margin-bottom:0.5rem;">💳 Перевод на номер:</div>
+      <div style="font-weight:600;color:#3a5a3a;margin-bottom:0.5rem;">💳 Номер для перевода:</div>
       <div class="pay-phone">89280048199</div>
-      <div style="color:#888;font-size:0.85rem;">Т-Банк (Тинькофф)</div>
       <div class="pay-sum">Сумма: <span id="paySum">0 ₽</span></div>
-      <div style="font-size:0.75rem;color:#aaa;margin:0.5rem 0;">Открой Т-Банк → Перевод по номеру телефона</div>
       <button class="copy-btn btn-num" id="copyPhone">📋 Скопировать номер</button>
       <button class="copy-btn btn-sum" id="copyAll">📋 Скопировать номер и сумму</button>
     </div>
@@ -174,7 +142,7 @@
   let cart = [];
   let currentCategory = 'all';
   const photoMap = new Map();
-  let productIdCounter = 100; // счётчик для новых товаров
+  let productIdCounter = 100;
 
   function loadEdits() { try { return JSON.parse(localStorage.getItem('gulistory_edits') || '{}'); } catch(e) { return {}; } }
   function saveEdits(e) { localStorage.setItem('gulistory_edits', JSON.stringify(e)); }
@@ -192,21 +160,15 @@
     try { localStorage.setItem('gulistory_photos', JSON.stringify(obj)); } catch(e) {}
   }
   function loadProducts() {
-    try {
-      const saved = localStorage.getItem('gulistory_products');
-      if (saved) return JSON.parse(saved);
-    } catch(e) {}
+    try { const saved = localStorage.getItem('gulistory_products'); if (saved) return JSON.parse(saved); } catch(e) {}
     return null;
   }
-  function saveProducts(prods) {
-    localStorage.setItem('gulistory_products', JSON.stringify(prods));
-  }
+  function saveProducts(prods) { localStorage.setItem('gulistory_products', JSON.stringify(prods)); }
 
   let productEdits = loadEdits();
   cart = loadCart();
   loadPhotos();
 
-  // Загружаем товары (базовые или сохранённые)
   let baseProducts = loadProducts() || [
     { id: 1, category: 'bag', title: 'Сумка «Тишина»', price: 8900, desc: 'Мягкая сумка-тоут спокойного оливкового оттенка.', emoji: '👜' },
     { id: 2, category: 'bag', title: 'Сумка «Шалфей»', price: 12400, desc: 'Элегантная кросс-боди сумка цвета сухого шалфея.', emoji: '👝' },
@@ -216,7 +178,6 @@
     { id: 6, category: 'scarf', title: 'Платок «Ива»', price: 5100, desc: 'Тёплый платок, серебристая полынь.', emoji: '🧣' }
   ];
   
-  // Обновляем счётчик
   baseProducts.forEach(p => { if (p.id >= productIdCounter) productIdCounter = p.id + 1; });
 
   function getProducts() {
@@ -228,7 +189,6 @@
   function getProductById(id) { return getProducts().find(p => p.id === id); }
   function getTotal() { return cart.reduce((s, id) => { const p = getProductById(id); return s + (p ? p.price : 0); }, 0); }
 
-  // УДАЛИТЬ ТОВАР
   function deleteProduct(id) {
     if (!confirm('Удалить этот товар навсегда?')) return;
     baseProducts = baseProducts.filter(p => p.id !== id);
@@ -243,7 +203,6 @@
     renderCart();
   }
 
-  // ДОБАВИТЬ НОВЫЙ ТОВАР
   function addNewProduct() {
     const title = prompt('Название товара:');
     if (!title) return;
@@ -252,21 +211,18 @@
     const desc = prompt('Описание:') || '';
     const cat = prompt('Категория (bag или scarf):') || 'bag';
     
-    const newProduct = {
+    baseProducts.push({
       id: productIdCounter++,
       category: cat === 'scarf' ? 'scarf' : 'bag',
       title: title,
       price: price,
       desc: desc,
       emoji: cat === 'scarf' ? '🧣' : '👜'
-    };
-    
-    baseProducts.push(newProduct);
+    });
     saveProducts(baseProducts);
     renderCatalog();
   }
 
-  // АДМИН
   document.getElementById('adminToggle').addEventListener('click', () => {
     if (isAdmin) { 
       isAdmin = false; 
@@ -303,7 +259,6 @@
     saveEdits(productEdits);
   }
 
-  // КАТАЛОГ
   function renderCatalog() {
     const div = document.getElementById('catalog');
     div.innerHTML = '';
@@ -331,7 +286,6 @@
         </div>
       `;
       div.appendChild(card);
-      
       if (isAdmin) {
         card.querySelectorAll('[data-field]').forEach(inp => inp.addEventListener('input', function() {
           saveEdit(+this.dataset.id, this.dataset.field, this.value);
@@ -347,18 +301,14 @@
         });
         const rb = card.querySelector('.reset-photo-btn');
         if (rb) rb.addEventListener('click', () => { photoMap.delete(p.id); savePhotos(); renderCatalog(); });
-        
-        const delBtn = card.querySelector('.delete-product-btn');
-        if (delBtn) delBtn.addEventListener('click', () => deleteProduct(p.id));
+        card.querySelector('.delete-product-btn').addEventListener('click', () => deleteProduct(p.id));
       }
-      
       card.querySelector('.choose-btn').addEventListener('click', () => { 
         if (!cart.includes(p.id)) { cart.push(p.id); saveCart(); renderCart(); } 
       });
     });
   }
 
-  // КОРЗИНА
   function renderCart() {
     const cont = document.getElementById('cartContainer');
     const tb = document.getElementById('totalBox');
@@ -376,9 +326,7 @@
       return p ? `<div class="cart-item"><span>${p.emoji} ${p.title}</span><span>${p.price.toLocaleString()} ₽ <button class="remove-btn" data-id="${p.id}">убрать</button></span></div>` : '';
     }).join('');
     document.querySelectorAll('.remove-btn').forEach(b => b.addEventListener('click', () => { 
-      cart = cart.filter(i => i !== +b.dataset.id); 
-      saveCart();
-      renderCart(); 
+      cart = cart.filter(i => i !== +b.dataset.id); saveCart(); renderCart(); 
     }));
   }
 
