@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>GULISTORY</title>
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -23,92 +22,91 @@
     .header .subtitle { font-size: 0.85rem; color: #6b8b6b; letter-spacing: 3px; border-top: 1px solid #c8dac8; padding-top: 0.5rem; display: inline-block; }
 
     .admin-panel { background: #eaf1e8; border-radius: 20px; padding: 0.8rem 1rem; margin-bottom: 1.5rem; border: 1px solid #c0d4c0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem; }
-    .admin-toggle { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.35rem 1rem; border-radius: 30px; cursor: pointer; }
+    .admin-toggle { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.35rem 1rem; border-radius: 30px; cursor: pointer; font-size: 0.8rem; }
     .admin-toggle.active { background: #4a6a4a; color: #fff; }
 
     .card { background: #fff; border: 1px solid #dce8dc; border-radius: 24px; padding: 1rem; margin-bottom: 1.4rem; box-shadow: 0 8px 24px rgba(60,80,60,0.06); }
-    .product-image { width: 100%; height: 220px; background-size: cover; background-position: center; border-radius: 18px; margin-bottom: 0.9rem; display: flex; align-items: center; justify-content: center; font-size: 4rem; background-color: #eaf2e8; position: relative; overflow: hidden; }
+    .product-image { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 18px; margin-bottom: 0.9rem; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; background-color: #eaf2e8; position: relative; overflow: hidden; }
     .product-emoji { z-index: 2; pointer-events: none; }
     .product-badge { position: absolute; top: 10px; right: 12px; background: #ffffffdd; padding: 0.25rem 0.8rem; border-radius: 20px; font-size: 0.7rem; color: #4a6a4a; z-index: 3; }
-    .product-title { font-size: 1.25rem; font-weight: 500; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem; flex-wrap: wrap; gap: 0.5rem; }
-    .price { font-size: 1.15rem; font-weight: 500; color: #3a5a3a; background: #edf5ed; padding: 0.25rem 0.9rem; border-radius: 30px; }
-    .description { color: #6b7d6b; font-size: 0.9rem; margin: 0.5rem 0 1rem; padding-left: 0.8rem; border-left: 2px solid #b4ccb4; }
+    .product-title { font-size: 1.2rem; font-weight: 500; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem; flex-wrap: wrap; gap: 0.5rem; }
+    .price { font-size: 1.1rem; font-weight: 500; color: #3a5a3a; background: #edf5ed; padding: 0.2rem 0.8rem; border-radius: 30px; }
+    .description { color: #6b7d6b; font-size: 0.85rem; margin: 0.5rem 0 0.8rem; padding-left: 0.8rem; border-left: 2px solid #b4ccb4; }
     .details-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
-    .material-tag { color: #8aa08a; font-size: 0.8rem; background: #f4f8f2; padding: 0.25rem 0.7rem; border-radius: 14px; }
-    .choose-btn { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.5rem 1.5rem; border-radius: 30px; cursor: pointer; }
+    .material-tag { color: #8aa08a; font-size: 0.75rem; background: #f4f8f2; padding: 0.2rem 0.6rem; border-radius: 14px; }
+    .choose-btn { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.4rem 1.2rem; border-radius: 30px; cursor: pointer; font-size: 0.85rem; }
     .choose-btn:active { background: #4a6a4a; color: #fff; }
-    .remove-btn { background: none; border: 1px solid #c8d8c0; color: #8a7a6a; border-radius: 20px; padding: 0.2rem 0.9rem; font-size: 0.75rem; cursor: pointer; }
+    .remove-btn { background: none; border: 1px solid #c8d8c0; color: #8a7a6a; border-radius: 20px; padding: 0.2rem 0.7rem; font-size: 0.7rem; cursor: pointer; }
 
-    .cart-panel { margin-top: 1.8rem; background: #fff; border-radius: 24px; padding: 1.2rem; border: 1px solid #dce8dc; text-align: center; }
-    .cart-item { background: #f7faf5; border-radius: 16px; padding: 0.7rem 0.9rem; margin: 0.4rem 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
-    .total-box { margin-top: 1rem; font-size: 1.1rem; font-weight: 500; color: #3a5a3a; display: flex; justify-content: space-between; border-top: 1px solid #dce8dc; padding-top: 0.9rem; }
+    .cart-panel { margin-top: 1.5rem; background: #fff; border-radius: 24px; padding: 1.2rem; border: 1px solid #dce8dc; text-align: center; }
+    .cart-panel h3 { font-size: 0.9rem; letter-spacing: 2px; color: #5a7a5a; margin-bottom: 0.5rem; text-transform: uppercase; }
+    .cart-item { background: #f7faf5; border-radius: 16px; padding: 0.6rem 0.8rem; margin: 0.3rem 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+    .total-box { margin-top: 0.8rem; font-size: 1.1rem; font-weight: 500; color: #3a5a3a; display: flex; justify-content: space-between; border-top: 1px solid #dce8dc; padding-top: 0.8rem; }
 
-    /* ====== БЛОК ОПЛАТЫ (ПРОСТОЙ) ====== */
-    .payment-block {
-      margin-top: 1rem;
-      padding: 1.2rem;
-      background: #fffbe6;
-      border-radius: 20px;
-      border: 2px solid #FFDD2D;
-      text-align: center;
-    }
-    .payment-block .pay-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #3a5a3a;
-      margin-bottom: 0.8rem;
-    }
-    .payment-block .pay-phone {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #000;
-      letter-spacing: 2px;
-      margin: 0.5rem 0;
-      background: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 15px;
-      display: inline-block;
-      border: 2px dashed #4a6a4a;
-    }
-    .payment-block .pay-sum {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #4a6a4a;
-      margin: 0.5rem 0;
-    }
-    .payment-block .pay-bank {
-      font-size: 0.9rem;
-      color: #6b8b6b;
-      margin-bottom: 0.8rem;
-    }
-    .payment-block .pay-hint {
-      font-size: 0.8rem;
-      color: #8a8a8a;
-      margin: 0.5rem 0;
-      line-height: 1.4;
-    }
+    /* СЕКЦИИ */
+    .section { margin-top: 1rem; padding: 1rem; border-radius: 20px; text-align: left; }
+    .section h4 { text-align: center; color: #3a5a3a; margin-bottom: 0.8rem; font-size: 0.9rem; }
 
-    .copy-btn-big {
-      width: 100%;
-      padding: 1rem;
-      border-radius: 30px;
-      border: none;
-      font-size: 1.1rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      transition: 0.2s;
-      letter-spacing: 1px;
+    /* ПРИВЯЗКА ТЕЛЕФОНА */
+    .phone-section { background: #f0f4ff; border: 2px solid #4a6a4a; }
+    .phone-section input { width: 100%; padding: 0.7rem 1rem; border: 1.5px solid #d4d4d4; border-radius: 15px; font-size: 0.9rem; margin-bottom: 0.5rem; outline: none; background: #fff; text-align: center; font-size: 1.1rem; letter-spacing: 2px; }
+    .phone-section input:focus { border-color: #4a6a4a; }
+    .phone-section .hint { font-size: 0.7rem; color: #888; text-align: center; margin-bottom: 0.5rem; }
+
+    /* ПРИВЯЗКА КАРТЫ */
+    .card-section { background: #fff5f0; border: 2px solid #e0a060; }
+    .card-section input { width: 100%; padding: 0.7rem 1rem; border: 1.5px solid #d4d4d4; border-radius: 15px; font-size: 0.9rem; margin-bottom: 0.5rem; outline: none; background: #fff; }
+    .card-section input:focus { border-color: #e0a060; }
+    .card-row { display: flex; gap: 0.5rem; }
+    .card-row input { flex: 1; }
+
+    /* КНОПКИ */
+    .btn {
+      width: 100%; padding: 0.8rem; border-radius: 25px; border: none; font-size: 0.95rem;
+      font-weight: 600; cursor: pointer; transition: 0.2s; letter-spacing: 0.5px; text-align: center;
     }
-    .copy-btn-big:active { transform: scale(0.96); }
-    .btn-copy-phone { background: #FFDD2D; color: #000; }
-    .btn-copy-all { background: #2d3a2c; color: #fff; margin-top: 0.4rem; }
+    .btn:active { transform: scale(0.97); }
+    .btn-green { background: #4a6a4a; color: #fff; }
+    .btn-orange { background: #e0a060; color: #fff; }
+    .btn-yellow { background: #FFDD2D; color: #000; }
+    .btn-gray { background: #ccc; color: #666; cursor: not-allowed; }
 
-    .qr-mini { margin: 0.8rem auto; display: inline-block; }
-    .qr-mini canvas { border-radius: 12px; }
+    /* СОХРАНЁННЫЕ ДАННЫЕ */
+    .saved-item {
+      background: #e8f5e9; padding: 0.7rem 1rem; border-radius: 15px;
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; font-size: 0.85rem;
+    }
+    .saved-item .masked { font-weight: 600; color: #2d3a2c; letter-spacing: 1px; }
+    .delete-btn { background: #ff5252; color: #fff; border: none; padding: 0.3rem 0.7rem; border-radius: 15px; font-size: 0.7rem; cursor: pointer; }
 
-    .category-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
-    .tab-btn { background: #fff; border: 1px solid #d4e2d4; color: #5a7a5a; padding: 0.4rem 1.1rem; border-radius: 20px; font-size: 0.8rem; cursor: pointer; }
+    /* КОД ПОДТВЕРЖДЕНИЯ */
+    .code-popup {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 100;
+    }
+    .code-box {
+      background: #fff; padding: 2rem 1.5rem; border-radius: 25px; text-align: center; width: 90%; max-width: 350px;
+    }
+    .code-box h3 { color: #3a5a3a; margin-bottom: 0.5rem; }
+    .code-box p { font-size: 0.8rem; color: #888; margin-bottom: 1rem; }
+    .code-box input {
+      width: 100%; padding: 0.8rem; border: 2px solid #4a6a4a; border-radius: 15px;
+      font-size: 1.5rem; text-align: center; letter-spacing: 10px; outline: none;
+    }
+    .code-box .timer { font-size: 0.8rem; color: #e0a060; margin: 0.5rem 0; }
+    .code-box .resend { font-size: 0.8rem; color: #4a6a4a; cursor: pointer; text-decoration: underline; }
+
+    /* ИСТОРИЯ ПЛАТЕЖЕЙ */
+    .history-section { background: #f9f9f9; border: 1px solid #e0e0e0; max-height: 150px; overflow-y: auto; }
+    .history-item { font-size: 0.75rem; padding: 0.4rem 0; border-bottom: 1px solid #eee; color: #555; }
+
+    /* ОПЛАТА */
+    .pay-section { background: #fffbe6; border: 2px solid #FFDD2D; text-align: center; }
+    .pay-phone-display { font-size: 1.6rem; font-weight: 700; color: #000; background: #fff; padding: 0.3rem; border-radius: 12px; display: inline-block; margin: 0.3rem 0; border: 2px dashed #4a6a4a; letter-spacing: 2px; }
+    .pay-sum-display { font-size: 1.2rem; font-weight: 600; color: #4a6a4a; margin: 0.3rem 0; }
+
+    .category-tabs { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .tab-btn { background: #fff; border: 1px solid #d4e2d4; color: #5a7a5a; padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
     .tab-btn.active { background: #4a6a4a; color: #fff; }
 
     .password-popup { background: #fff; border-radius: 20px; padding: 1.5rem; border: 1px solid #c0d4c0; margin-bottom: 1rem; display: none; }
@@ -118,18 +116,18 @@
     .pwd-actions button { background: #fff; border: 1.5px solid #5a7a5a; padding: 0.35rem 1.2rem; border-radius: 30px; cursor: pointer; }
     .pwd-actions button.primary { background: #4a6a4a; color: #fff; }
 
-    .footer-note { font-size: 0.7rem; color: #a0b8a0; text-align: center; margin-top: 1.5rem; }
+    .footer-note { font-size: 0.7rem; color: #a0b8a0; text-align: center; margin-top: 1rem; }
     .photo-upload-input { display: none; }
     .image-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; border-radius: 18px; color: #fff; cursor: pointer; }
     .product-image:hover .image-overlay { opacity: 1; }
-    .image-overlay span { background: #2d3a2ccc; padding: 0.4rem 1.2rem; border-radius: 30px; }
-    .lock-overlay { position: absolute; inset: 0; background: rgba(60,70,60,0.25); display: flex; align-items: center; justify-content: center; border-radius: 18px; color: #fff; font-size: 1.8rem; opacity: 0; pointer-events: none; z-index: 5; }
+    .image-overlay span { background: #2d3a2ccc; padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.8rem; }
+    .lock-overlay { position: absolute; inset: 0; background: rgba(60,70,60,0.25); display: flex; align-items: center; justify-content: center; border-radius: 18px; color: #fff; font-size: 1.5rem; opacity: 0; pointer-events: none; z-index: 5; }
     .lock-overlay.show { opacity: 1; }
-    .reset-photo-btn { position: absolute; bottom: 8px; right: 10px; background: #ffffffdd; border: 1px solid #b0c8b0; border-radius: 20px; padding: 0.15rem 0.7rem; font-size: 0.6rem; cursor: pointer; z-index: 6; }
-    .admin-edit-input, .admin-edit-textarea { width: 100%; padding: 0.4rem 0.7rem; border: 1.5px dashed #5a7a5a; border-radius: 12px; font-size: 0.9rem; background: #fafff7; outline: none; font-family: inherit; }
-    .admin-edit-textarea { resize: vertical; min-height: 50px; }
-    .admin-edit-price { width: 100px; text-align: right; }
-    .save-indicator { display: inline-block; background: #4a6a4a; color: #fff; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.65rem; animation: fadeOut 2s forwards; }
+    .reset-photo-btn { position: absolute; bottom: 8px; right: 10px; background: #ffffffdd; border: 1px solid #b0c8b0; border-radius: 20px; padding: 0.15rem 0.6rem; font-size: 0.6rem; cursor: pointer; z-index: 6; }
+    .admin-edit-input, .admin-edit-textarea { width: 100%; padding: 0.35rem 0.6rem; border: 1.5px dashed #5a7a5a; border-radius: 12px; font-size: 0.85rem; background: #fafff7; outline: none; font-family: inherit; }
+    .admin-edit-textarea { resize: vertical; min-height: 40px; }
+    .admin-edit-price { width: 90px; text-align: right; }
+    .save-indicator { display: inline-block; background: #4a6a4a; color: #fff; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.6rem; animation: fadeOut 2s forwards; }
     @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
   </style>
 </head>
@@ -164,47 +162,87 @@
 
   <div class="cart-panel">
     <h3>✧ корзина ✧</h3>
-    <div id="cartContainer"><div style="color:#a0b0a0;padding:0.8rem;">пусто</div></div>
+    <div id="cartContainer"><div style="color:#a0b0a0;padding:0.5rem;">пусто</div></div>
     <div class="total-box" id="totalBox" style="display:none;">
       <span>Итого</span>
       <span id="totalPrice">0 ₽</span>
     </div>
 
-    <!-- ====== ОПЛАТА - ПРОСТО НОМЕР И КНОПКА КОПИРОВАТЬ ====== -->
-    <div class="payment-block" id="paymentBlock" style="display:none;">
-      <div class="pay-title">💳 Для оплаты переведи на номер:</div>
-      <div class="pay-phone" id="displayPhone">89280048199</div>
-      <div class="pay-bank">Т-Банк (Тинькофф)</div>
-      <div class="pay-sum">Сумма: <span id="displaySum">0 ₽</span></div>
-      
-      <div class="qr-mini" id="qrMiniBox"></div>
-      <div class="pay-hint">📷 Наведи камеру банка на QR<br>или скопируй номер ниже</div>
+    <!-- ПРИВЯЗКА ТЕЛЕФОНА -->
+    <div class="section phone-section" id="phoneSection" style="display:none;">
+      <h4>📱 Привяжи номер телефона</h4>
+      <input type="tel" id="userPhoneInput" placeholder="+7 (999) 123-45-67" value="">
+      <div class="hint">Нужен для подтверждения оплаты</div>
+      <button class="btn btn-green" id="bindPhoneBtn">📱 Привязать и получить код</button>
+      <div id="savedPhone" style="display:none;"></div>
+    </div>
 
-      <button class="copy-btn-big btn-copy-phone" id="btnCopyPhone">
-        📋 Скопировать номер 89280048199
-      </button>
-      <button class="copy-btn-big btn-copy-all" id="btnCopyAll">
-        📋 Скопировать номер и сумму
-      </button>
-      <div class="pay-hint" style="margin-top:0.8rem;">
-        ⚡ Открой приложение Т-Банка<br>
-        → «Перевод по номеру телефона»<br>
-        → Вставь номер и сумму
+    <!-- ПРИВЯЗКА КАРТЫ -->
+    <div class="section card-section" id="cardSection" style="display:none;">
+      <h4>💳 Привяжи банковскую карту</h4>
+      <input type="text" id="cardNumber" placeholder="Номер карты: 1234 5678 9012 3456" maxlength="19">
+      <div class="card-row">
+        <input type="text" id="cardExpiry" placeholder="ММ/ГГ" maxlength="5">
+        <input type="text" id="cardCVV" placeholder="CVV" maxlength="3">
       </div>
+      <input type="text" id="cardName" placeholder="Имя владельца (латиницей)">
+      <button class="btn btn-orange" id="bindCardBtn">💳 Привязать карту</button>
+      <div id="savedCard" style="display:none;"></div>
+    </div>
+
+    <!-- ОПЛАТА -->
+    <div class="section pay-section" id="paySection" style="display:none;">
+      <h4>💳 Оплата заказа</h4>
+      <div>Получатель:</div>
+      <div class="pay-phone-display">89280048199</div>
+      <div>Т-Банк (Тинькофф)</div>
+      <div class="pay-sum-display">Сумма: <span id="paySum">0 ₽</span></div>
+      <div id="payFromInfo" style="font-size:0.8rem;color:#888;margin:0.3rem 0;"></div>
+      <button class="btn btn-yellow" id="payBtn" disabled>🔒 Привяжи телефон и карту для оплаты</button>
+    </div>
+
+    <!-- ИСТОРИЯ -->
+    <div class="section history-section" id="historySection" style="display:none;">
+      <h4>📋 История платежей</h4>
+      <div id="historyList"><span style="color:#aaa;">Пока нет платежей</span></div>
     </div>
   </div>
+
   <div class="footer-note">gulistory — тихая роскошь</div>
+
+  <!-- ПОПАП КОДА ПОДТВЕРЖДЕНИЯ -->
+  <div class="code-popup" id="codePopup" style="display:none;">
+    <div class="code-box">
+      <h3>📱 Код подтверждения</h3>
+      <p>Мы отправили код на номер:<br><b id="codePhoneDisplay"></b></p>
+      <input type="text" id="codeInput" placeholder="_ _ _ _" maxlength="4">
+      <div class="timer" id="codeTimer"></div>
+      <span class="resend" id="resendCode">🔄 Отправить код ещё раз</span>
+      <button class="btn btn-green" id="confirmCodeBtn" style="margin-top:0.8rem;">✅ Подтвердить</button>
+      <button class="btn" id="cancelCodeBtn" style="background:#eee;color:#333;margin-top:0.3rem;">Отмена</button>
+    </div>
+  </div>
 </div>
 
 <script>
   const ADMIN_PASSWORD = 'gulistory2026';
   const SELLER_PHONE = '89280048199';
-  const SELLER_BANK = 'Т-Банк (Тинькофф)';
   
   let isAdmin = false;
   let cart = [];
   let currentCategory = 'all';
   const photoMap = new Map();
+  
+  // Данные пользователя
+  let userPhone = localStorage.getItem('gulistory_user_phone') || '';
+  let userPhoneVerified = localStorage.getItem('gulistory_phone_verified') === 'true';
+  let userCard = null;
+  try { userCard = JSON.parse(localStorage.getItem('gulistory_user_card') || 'null'); } catch(e) { userCard = null; }
+  let paymentHistory = [];
+  try { paymentHistory = JSON.parse(localStorage.getItem('gulistory_payments') || '[]'); } catch(e) { paymentHistory = []; }
+  
+  let pendingCode = '';
+  let codeTimerInterval = null;
 
   function loadEdits() { try { return JSON.parse(localStorage.getItem('gulistory_edits') || '{}'); } catch(e) { return {}; } }
   function saveEdits(e) { localStorage.setItem('gulistory_edits', JSON.stringify(e)); }
@@ -280,7 +318,6 @@
         </div>
       `;
       div.appendChild(card);
-
       if (isAdmin) {
         card.querySelectorAll('[data-field]').forEach(inp => inp.addEventListener('input', function() {
           saveEdit(+this.dataset.id, this.dataset.field, this.value);
@@ -301,20 +338,40 @@
     });
   }
 
-  // КОРЗИНА
+  // МАСКИРОВКА НОМЕРА
+  function maskPhone(phone) {
+    if (!phone || phone.length < 4) return phone;
+    const clean = phone.replace(/\D/g, '');
+    if (clean.length === 11) return '+7 (' + clean.slice(1,4) + ') ' + clean.slice(4,7) + '-' + clean.slice(7,9) + '-' + clean.slice(9,11);
+    return phone;
+  }
+
+  function maskCard(card) {
+    if (!card || card.length < 4) return card;
+    const clean = card.replace(/\s/g, '');
+    if (clean.length >= 12) return '•••• ' + clean.slice(-4);
+    return card;
+  }
+
+  // КОРЗИНА И ОТОБРАЖЕНИЕ СЕКЦИЙ
   function renderCart() {
     const cont = document.getElementById('cartContainer');
     const tb = document.getElementById('totalBox');
-    const pb = document.getElementById('paymentBlock');
+    const ps = document.getElementById('phoneSection');
+    const cs = document.getElementById('cardSection');
+    const pays = document.getElementById('paySection');
+    const hs = document.getElementById('historySection');
+    
     if (cart.length === 0) {
-      cont.innerHTML = '<div style="color:#a0b0a0;padding:0.8rem;">пусто</div>';
-      tb.style.display = 'none'; pb.style.display = 'none'; return;
+      cont.innerHTML = '<div style="color:#a0b0a0;padding:0.5rem;">пусто</div>';
+      tb.style.display = 'none'; ps.style.display = 'none'; cs.style.display = 'none'; pays.style.display = 'none'; hs.style.display = 'none';
+      return;
     }
-    tb.style.display = 'flex'; pb.style.display = 'block';
+    tb.style.display = 'flex'; ps.style.display = 'block'; cs.style.display = 'block'; pays.style.display = 'block'; hs.style.display = 'block';
+    
     const total = getTotal();
     document.getElementById('totalPrice').textContent = total.toLocaleString() + ' ₽';
-    document.getElementById('displaySum').textContent = total.toLocaleString() + ' ₽';
-    document.getElementById('displayPhone').textContent = SELLER_PHONE;
+    document.getElementById('paySum').textContent = total.toLocaleString() + ' ₽';
     
     cont.innerHTML = cart.map(id => {
       const p = getProductById(id);
@@ -322,46 +379,208 @@
     }).join('');
     document.querySelectorAll('.remove-btn').forEach(b => b.addEventListener('click', () => { cart = cart.filter(i => i !== +b.dataset.id); renderCart(); }));
     
-    updateQR(total);
+    updateSections();
   }
 
-  // QR-код (просто номер и сумма текстом)
-  function updateQR(total) {
-    const box = document.getElementById('qrMiniBox');
-    box.innerHTML = '';
+  function updateSections() {
+    // Телефон
+    const phoneInput = document.getElementById('userPhoneInput');
+    const savedPhoneDiv = document.getElementById('savedPhone');
+    const bindPhoneBtn = document.getElementById('bindPhoneBtn');
+    
+    if (userPhoneVerified && userPhone) {
+      phoneInput.style.display = 'none';
+      bindPhoneBtn.style.display = 'none';
+      savedPhoneDiv.style.display = 'block';
+      savedPhoneDiv.innerHTML = `<div class="saved-item"><span>📱 ${maskPhone(userPhone)} ✅</span><button class="delete-btn" id="deletePhone">✕</button></div>`;
+      document.getElementById('deletePhone')?.addEventListener('click', () => {
+        userPhone = ''; userPhoneVerified = false;
+        localStorage.removeItem('gulistory_user_phone');
+        localStorage.removeItem('gulistory_phone_verified');
+        updateSections();
+      });
+    } else {
+      phoneInput.style.display = 'block';
+      bindPhoneBtn.style.display = 'block';
+      savedPhoneDiv.style.display = 'none';
+      if (userPhone) phoneInput.value = userPhone;
+    }
+
+    // Карта
+    const savedCardDiv = document.getElementById('savedCard');
+    const cardInputs = document.querySelectorAll('#cardSection input');
+    
+    if (userCard) {
+      cardInputs.forEach(i => i.style.display = 'none');
+      document.getElementById('bindCardBtn').style.display = 'none';
+      savedCardDiv.style.display = 'block';
+      savedCardDiv.innerHTML = `<div class="saved-item"><span>💳 ${maskCard(userCard.number)} (${userCard.name || 'Карта'})</span><button class="delete-btn" id="deleteCard">✕</button></div>`;
+      document.getElementById('deleteCard')?.addEventListener('click', () => {
+        userCard = null;
+        localStorage.removeItem('gulistory_user_card');
+        updateSections();
+      });
+    } else {
+      cardInputs.forEach(i => i.style.display = 'block');
+      document.getElementById('bindCardBtn').style.display = 'block';
+      savedCardDiv.style.display = 'none';
+    }
+
+    // Кнопка оплаты
+    const payBtn = document.getElementById('payBtn');
+    const payFromInfo = document.getElementById('payFromInfo');
+    
+    if (userPhoneVerified && userCard) {
+      payBtn.disabled = false;
+      payBtn.textContent = '💳 Оплатить ' + getTotal().toLocaleString() + ' ₽';
+      payBtn.className = 'btn btn-yellow';
+      payFromInfo.textContent = 'С карты: ' + maskCard(userCard.number) + ' | Телефон: ' + maskPhone(userPhone);
+    } else {
+      payBtn.disabled = true;
+      payBtn.className = 'btn btn-gray';
+      let txt = '🔒 ';
+      if (!userPhoneVerified) txt += 'Привяжи телефон';
+      if (!userPhoneVerified && !userCard) txt += ' и ';
+      if (!userCard) txt += 'привяжи карту';
+      payBtn.textContent = txt;
+      payFromInfo.textContent = '';
+    }
+
+    renderHistory();
+  }
+
+  // ПРИВЯЗКА ТЕЛЕФОНА
+  document.getElementById('bindPhoneBtn').addEventListener('click', () => {
+    const phone = document.getElementById('userPhoneInput').value.trim();
+    if (!phone || phone.replace(/\D/g, '').length < 10) {
+      alert('Введи корректный номер телефона!');
+      return;
+    }
+    userPhone = phone;
+    localStorage.setItem('gulistory_user_phone', userPhone);
+    sendCode();
+  });
+
+  function sendCode() {
+    pendingCode = String(Math.floor(1000 + Math.random() * 9000));
+    document.getElementById('codePhoneDisplay').textContent = maskPhone(userPhone);
+    document.getElementById('codeInput').value = '';
+    document.getElementById('codePopup').style.display = 'flex';
+    
+    alert('📱 Демо-режим: код подтверждения — ' + pendingCode + '\n\nВ реальном сайте код пришёл бы по SMS.');
+    
+    startCodeTimer();
+  }
+
+  function startCodeTimer() {
+    let sec = 60;
+    const timerEl = document.getElementById('codeTimer');
+    timerEl.textContent = 'Повторная отправка через 60 сек';
+    document.getElementById('resendCode').style.pointerEvents = 'none';
+    document.getElementById('resendCode').style.opacity = '0.5';
+    
+    if (codeTimerInterval) clearInterval(codeTimerInterval);
+    codeTimerInterval = setInterval(() => {
+      sec--;
+      timerEl.textContent = 'Повторная отправка через ' + sec + ' сек';
+      if (sec <= 0) {
+        clearInterval(codeTimerInterval);
+        timerEl.textContent = '';
+        document.getElementById('resendCode').style.pointerEvents = 'auto';
+        document.getElementById('resendCode').style.opacity = '1';
+      }
+    }, 1000);
+  }
+
+  document.getElementById('confirmCodeBtn').addEventListener('click', () => {
+    const code = document.getElementById('codeInput').value.trim();
+    if (code === pendingCode) {
+      userPhoneVerified = true;
+      localStorage.setItem('gulistory_phone_verified', 'true');
+      document.getElementById('codePopup').style.display = 'none';
+      if (codeTimerInterval) clearInterval(codeTimerInterval);
+      updateSections();
+      alert('✅ Номер телефона подтверждён!');
+    } else {
+      alert('❌ Неверный код! Попробуй ещё раз.');
+    }
+  });
+
+  document.getElementById('cancelCodeBtn').addEventListener('click', () => {
+    document.getElementById('codePopup').style.display = 'none';
+    if (codeTimerInterval) clearInterval(codeTimerInterval);
+  });
+
+  document.getElementById('resendCode').addEventListener('click', () => {
+    sendCode();
+  });
+
+  // ПРИВЯЗКА КАРТЫ
+  document.getElementById('bindCardBtn').addEventListener('click', () => {
+    const number = document.getElementById('cardNumber').value.replace(/\s/g, '');
+    const expiry = document.getElementById('cardExpiry').value.trim();
+    const cvv = document.getElementById('cardCVV').value.trim();
+    const name = document.getElementById('cardName').value.trim();
+
+    if (number.length < 13 || number.length > 19) { alert('Введи корректный номер карты!'); return; }
+    if (!/^\d{2}\/\d{2}$/.test(expiry)) { alert('Введи срок действия в формате ММ/ГГ!'); return; }
+    if (cvv.length !== 3) { alert('Введи CVV (3 цифры на обороте)!'); return; }
+    if (!name) { alert('Введи имя владельца!'); return; }
+
+    userCard = { number, expiry, cvv, name, last4: number.slice(-4) };
+    localStorage.setItem('gulistory_user_card', JSON.stringify(userCard));
+    
+    document.getElementById('cardNumber').value = '';
+    document.getElementById('cardExpiry').value = '';
+    document.getElementById('cardCVV').value = '';
+    document.getElementById('cardName').value = '';
+    
+    updateSections();
+    alert('✅ Карта привязана!');
+  });
+
+  // ОПЛАТА
+  document.getElementById('payBtn').addEventListener('click', () => {
+    if (!userPhoneVerified || !userCard) {
+      alert('Сначала привяжи телефон и карту!');
+      return;
+    }
+    const total = getTotal();
     if (total <= 0) return;
     
-    // Самый простой формат: просто номер телефона и сумма
-    const qrText = `tel:${SELLER_PHONE}?amount=${total}`;
+    const now = new Date();
+    const timeStr = now.toLocaleString('ru-RU');
     
-    new QRCode(box, {
-      text: qrText,
-      width: 120,
-      height: 120,
-      colorDark: '#000000',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.L
-    });
+    const payment = {
+      date: timeStr,
+      amount: total,
+      card: maskCard(userCard.number),
+      phone: maskPhone(userPhone),
+      to: SELLER_PHONE,
+      items: cart.map(id => getProductById(id)?.title || 'Товар').join(', ')
+    };
+    
+    paymentHistory.unshift(payment);
+    if (paymentHistory.length > 20) paymentHistory = paymentHistory.slice(0, 20);
+    localStorage.setItem('gulistory_payments', JSON.stringify(paymentHistory));
+    
+    cart = [];
+    renderCart();
+    renderHistory();
+    
+    alert('✅ Платёж выполнен!\n\nСумма: ' + total.toLocaleString() + ' ₽\nПолучатель: ' + SELLER_PHONE + '\nС карты: ' + maskCard(userCard.number) + '\n\nПродавец получит уведомление о платеже.');
+  });
+
+  function renderHistory() {
+    const list = document.getElementById('historyList');
+    if (paymentHistory.length === 0) {
+      list.innerHTML = '<span style="color:#aaa;">Пока нет платежей</span>';
+      return;
+    }
+    list.innerHTML = paymentHistory.slice(0, 10).map(p => 
+      `<div class="history-item">📅 ${p.date} | 💰 ${p.amount.toLocaleString()} ₽ → ${p.to} | 💳 ${p.card}</div>`
+    ).join('');
   }
-
-  // КНОПКИ КОПИРОВАНИЯ
-  document.getElementById('btnCopyPhone').addEventListener('click', () => {
-    navigator.clipboard.writeText(SELLER_PHONE).then(() => {
-      alert('✅ Номер ' + SELLER_PHONE + ' скопирован!\n\nОткрой Т-Банк → Перевод по номеру телефона → Вставь номер.');
-    }).catch(() => {
-      alert('Номер: ' + SELLER_PHONE + '\n\nСкопируй вручную и вставь в приложение банка.');
-    });
-  });
-
-  document.getElementById('btnCopyAll').addEventListener('click', () => {
-    const total = getTotal();
-    const text = SELLER_PHONE + '  ' + total + '₽';
-    navigator.clipboard.writeText(text).then(() => {
-      alert('✅ Скопировано: ' + text + '\n\nОткрой Т-Банк и вставь.');
-    }).catch(() => {
-      alert('Номер: ' + SELLER_PHONE + '\nСумма: ' + total.toLocaleString() + ' ₽\n\nВведи вручную в приложении банка.');
-    });
-  });
 
   // ФИЛЬТРЫ
   document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', function() {
@@ -370,6 +589,19 @@
     currentCategory = this.dataset.category;
     renderCatalog();
   }));
+
+  // МАСКА КАРТЫ
+  document.getElementById('cardNumber').addEventListener('input', function(e) {
+    let val = e.target.value.replace(/\D/g, '');
+    val = val.slice(0, 16);
+    e.target.value = val.replace(/(\d{4})(?=\d)/g, '$1 ');
+  });
+  document.getElementById('cardExpiry').addEventListener('input', function(e) {
+    let val = e.target.value.replace(/\D/g, '');
+    val = val.slice(0, 4);
+    if (val.length > 2) val = val.slice(0,2) + '/' + val.slice(2);
+    e.target.value = val;
+  });
 
   renderCatalog();
   renderCart();
