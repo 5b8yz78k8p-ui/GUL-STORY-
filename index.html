@@ -34,15 +34,13 @@
     .pwd-actions button.primary { background: #4a6a4a; color: #fff; }
 
     .card { background: #fff; border: 1px solid #dce8dc; border-radius: 24px; padding: 1rem; margin-bottom: 1.4rem; box-shadow: 0 8px 24px rgba(60,80,60,0.06); }
-    .product-image { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 18px; margin-bottom: 0.9rem; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; background-color: #eaf2e8; position: relative; overflow: hidden; }
+    .product-image { width: 100%; height: 220px; background-size: cover; background-position: center; border-radius: 18px; margin-bottom: 0.9rem; display: flex; align-items: center; justify-content: center; font-size: 4rem; background-color: #eaf2e8; position: relative; overflow: hidden; }
     .product-emoji { z-index: 2; pointer-events: none; }
-    .product-badge { position: absolute; top: 10px; right: 12px; background: #ffffffdd; padding: 0.25rem 0.8rem; border-radius: 20px; font-size: 0.7rem; color: #4a6a4a; z-index: 3; }
-    .product-title { font-size: 1.2rem; font-weight: 500; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem; flex-wrap: wrap; gap: 0.5rem; }
+    .product-title { font-size: 1.2rem; font-weight: 500; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.5rem; }
     .price { font-size: 1.1rem; font-weight: 500; color: #3a5a3a; background: #edf5ed; padding: 0.2rem 0.8rem; border-radius: 30px; }
     .description { color: #6b7d6b; font-size: 0.85rem; margin: 0.5rem 0 0.8rem; padding-left: 0.8rem; border-left: 2px solid #b4ccb4; }
-    .details-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
-    .material-tag { color: #8aa08a; font-size: 0.75rem; background: #f4f8f2; padding: 0.2rem 0.6rem; border-radius: 14px; }
-    .choose-btn { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.4rem 1.2rem; border-radius: 30px; cursor: pointer; font-size: 0.85rem; }
+    .details-row { display: flex; justify-content: flex-end; align-items: center; margin-top: 0.3rem; }
+    .choose-btn { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.5rem 1.5rem; border-radius: 30px; cursor: pointer; font-size: 0.9rem; font-weight: 500; }
     .choose-btn:active { background: #4a6a4a; color: #fff; }
     .remove-btn { background: none; border: 1px solid #c8d8c0; color: #8a7a6a; border-radius: 20px; padding: 0.2rem 0.7rem; font-size: 0.7rem; cursor: pointer; }
 
@@ -161,12 +159,12 @@
   loadPhotos();
 
   const baseProducts = [
-    { id: 1, category: 'bag', title: 'Сумка «Тишина»', price: 8900, material: 'натуральная кожа', desc: 'Мягкая сумка-тоут оливкового оттенка.', emoji: '👜', badge: 'хит' },
-    { id: 2, category: 'bag', title: 'Сумка «Шалфей»', price: 12400, material: 'замша', desc: 'Кросс-боди цвета сухого шалфея.', emoji: '👝', badge: 'новинка' },
-    { id: 3, category: 'scarf', title: 'Платок «Луговой»', price: 4200, material: 'шёлк 100%', desc: 'Нежный платок с принтом. 90×90 см.', emoji: '🧣', badge: '' },
-    { id: 4, category: 'scarf', title: 'Платок «Мята»', price: 3800, material: 'хлопок/шёлк', desc: 'Лёгкий платок мятного оттенка.', emoji: '🧣', badge: '' },
-    { id: 5, category: 'bag', title: 'Сумка «Роща»', price: 7600, material: 'экокожа', desc: 'Структурированная сумка зелёного цвета.', emoji: '👜', badge: '' },
-    { id: 6, category: 'scarf', title: 'Платок «Ива»', price: 5100, material: 'кашемир', desc: 'Тёплый платок, серебристая полынь.', emoji: '🧣', badge: 'хит' }
+    { id: 1, category: 'bag', title: 'Сумка «Тишина»', price: 8900, desc: 'Мягкая сумка-тоут спокойного оливкового оттенка. Вместительная, с внутренним карманом.', emoji: '👜' },
+    { id: 2, category: 'bag', title: 'Сумка «Шалфей»', price: 12400, desc: 'Элегантная кросс-боди сумка цвета сухого шалфея. Регулируемый ремешок.', emoji: '👝' },
+    { id: 3, category: 'scarf', title: 'Платок «Луговой»', price: 4200, desc: 'Нежный платок с растительным принтом. Ручная роспись, размер 90×90 см.', emoji: '🧣' },
+    { id: 4, category: 'scarf', title: 'Платок «Мята»', price: 3800, desc: 'Лёгкий платок мятного оттенка. Идеален для прохладных вечеров.', emoji: '🧣' },
+    { id: 5, category: 'bag', title: 'Сумка «Роща»', price: 7600, desc: 'Структурированная сумка глубокого зелёного цвета. Золотая фурнитура.', emoji: '👜' },
+    { id: 6, category: 'scarf', title: 'Платок «Ива»', price: 5100, desc: 'Тёплый платок с нежным плетением. Цвет — серебристая полынь.', emoji: '🧣' }
   ];
 
   function getProducts() {
@@ -178,7 +176,6 @@
   function getProductById(id) { return getProducts().find(p => p.id === id); }
   function getTotal() { return cart.reduce((s, id) => { const p = getProductById(id); return s + (p ? p.price : 0); }, 0); }
 
-  // АДМИН
   document.getElementById('adminToggle').addEventListener('click', () => {
     if (isAdmin) { 
       isAdmin = false; 
@@ -212,7 +209,6 @@
     saveEdits(productEdits);
   }
 
-  // КАТАЛОГ (БЕЗ ЗАМКА)
   function renderCatalog() {
     const div = document.getElementById('catalog');
     div.innerHTML = '';
@@ -225,7 +221,6 @@
       card.innerHTML = `
         <div class="product-image" style="${bg}">
           ${!photo ? `<span class="product-emoji">${p.emoji}</span>` : ''}
-          ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
           ${isAdmin ? `<label class="image-overlay" for="ph-${p.id}"><span>📷 загрузить фото</span></label>` : ''}
           ${isAdmin && photo ? `<button class="reset-photo-btn" data-id="${p.id}">✕ сброс</button>` : ''}
           ${isAdmin ? `<input type="file" accept="image/*" class="photo-upload-input" id="ph-${p.id}" data-id="${p.id}">` : ''}
@@ -236,7 +231,6 @@
         </div>
         ${isAdmin ? `<textarea class="admin-edit-textarea" data-field="desc" data-id="${p.id}">${p.desc.replace(/"/g,'&quot;')}</textarea>` : `<div class="description">${p.desc}</div>`}
         <div class="details-row">
-          <span class="material-tag">${p.material}</span>
           <button class="choose-btn" data-id="${p.id}">В корзину</button>
         </div>
       `;
@@ -244,7 +238,7 @@
       if (isAdmin) {
         card.querySelectorAll('[data-field]').forEach(inp => inp.addEventListener('input', function() {
           saveEdit(+this.dataset.id, this.dataset.field, this.value);
-          const s = document.createElement('span'); s.className = 'save-indicator'; s.textContent = '✓ сохранено';
+          const s = document.createElement('span'); s.className = 'save-indicator'; s.textContent = '✓';
           this.parentElement.appendChild(s); setTimeout(() => s.remove(), 2000);
         }));
         const fi = card.querySelector(`#ph-${p.id}`);
@@ -275,7 +269,6 @@
     });
   }
 
-  // КОРЗИНА
   function renderCart() {
     const cont = document.getElementById('cartContainer');
     const tb = document.getElementById('totalBox');
@@ -300,11 +293,10 @@
   }
 
   document.getElementById('copyPhone').addEventListener('click', () => {
-    navigator.clipboard.writeText(SELLER_PHONE).then(() => alert('✅ Номер скопирован: ' + SELLER_PHONE + '\n\nОткрой Т-Банк → Перевод по номеру телефона → Вставь.'));
+    navigator.clipboard.writeText(SELLER_PHONE).then(() => alert('✅ Номер скопирован: ' + SELLER_PHONE));
   });
   document.getElementById('copyAll').addEventListener('click', () => {
-    const text = SELLER_PHONE + ' — ' + getTotal().toLocaleString() + ' ₽';
-    navigator.clipboard.writeText(text).then(() => alert('✅ Скопировано: ' + text + '\n\nОткрой Т-Банк и вставь.'));
+    navigator.clipboard.writeText(SELLER_PHONE + ' — ' + getTotal().toLocaleString() + ' ₽').then(() => alert('✅ Скопировано!'));
   });
 
   document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', function() {
