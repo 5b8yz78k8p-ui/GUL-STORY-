@@ -17,97 +17,87 @@
       min-height: 100vh;
     }
     .app-container { max-width: 480px; width: 100%; }
-    .header { text-align: center; margin-bottom: 1.5rem; padding-top: 1rem; }
-    .header h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: 5px; color: #3a5a3a; text-transform: uppercase; font-family: 'Times New Roman', Georgia, serif; }
-    .header .subtitle { font-size: 0.85rem; color: #6b8b6b; letter-spacing: 3px; border-top: 1px solid #c8dac8; padding-top: 0.5rem; display: inline-block; }
+    .header { text-align: center; margin-bottom: 1rem; padding-top: 1rem; }
+    .header h1 { font-size: 2rem; font-weight: 400; letter-spacing: 5px; color: #3a5a3a; text-transform: uppercase; font-family: 'Times New Roman', Georgia, serif; }
+    .header .subtitle { font-size: 0.8rem; color: #6b8b6b; letter-spacing: 3px; border-top: 1px solid #c8dac8; padding-top: 0.3rem; display: inline-block; }
 
-    .admin-panel { background: #eaf1e8; border-radius: 20px; padding: 0.8rem 1rem; margin-bottom: 1.5rem; border: 1px solid #c0d4c0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem; }
-    .admin-toggle { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.35rem 1rem; border-radius: 30px; cursor: pointer; font-size: 0.8rem; }
+    .admin-panel { background: #eaf1e8; border-radius: 15px; padding: 0.7rem; margin-bottom: 1rem; border: 1px solid #c0d4c0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; }
+    .admin-toggle { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.3rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 0.75rem; }
     .admin-toggle.active { background: #4a6a4a; color: #fff; }
-    .admin-hint { font-size: 0.7rem; color: #6b8b6b; }
+    .admin-hint { font-size: 0.65rem; color: #6b8b6b; }
 
-    .password-popup { background: #fff; border-radius: 20px; padding: 1.5rem; border: 1px solid #c0d4c0; margin-bottom: 1rem; display: none; }
+    .password-popup { background: #fff; border-radius: 15px; padding: 1rem; border: 1px solid #c0d4c0; margin-bottom: 1rem; display: none; }
     .password-popup.open { display: block; }
-    .password-popup input { width: 100%; padding: 0.6rem 1rem; border: 1.5px solid #d4e2d4; border-radius: 30px; font-size: 0.9rem; outline: none; margin-bottom: 0.6rem; }
-    .pwd-actions { display: flex; gap: 0.6rem; justify-content: flex-end; }
-    .pwd-actions button { background: #fff; border: 1.5px solid #5a7a5a; padding: 0.35rem 1.2rem; border-radius: 30px; cursor: pointer; }
+    .password-popup input { width: 100%; padding: 0.5rem; border: 1.5px solid #d4e2d4; border-radius: 20px; font-size: 0.9rem; outline: none; margin-bottom: 0.5rem; }
+    .pwd-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
+    .pwd-actions button { background: #fff; border: 1.5px solid #5a7a5a; padding: 0.3rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 0.75rem; }
     .pwd-actions button.primary { background: #4a6a4a; color: #fff; }
 
-    .card { background: #fff; border: 1px solid #dce8dc; border-radius: 24px; padding: 1rem; margin-bottom: 1.4rem; box-shadow: 0 8px 24px rgba(60,80,60,0.06); position: relative; }
-    .product-image { width: 100%; height: 220px; background-size: cover; background-position: center; border-radius: 18px; margin-bottom: 0.9rem; display: flex; align-items: center; justify-content: center; font-size: 4rem; background-color: #eaf2e8; position: relative; overflow: hidden; }
+    .server-section { background: #f0f4ff; border-radius: 12px; padding: 0.7rem; margin-bottom: 0.8rem; border: 1px solid #5a7a5a; }
+    .server-section h4 { font-size: 0.75rem; color: #3a5a3a; margin-bottom: 0.4rem; text-align: center; }
+    .server-config input { width: 100%; padding: 0.4rem; border: 1px solid #d4d4d4; border-radius: 8px; font-size: 0.7rem; margin-top: 0.2rem; outline: none; }
+    .server-btn-row { display: flex; gap: 0.3rem; margin-top: 0.3rem; }
+    .server-btn-row button { flex: 1; padding: 0.3rem; border: none; border-radius: 12px; font-size: 0.65rem; cursor: pointer; font-weight: 500; }
+    .btn-sync { background: #4a6a4a; color: #fff; }
+    .btn-load { background: #2196F3; color: #fff; }
+    .btn-sync:active, .btn-load:active { opacity: 0.8; }
+    #syncStatus { font-size: 0.65rem; color: #888; margin-top: 0.3rem; text-align: center; }
+
+    .card { background: #fff; border: 1px solid #dce8dc; border-radius: 18px; padding: 0.7rem; margin-bottom: 0.8rem; box-shadow: 0 4px 15px rgba(60,80,60,0.04); }
+    .product-image { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; background-color: #eaf2e8; position: relative; overflow: hidden; }
     .product-emoji { z-index: 2; pointer-events: none; }
-    .product-title { font-size: 1.2rem; font-weight: 500; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.5rem; }
-    .price { font-size: 1.1rem; font-weight: 500; color: #3a5a3a; background: #edf5ed; padding: 0.2rem 0.8rem; border-radius: 30px; }
-    .description { color: #6b7d6b; font-size: 0.85rem; margin: 0.5rem 0 0.8rem; padding-left: 0.8rem; border-left: 2px solid #b4ccb4; }
-    .details-row { display: flex; justify-content: space-between; align-items: center; margin-top: 0.3rem; gap: 0.5rem; }
-    .choose-btn { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.5rem 1.5rem; border-radius: 30px; cursor: pointer; font-size: 0.9rem; font-weight: 500; }
+    .product-title { font-size: 1rem; font-weight: 500; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem; flex-wrap: wrap; gap: 0.3rem; }
+    .price { font-size: 0.9rem; font-weight: 500; color: #3a5a3a; background: #edf5ed; padding: 0.1rem 0.5rem; border-radius: 20px; }
+    .description { color: #6b7d6b; font-size: 0.75rem; margin: 0.3rem 0 0.4rem; padding-left: 0.5rem; border-left: 2px solid #b4ccb4; }
+    .details-row { display: flex; justify-content: space-between; align-items: center; gap: 0.3rem; }
+    .choose-btn { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.3rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 0.75rem; font-weight: 500; }
     .choose-btn:active { background: #4a6a4a; color: #fff; }
-    .remove-btn { background: none; border: 1px solid #c8d8c0; color: #8a7a6a; border-radius: 20px; padding: 0.2rem 0.7rem; font-size: 0.7rem; cursor: pointer; }
-    .delete-product-btn { background: #ff5252; color: #fff; border: none; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.75rem; cursor: pointer; font-weight: 600; }
-    .delete-product-btn:active { background: #d32f2f; }
+    .remove-btn { background: none; border: 1px solid #c8d8c0; color: #8a7a6a; border-radius: 15px; padding: 0.15rem 0.5rem; font-size: 0.6rem; cursor: pointer; }
+    .delete-product-btn { background: #ff5252; color: #fff; border: none; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.65rem; cursor: pointer; }
 
     .photo-upload-input { display: none; }
-    .image-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; border-radius: 18px; color: #fff; cursor: pointer; }
+    .image-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; border-radius: 12px; color: #fff; cursor: pointer; }
     .product-image:hover .image-overlay { opacity: 1; }
-    .image-overlay span { background: #2d3a2ccc; padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.8rem; }
-    .reset-photo-btn { position: absolute; bottom: 8px; right: 10px; background: #ffffffdd; border: 1px solid #b0c8b0; border-radius: 20px; padding: 0.15rem 0.6rem; font-size: 0.6rem; cursor: pointer; z-index: 6; }
+    .image-overlay span { background: #2d3a2ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; }
+    .reset-photo-btn { position: absolute; bottom: 5px; right: 8px; background: #ffffffdd; border: 1px solid #b0c8b0; border-radius: 12px; padding: 0.1rem 0.4rem; font-size: 0.5rem; cursor: pointer; z-index: 6; }
 
-    .admin-edit-input, .admin-edit-textarea { width: 100%; padding: 0.35rem 0.6rem; border: 1.5px dashed #5a7a5a; border-radius: 12px; font-size: 0.85rem; background: #fafff7; outline: none; font-family: inherit; }
-    .admin-edit-textarea { resize: vertical; min-height: 40px; }
-    .admin-edit-price { width: 90px; text-align: right; }
-    .save-indicator { display: inline-block; background: #4a6a4a; color: #fff; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.6rem; animation: fadeOut 2s forwards; }
-    @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
+    .admin-edit-input, .admin-edit-textarea { width: 100%; padding: 0.25rem 0.4rem; border: 1.5px dashed #5a7a5a; border-radius: 8px; font-size: 0.75rem; background: #fafff7; outline: none; }
+    .admin-edit-textarea { resize: vertical; min-height: 30px; }
+    .admin-edit-price { width: 70px; text-align: right; }
 
-    .add-product-section { background: #eaf1e8; border-radius: 20px; padding: 1rem; margin-bottom: 1.5rem; border: 2px dashed #5a7a5a; text-align: center; }
-    .add-product-btn { background: #4a6a4a; color: #fff; border: none; padding: 0.7rem 2rem; border-radius: 30px; font-size: 1rem; font-weight: 600; cursor: pointer; letter-spacing: 1px; }
-    .add-product-btn:active { background: #3a5a3a; }
+    .add-product-section { background: #eaf1e8; border-radius: 12px; padding: 0.6rem; margin-bottom: 0.8rem; border: 2px dashed #5a7a5a; text-align: center; }
+    .add-product-btn { background: #4a6a4a; color: #fff; border: none; padding: 0.4rem 1.2rem; border-radius: 20px; font-size: 0.8rem; cursor: pointer; }
 
-    .cart-panel { margin-top: 1.5rem; background: #fff; border-radius: 24px; padding: 1.2rem; border: 1px solid #dce8dc; text-align: center; }
-    .cart-panel h3 { font-size: 0.9rem; letter-spacing: 2px; color: #5a7a5a; margin-bottom: 0.5rem; text-transform: uppercase; }
-    .cart-item { background: #f7faf5; border-radius: 16px; padding: 0.6rem 0.8rem; margin: 0.3rem 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
-    .total-box { margin-top: 0.8rem; font-size: 1.1rem; font-weight: 500; color: #3a5a3a; display: flex; justify-content: space-between; border-top: 1px solid #dce8dc; padding-top: 0.8rem; }
+    .cart-panel { margin-top: 0.8rem; background: #fff; border-radius: 18px; padding: 0.8rem; border: 1px solid #dce8dc; text-align: center; }
+    .cart-panel h3 { font-size: 0.8rem; color: #5a7a5a; margin-bottom: 0.3rem; }
+    .cart-item { background: #f7faf5; border-radius: 10px; padding: 0.4rem 0.5rem; margin: 0.15rem 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; }
+    .total-box { margin-top: 0.5rem; font-size: 0.9rem; font-weight: 500; color: #3a5a3a; display: flex; justify-content: space-between; border-top: 1px solid #dce8dc; padding-top: 0.5rem; }
 
-    .pay-box { margin-top: 1rem; padding: 1.2rem; background: #fffbe6; border-radius: 20px; border: 2px solid #FFDD2D; text-align: center; }
-    .pay-box .pay-phone { font-size: 1.8rem; font-weight: 700; letter-spacing: 3px; color: #000; background: #fff; padding: 0.5rem 1rem; border-radius: 15px; display: inline-block; border: 2px dashed #4a6a4a; margin: 0.5rem 0; }
-    .pay-box .pay-sum { font-size: 1.2rem; font-weight: 600; color: #4a6a4a; margin: 0.5rem 0; }
+    .pay-box { margin-top: 0.6rem; padding: 0.8rem; background: #fffbe6; border-radius: 12px; border: 2px solid #FFDD2D; text-align: center; }
+    .pay-box .pay-phone { font-size: 1.3rem; font-weight: 700; color: #000; background: #fff; padding: 0.2rem 0.6rem; border-radius: 10px; display: inline-block; border: 2px dashed #4a6a4a; }
+    .pay-box .pay-sum { font-size: 1rem; font-weight: 600; color: #4a6a4a; margin: 0.3rem 0; }
 
-    /* Форма заказа */
-    .order-form { text-align: left; margin: 0.8rem 0; }
-    .order-form label { font-size: 0.8rem; color: #5a7a5a; display: block; margin: 0.4rem 0 0.2rem; font-weight: 500; }
-    .order-form input, .order-form textarea {
-      width: 100%; padding: 0.7rem; border: 1.5px solid #d4e2d4; border-radius: 15px; font-size: 0.9rem; outline: none; background: #fff; font-family: inherit;
-    }
-    .order-form input:focus, .order-form textarea:focus { border-color: #4a6a4a; }
-    .order-form textarea { resize: vertical; min-height: 50px; }
-
-    .delivery-options { display: flex; gap: 0.5rem; margin: 0.5rem 0; }
-    .delivery-option {
-      flex: 1; padding: 0.6rem; border: 2px solid #d4e2d4; border-radius: 15px; cursor: pointer; text-align: center; font-size: 0.8rem; font-weight: 500; transition: 0.2s;
-    }
-    .delivery-option.active { border-color: #4a6a4a; background: #e8f5e9; color: #3a5a3a; }
+    .delivery-options { display: flex; gap: 0.3rem; margin: 0.3rem 0; }
+    .delivery-option { flex: 1; padding: 0.4rem; border: 2px solid #d4e2d4; border-radius: 10px; cursor: pointer; font-size: 0.7rem; }
+    .delivery-option.active { border-color: #4a6a4a; background: #e8f5e9; }
     .delivery-option input { display: none; }
 
-    .pickup-address { background: #e8f5e9; padding: 0.6rem 0.8rem; border-radius: 12px; font-size: 0.8rem; color: #3a5a3a; margin: 0.4rem 0; }
+    .order-form { text-align: left; margin: 0.4rem 0; }
+    .order-form label { font-size: 0.7rem; color: #5a7a5a; display: block; margin: 0.2rem 0 0.1rem; }
+    .order-form input, .order-form textarea { width: 100%; padding: 0.4rem; border: 1.5px solid #d4e2d4; border-radius: 10px; font-size: 0.75rem; outline: none; }
+    .order-form textarea { resize: vertical; min-height: 35px; }
 
-    .copy-btn { width: 100%; padding: 1rem; border-radius: 30px; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 0.6rem; transition: 0.2s; }
+    .copy-btn { width: 100%; padding: 0.6rem; border-radius: 20px; border: none; font-size: 0.9rem; font-weight: 700; cursor: pointer; margin-top: 0.3rem; }
     .copy-btn:active { transform: scale(0.96); }
     .btn-num { background: #FFDD2D; color: #000; }
     .btn-sum { background: #2d3a2c; color: #fff; }
     .btn-order { background: #4CAF50; color: #fff; }
 
-    .category-tabs { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
-    .tab-btn { background: #fff; border: 1px solid #d4e2d4; color: #5a7a5a; padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
+    .category-tabs { display: flex; gap: 0.3rem; margin-bottom: 0.6rem; }
+    .tab-btn { background: #fff; border: 1px solid #d4e2d4; color: #5a7a5a; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.65rem; cursor: pointer; }
     .tab-btn.active { background: #4a6a4a; color: #fff; }
-    .footer-note { font-size: 0.7rem; color: #a0b8a0; text-align: center; margin-top: 1rem; }
 
-    /* Касса */
-    .kassa-section { background: #f9f9f9; border-radius: 20px; padding: 1rem; margin-top: 1.5rem; border: 1px solid #dce8dc; }
-    .kassa-section h4 { color: #3a5a3a; text-align: center; margin-bottom: 0.5rem; }
-    .kassa-item { background: #fff; border-radius: 12px; padding: 0.7rem; margin: 0.4rem 0; font-size: 0.8rem; border: 1px solid #eee; }
-    .kassa-item .kassa-header { display: flex; justify-content: space-between; font-weight: 600; color: #3a5a3a; }
-    .kassa-item .kassa-body { color: #666; font-size: 0.75rem; margin-top: 0.3rem; }
-    .kassa-empty { text-align: center; color: #aaa; padding: 1rem; font-size: 0.85rem; }
-    .clear-kassa-btn { background: #ff5252; color: #fff; border: none; padding: 0.3rem 1rem; border-radius: 15px; font-size: 0.7rem; cursor: pointer; margin-top: 0.5rem; }
+    .footer-note { font-size: 0.6rem; color: #a0b8a0; text-align: center; margin-top: 0.8rem; }
   </style>
 </head>
 <body>
@@ -118,9 +108,11 @@
   </div>
 
   <div class="admin-panel">
-    <span>🔐 Админ</span>
-    <button class="admin-toggle" id="adminToggle">Войти</button>
-    <span class="admin-hint" id="adminStatus">гость</span>
+    <span style="font-size:0.75rem;">🔐 Админ</span>
+    <div>
+      <button class="admin-toggle" id="adminToggle">Войти</button>
+      <span class="admin-hint" id="adminStatus">гость</span>
+    </div>
   </div>
 
   <div class="password-popup" id="passwordPopup">
@@ -132,6 +124,18 @@
     </div>
   </div>
 
+  <div class="server-section" id="serverSection" style="display:none;">
+    <h4>🖥 Синхронизация GitHub</h4>
+    <input type="text" id="ghUser" placeholder="Имя пользователя GitHub">
+    <input type="text" id="ghRepo" placeholder="Название репозитория">
+    <input type="password" id="ghToken" placeholder="Токен GitHub">
+    <div class="server-btn-row">
+      <button class="btn-sync" id="btnSyncToGitHub">📤 Сохранить</button>
+      <button class="btn-load" id="btnLoadFromGitHub">📥 Загрузить</button>
+    </div>
+    <div id="syncStatus"></div>
+  </div>
+
   <div class="category-tabs">
     <button class="tab-btn active" data-category="all">всё</button>
     <button class="tab-btn" data-category="bag">👜 сумки</button>
@@ -139,7 +143,7 @@
   </div>
 
   <div class="add-product-section" id="addProductSection" style="display:none;">
-    <button class="add-product-btn" id="addProductBtn">➕ Добавить новый товар</button>
+    <button class="add-product-btn" id="addProductBtn">➕ Добавить товар</button>
   </div>
 
   <div id="catalog"></div>
@@ -153,50 +157,23 @@
     </div>
 
     <div class="pay-box" id="payBox" style="display:none;">
-      <div style="font-weight:600;color:#3a5a3a;margin-bottom:0.5rem;">📦 Оформление заказа</div>
-
-      <!-- ВЫБОР ДОСТАВКИ -->
-      <div class="delivery-options" id="deliveryOptions">
-        <label class="delivery-option active" id="optDelivery">
-          <input type="radio" name="delivery" value="delivery" checked> 🚚 Доставка
-        </label>
-        <label class="delivery-option" id="optPickup">
-          <input type="radio" name="delivery" value="pickup"> 🏠 Самовывоз
-        </label>
+      <div style="font-weight:600;color:#3a5a3a;">📦 Оформление</div>
+      <div class="delivery-options">
+        <label class="delivery-option active" id="optDelivery"><input type="radio" name="delivery" value="delivery" checked> 🚚 Доставка</label>
+        <label class="delivery-option" id="optPickup"><input type="radio" name="delivery" value="pickup"> 🏠 Самовывоз</label>
       </div>
-
-      <!-- АДРЕС САМОВЫВОЗА -->
-      <div class="pickup-address" id="pickupAddress" style="display:none;">
-        📍 Адрес самовывоза: <b>скоро напишу</b>
-      </div>
-
-      <!-- ФОРМА -->
       <div class="order-form" id="deliveryForm">
-        <label>👤 Ваше имя:</label>
-        <input type="text" id="customerName" placeholder="Иван Иванов">
-        <label>📱 Телефон:</label>
-        <input type="tel" id="customerPhone" placeholder="+7 (999) 123-45-67">
-        <label>📍 Адрес доставки:</label>
-        <textarea id="customerAddress" placeholder="Город, улица, дом, квартира"></textarea>
-        <label>📝 Комментарий к заказу:</label>
-        <textarea id="customerComment" placeholder="Пожелания по доставке..."></textarea>
+        <label>👤 Имя:</label><input type="text" id="customerName" placeholder="Иван">
+        <label>📱 Телефон:</label><input type="tel" id="customerPhone" placeholder="+79001234567">
+        <label>📍 Адрес:</label><textarea id="customerAddress" placeholder="Город, улица"></textarea>
       </div>
-
-      <div style="font-weight:600;color:#3a5a3a;margin:0.8rem 0 0.3rem;">💳 Номер для перевода:</div>
+      <div style="font-weight:600;color:#3a5a3a;margin-top:0.5rem;">💳 Номер для перевода:</div>
       <div class="pay-phone">89280048199</div>
       <div class="pay-sum">Сумма: <span id="paySum">0 ₽</span></div>
-
       <button class="copy-btn btn-num" id="copyPhone">📋 Скопировать номер</button>
-      <button class="copy-btn btn-sum" id="copyAll">📋 Скопировать номер и сумму</button>
-      <button class="copy-btn btn-order" id="confirmOrder">✅ Подтвердить заказ</button>
+      <button class="copy-btn btn-sum" id="copyAll">📋 Номер + сумма</button>
+      <button class="copy-btn btn-order" id="confirmOrder">✅ Оформить заказ</button>
     </div>
-  </div>
-
-  <!-- КАССА (только для админа) -->
-  <div class="kassa-section" id="kassaSection" style="display:none;">
-    <h4>🧾 Касса · Заказы</h4>
-    <div id="kassaList"><div class="kassa-empty">Заказов пока нет</div></div>
-    <div style="text-align:center;"><button class="clear-kassa-btn" id="clearKassa">🗑 Очистить кассу</button></div>
   </div>
 
   <div class="footer-note">gulistory — тихая роскошь</div>
@@ -205,8 +182,7 @@
 <script>
   const ADMIN_PASSWORD = 'gulistory2026';
   const SELLER_PHONE = '89280048199';
-  const PICKUP_ADDRESS = 'Адрес появится позже'; // ← ПОТОМ НАПИШЕШЬ СВОЙ АДРЕС
-
+  
   let isAdmin = false;
   let cart = [];
   let currentCategory = 'all';
@@ -219,40 +195,30 @@
   function loadCart() { try { return JSON.parse(localStorage.getItem('gulistory_cart') || '[]'); } catch(e) { return []; } }
   function saveCart() { localStorage.setItem('gulistory_cart', JSON.stringify(cart)); }
   function loadPhotos() {
-    try {
-      const saved = localStorage.getItem('gulistory_photos');
-      if (saved) { const obj = JSON.parse(saved); Object.keys(obj).forEach(key => photoMap.set(parseInt(key), obj[key])); }
-    } catch(e) {}
+    try { const s = localStorage.getItem('gulistory_photos'); if (s) { const o = JSON.parse(s); Object.keys(o).forEach(k => photoMap.set(+k, o[k])); } } catch(e) {}
   }
   function savePhotos() {
-    const obj = {};
-    photoMap.forEach((val, key) => obj[key] = val);
-    try { localStorage.setItem('gulistory_photos', JSON.stringify(obj)); } catch(e) {}
+    const o = {}; photoMap.forEach((v, k) => o[k] = v);
+    try { localStorage.setItem('gulistory_photos', JSON.stringify(o)); } catch(e) {}
   }
   function loadProducts() {
-    try { const saved = localStorage.getItem('gulistory_products'); if (saved) return JSON.parse(saved); } catch(e) {}
+    try { const s = localStorage.getItem('gulistory_products'); if (s) return JSON.parse(s); } catch(e) {}
     return null;
   }
-  function saveProducts(prods) { localStorage.setItem('gulistory_products', JSON.stringify(prods)); }
-  function loadKassa() {
-    try { return JSON.parse(localStorage.getItem('gulistory_kassa') || '[]'); } catch(e) { return []; }
-  }
-  function saveKassa(kassa) { localStorage.setItem('gulistory_kassa', JSON.stringify(kassa)); }
+  function saveProducts(p) { localStorage.setItem('gulistory_products', JSON.stringify(p)); }
 
   let productEdits = loadEdits();
   cart = loadCart();
   loadPhotos();
-  let kassaOrders = loadKassa();
 
   let baseProducts = loadProducts() || [
-    { id: 1, category: 'bag', title: 'Сумка «Тишина»', price: 8900, desc: 'Мягкая сумка-тоут спокойного оливкового оттенка.', emoji: '👜' },
-    { id: 2, category: 'bag', title: 'Сумка «Шалфей»', price: 12400, desc: 'Элегантная кросс-боди сумка цвета сухого шалфея.', emoji: '👝' },
-    { id: 3, category: 'scarf', title: 'Платок «Луговой»', price: 4200, desc: 'Нежный платок с растительным принтом. 90×90 см.', emoji: '🧣' },
+    { id: 1, category: 'bag', title: 'Сумка «Тишина»', price: 8900, desc: 'Мягкая сумка-тоут оливкового оттенка.', emoji: '👜' },
+    { id: 2, category: 'bag', title: 'Сумка «Шалфей»', price: 12400, desc: 'Кросс-боди цвета сухого шалфея.', emoji: '👝' },
+    { id: 3, category: 'scarf', title: 'Платок «Луговой»', price: 4200, desc: 'Нежный платок с принтом. 90×90 см.', emoji: '🧣' },
     { id: 4, category: 'scarf', title: 'Платок «Мята»', price: 3800, desc: 'Лёгкий платок мятного оттенка.', emoji: '🧣' },
-    { id: 5, category: 'bag', title: 'Сумка «Роща»', price: 7600, desc: 'Структурированная сумка глубокого зелёного цвета.', emoji: '👜' },
+    { id: 5, category: 'bag', title: 'Сумка «Роща»', price: 7600, desc: 'Структурированная сумка зелёного цвета.', emoji: '👜' },
     { id: 6, category: 'scarf', title: 'Платок «Ива»', price: 5100, desc: 'Тёплый платок, серебристая полынь.', emoji: '🧣' }
   ];
-  
   baseProducts.forEach(p => { if (p.id >= productIdCounter) productIdCounter = p.id + 1; });
 
   function getProducts() {
@@ -264,118 +230,70 @@
   function getProductById(id) { return getProducts().find(p => p.id === id); }
   function getTotal() { return cart.reduce((s, id) => { const p = getProductById(id); return s + (p ? p.price : 0); }, 0); }
 
-  // УДАЛИТЬ ТОВАР
-  function deleteProduct(id) {
-    if (!confirm('Удалить этот товар навсегда?')) return;
-    baseProducts = baseProducts.filter(p => p.id !== id);
-    photoMap.delete(id);
-    if (productEdits[id]) delete productEdits[id];
-    cart = cart.filter(i => i !== id);
-    saveProducts(baseProducts); savePhotos(); saveEdits(productEdits); saveCart();
-    renderCatalog(); renderCart();
-  }
-
-  // ДОБАВИТЬ ТОВАР
-  function addNewProduct() {
-    const title = prompt('Название товара:');
-    if (!title) return;
-    const price = parseFloat(prompt('Цена (в рублях):'));
-    if (isNaN(price) || price <= 0) { alert('Нужна нормальная цена!'); return; }
-    const desc = prompt('Описание:') || '';
-    const cat = prompt('Категория (bag или scarf):') || 'bag';
-    baseProducts.push({ id: productIdCounter++, category: cat === 'scarf' ? 'scarf' : 'bag', title, price, desc, emoji: cat === 'scarf' ? '🧣' : '👜' });
-    saveProducts(baseProducts);
-    renderCatalog();
-  }
-
-  // ПОДТВЕРЖДЕНИЕ ЗАКАЗА
-  function confirmOrder() {
-    const name = document.getElementById('customerName').value.trim();
-    const phone = document.getElementById('customerPhone').value.trim();
-    const address = deliveryMethod === 'delivery' ? document.getElementById('customerAddress').value.trim() : 'Самовывоз';
-    const comment = document.getElementById('customerComment').value.trim();
-    
-    if (!name) { alert('Введи имя!'); return; }
-    if (!phone) { alert('Введи телефон!'); return; }
-    if (deliveryMethod === 'delivery' && !address) { alert('Введи адрес доставки!'); return; }
-    if (cart.length === 0) { alert('Корзина пуста!'); return; }
-
-    const now = new Date();
-    const timeStr = now.toLocaleString('ru-RU');
-    const items = cart.map(id => getProductById(id)).filter(p => p).map(p => p.title).join(', ');
-    const total = getTotal();
-
-    const order = {
-      id: Date.now(),
-      date: timeStr,
-      name: name,
-      phone: phone,
-      delivery: deliveryMethod === 'delivery' ? 'Доставка' : 'Самовывоз',
-      address: address,
-      comment: comment,
-      items: items,
-      total: total
+  // ====== GITHUB ======
+  function getGH() {
+    return {
+      user: document.getElementById('ghUser').value.trim(),
+      repo: document.getElementById('ghRepo').value.trim(),
+      token: document.getElementById('ghToken').value.trim()
     };
+  }
+  function saveGH(c) { localStorage.setItem('gh_config', JSON.stringify(c)); }
+  function loadGH() { try { return JSON.parse(localStorage.getItem('gh_config') || '{}'); } catch(e) { return {}; } }
 
-    kassaOrders.unshift(order);
-    if (kassaOrders.length > 50) kassaOrders = kassaOrders.slice(0, 50);
-    saveKassa(kassaOrders);
-    renderKassa();
+  (function() {
+    const c = loadGH();
+    if (c.user) document.getElementById('ghUser').value = c.user;
+    if (c.repo) document.getElementById('ghRepo').value = c.repo;
+    if (c.token) document.getElementById('ghToken').value = c.token;
+  })();
 
-    // Очистка
-    cart = [];
-    saveCart();
-    document.getElementById('customerName').value = '';
-    document.getElementById('customerPhone').value = '';
-    document.getElementById('customerAddress').value = '';
-    document.getElementById('customerComment').value = '';
-    renderCart();
-    renderCatalog();
+  async function syncToGH() {
+    const c = getGH();
+    if (!c.user || !c.repo || !c.token) { document.getElementById('syncStatus').textContent = '❌ Заполни все поля!'; return; }
+    saveGH(c);
+    document.getElementById('syncStatus').textContent = '⏳ Сохраняю...';
 
-    alert('✅ Заказ оформлен!\n\nСпособ: ' + order.delivery + '\nСумма: ' + total.toLocaleString() + ' ₽\n\nПереведи ' + total.toLocaleString() + ' ₽ на номер ' + SELLER_PHONE + '\n\nПродавец увидит твой заказ в кассе.');
+    const data = { products: baseProducts, edits: productEdits, photos: Object.fromEntries(photoMap) };
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+    const url = `https://api.github.com/repos/${c.user}/${c.repo}/contents/data.json`;
+    
+    let sha = '';
+    try { const r = await fetch(url, { headers: { Authorization: `token ${c.token}` } }); if (r.ok) { const d = await r.json(); sha = d.sha; } } catch(e) {}
+
+    try {
+      const body = { message: 'update', content: content };
+      if (sha) body.sha = sha;
+      const r = await fetch(url, { method: 'PUT', headers: { Authorization: `token ${c.token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      document.getElementById('syncStatus').textContent = r.ok ? '✅ Сохранено!' : '❌ Ошибка';
+    } catch(e) { document.getElementById('syncStatus').textContent = '❌ Нет связи'; }
   }
 
-  // ОТРИСОВКА КАССЫ
-  function renderKassa() {
-    const list = document.getElementById('kassaList');
-    if (kassaOrders.length === 0) {
-      list.innerHTML = '<div class="kassa-empty">Заказов пока нет</div>';
-      return;
-    }
-    list.innerHTML = kassaOrders.map(o => `
-      <div class="kassa-item">
-        <div class="kassa-header">
-          <span>📅 ${o.date}</span>
-          <span>💰 ${o.total.toLocaleString()} ₽</span>
-        </div>
-        <div class="kassa-body">
-          👤 ${o.name} | 📱 ${o.phone}<br>
-          🚚 ${o.delivery}${o.delivery === 'Доставка' ? ': ' + o.address : ''}<br>
-          🛍 Товары: ${o.items}<br>
-          ${o.comment ? '📝 ' + o.comment : ''}
-        </div>
-      </div>
-    `).join('');
+  async function loadFromGH() {
+    const c = getGH();
+    if (!c.user || !c.repo) { document.getElementById('syncStatus').textContent = '❌ Введи пользователя и репо!'; return; }
+    saveGH(c);
+    document.getElementById('syncStatus').textContent = '⏳ Загружаю...';
+    const url = `https://api.github.com/repos/${c.user}/${c.repo}/contents/data.json`;
+    try {
+      const r = await fetch(url, c.token ? { headers: { Authorization: `token ${c.token}` } } : {});
+      if (r.ok) {
+        const d = await r.json();
+        const data = JSON.parse(decodeURIComponent(escape(atob(d.content))));
+        if (data.products) { baseProducts = data.products; productIdCounter = Math.max(...baseProducts.map(p => p.id), 100) + 1; saveProducts(baseProducts); }
+        if (data.edits) { productEdits = data.edits; saveEdits(productEdits); }
+        if (data.photos) { photoMap.clear(); Object.keys(data.photos).forEach(k => photoMap.set(+k, data.photos[k])); savePhotos(); }
+        renderCatalog();
+        document.getElementById('syncStatus').textContent = '✅ Загружено!';
+      } else if (r.status === 404) { document.getElementById('syncStatus').textContent = '⚠️ Файл не найден'; }
+      else { document.getElementById('syncStatus').textContent = '❌ Ошибка'; }
+    } catch(e) { document.getElementById('syncStatus').textContent = '❌ Нет связи'; }
   }
 
-  // Выбор доставки
-  document.getElementById('optDelivery').addEventListener('click', () => {
-    deliveryMethod = 'delivery';
-    document.getElementById('optDelivery').classList.add('active');
-    document.getElementById('optPickup').classList.remove('active');
-    document.getElementById('pickupAddress').style.display = 'none';
-    document.getElementById('deliveryForm').style.display = 'block';
-  });
-  document.getElementById('optPickup').addEventListener('click', () => {
-    deliveryMethod = 'pickup';
-    document.getElementById('optPickup').classList.add('active');
-    document.getElementById('optDelivery').classList.remove('active');
-    document.getElementById('pickupAddress').style.display = 'block';
-    document.getElementById('pickupAddress').innerHTML = '📍 Адрес самовывоза: <b>' + PICKUP_ADDRESS + '</b>';
-    document.getElementById('deliveryForm').style.display = 'none';
-  });
+  document.getElementById('btnSyncToGitHub').addEventListener('click', syncToGH);
+  document.getElementById('btnLoadFromGitHub').addEventListener('click', loadFromGH);
 
-  // АДМИН
+  // ====== АДМИН ======
   document.getElementById('adminToggle').addEventListener('click', () => {
     if (isAdmin) { 
       isAdmin = false; 
@@ -383,32 +301,48 @@
       document.getElementById('adminToggle').textContent = 'Войти'; 
       document.getElementById('adminStatus').textContent = 'гость';
       document.getElementById('addProductSection').style.display = 'none';
-      document.getElementById('kassaSection').style.display = 'none';
+      document.getElementById('serverSection').style.display = 'none';
       renderCatalog(); 
-    } else {
-      document.getElementById('passwordPopup').classList.add('open');
-    }
+    } else { document.getElementById('passwordPopup').classList.add('open'); }
   });
   document.getElementById('pwdCancel').addEventListener('click', () => document.getElementById('passwordPopup').classList.remove('open'));
   document.getElementById('pwdConfirm').addEventListener('click', () => {
     if (document.getElementById('pwdInput').value === ADMIN_PASSWORD) {
       isAdmin = true;
-      document.getElementById('adminToggle').textContent = 'Выйти';
+      document.getElementById('adminToggle').textContent = 'Выйти (админ)';
       document.getElementById('adminToggle').classList.add('active');
       document.getElementById('adminStatus').textContent = 'админ';
       document.getElementById('passwordPopup').classList.remove('open');
       document.getElementById('pwdInput').value = '';
       document.getElementById('addProductSection').style.display = 'block';
-      document.getElementById('kassaSection').style.display = 'block';
-      renderKassa();
+      document.getElementById('serverSection').style.display = 'block';
       renderCatalog();
-    } else { alert('Неверный пароль!'); document.getElementById('pwdInput').value = ''; }
+    } else { alert('Неверный пароль!'); }
   });
+
+  function addNewProduct() {
+    const t = prompt('Название:');
+    if (!t) return;
+    const p = parseFloat(prompt('Цена:'));
+    if (isNaN(p) || p <= 0) return;
+    const d = prompt('Описание:') || '';
+    const c = prompt('Категория (bag/scarf):') || 'bag';
+    baseProducts.push({ id: productIdCounter++, category: c === 'scarf' ? 'scarf' : 'bag', title: t, price: p, desc: d, emoji: c === 'scarf' ? '🧣' : '👜' });
+    saveProducts(baseProducts);
+    renderCatalog();
+  }
+
+  function deleteProduct(id) {
+    if (!confirm('Удалить?')) return;
+    baseProducts = baseProducts.filter(p => p.id !== id);
+    photoMap.delete(id);
+    delete productEdits[id];
+    cart = cart.filter(i => i !== id);
+    saveProducts(baseProducts); savePhotos(); saveEdits(productEdits); saveCart();
+    renderCatalog(); renderCart();
+  }
+
   document.getElementById('addProductBtn').addEventListener('click', addNewProduct);
-  document.getElementById('confirmOrder').addEventListener('click', confirmOrder);
-  document.getElementById('clearKassa').addEventListener('click', () => {
-    if (confirm('Очистить всю кассу?')) { kassaOrders = []; saveKassa(kassaOrders); renderKassa(); }
-  });
 
   function saveEdit(id, field, value) {
     if (!productEdits[id]) productEdits[id] = {};
@@ -416,6 +350,7 @@
     saveEdits(productEdits);
   }
 
+  // ====== КАТАЛОГ ======
   function renderCatalog() {
     const div = document.getElementById('catalog');
     div.innerHTML = '';
@@ -428,26 +363,25 @@
       card.innerHTML = `
         <div class="product-image" style="${bg}">
           ${!photo ? `<span class="product-emoji">${p.emoji}</span>` : ''}
-          ${isAdmin ? `<label class="image-overlay" for="ph-${p.id}"><span>📷 фото</span></label>` : ''}
+          ${isAdmin ? `<label class="image-overlay" for="ph-${p.id}"><span>📷</span></label>` : ''}
           ${isAdmin && photo ? `<button class="reset-photo-btn" data-id="${p.id}">✕</button>` : ''}
-          ${isAdmin ? `<input type="file" accept="image/*" class="photo-upload-input" id="ph-${p.id}" data-id="${p.id}">` : ''}
+          ${isAdmin ? `<input type="file" accept="image/*" class="photo-upload-input" id="ph-${p.id}">` : ''}
         </div>
         <div class="product-title">
           ${isAdmin ? `<input class="admin-edit-input" value="${p.title.replace(/"/g,'&quot;')}" data-field="title" data-id="${p.id}">` : `<span>${p.title}</span>`}
           ${isAdmin ? `<input class="admin-edit-input admin-edit-price" type="number" value="${p.price}" data-field="price" data-id="${p.id}">` : `<span class="price">${p.price.toLocaleString()} ₽</span>`}
         </div>
-        ${isAdmin ? `<textarea class="admin-edit-textarea" data-field="desc" data-id="${p.id}">${p.desc.replace(/"/g,'&quot;')}</textarea>` : `<div class="description">${p.desc}</div>`}
+        ${isAdmin ? `<textarea class="admin-edit-textarea" data-field="desc" data-id="${p.id}">${p.desc}</textarea>` : `<div class="description">${p.desc}</div>`}
         <div class="details-row">
           <button class="choose-btn" data-id="${p.id}">В корзину</button>
-          ${isAdmin ? `<button class="delete-product-btn" data-id="${p.id}">🗑 Удалить</button>` : ''}
+          ${isAdmin ? `<button class="delete-product-btn" data-id="${p.id}">🗑</button>` : ''}
         </div>
       `;
       div.appendChild(card);
+
       if (isAdmin) {
         card.querySelectorAll('[data-field]').forEach(inp => inp.addEventListener('input', function() {
           saveEdit(+this.dataset.id, this.dataset.field, this.value);
-          const s = document.createElement('span'); s.className = 'save-indicator'; s.textContent = '✓';
-          this.parentElement.appendChild(s); setTimeout(() => s.remove(), 2000);
         }));
         const fi = card.querySelector(`#ph-${p.id}`);
         if (fi) fi.addEventListener('change', function(e) {
@@ -466,12 +400,13 @@
     });
   }
 
+  // ====== КОРЗИНА ======
   function renderCart() {
     const cont = document.getElementById('cartContainer');
     const tb = document.getElementById('totalBox');
     const pb = document.getElementById('payBox');
     if (cart.length === 0) { 
-      cont.innerHTML = '<div style="color:#a0b0a0;padding:0.5rem;">пусто</div>'; 
+      cont.innerHTML = '<div style="color:#a0b0a0;">пусто</div>'; 
       tb.style.display = 'none'; pb.style.display = 'none'; return; 
     }
     tb.style.display = 'flex'; pb.style.display = 'block';
@@ -487,13 +422,35 @@
     }));
   }
 
-  document.getElementById('copyPhone').addEventListener('click', () => {
-    navigator.clipboard.writeText(SELLER_PHONE).then(() => alert('✅ Номер скопирован: ' + SELLER_PHONE));
+  // ====== ДОСТАВКА ======
+  document.getElementById('optDelivery').addEventListener('click', () => {
+    deliveryMethod = 'delivery';
+    document.getElementById('optDelivery').classList.add('active');
+    document.getElementById('optPickup').classList.remove('active');
+    document.getElementById('deliveryForm').style.display = 'block';
   });
-  document.getElementById('copyAll').addEventListener('click', () => {
-    navigator.clipboard.writeText(SELLER_PHONE + ' — ' + getTotal().toLocaleString() + ' ₽').then(() => alert('✅ Скопировано!'));
+  document.getElementById('optPickup').addEventListener('click', () => {
+    deliveryMethod = 'pickup';
+    document.getElementById('optPickup').classList.add('active');
+    document.getElementById('optDelivery').classList.remove('active');
+    document.getElementById('deliveryForm').style.display = 'none';
   });
 
+  // ====== КНОПКИ ======
+  document.getElementById('copyPhone').addEventListener('click', () => navigator.clipboard.writeText(SELLER_PHONE).then(() => alert('✅ ' + SELLER_PHONE)));
+  document.getElementById('copyAll').addEventListener('click', () => navigator.clipboard.writeText(SELLER_PHONE + ' ' + getTotal() + '₽').then(() => alert('✅ Скопировано!')));
+  document.getElementById('confirmOrder').addEventListener('click', () => {
+    const name = document.getElementById('customerName').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    if (!name || !phone) { alert('Введи имя и телефон!'); return; }
+    alert('✅ Заказ оформлен!\n\nИмя: ' + name + '\nТелефон: ' + phone + '\nСумма: ' + getTotal().toLocaleString() + ' ₽\n\nПереведи на номер ' + SELLER_PHONE);
+    cart = []; saveCart(); renderCart();
+    document.getElementById('customerName').value = '';
+    document.getElementById('customerPhone').value = '';
+    document.getElementById('customerAddress').value = '';
+  });
+
+  // ====== ФИЛЬТРЫ ======
   document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', function() {
     document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
     this.classList.add('active');
