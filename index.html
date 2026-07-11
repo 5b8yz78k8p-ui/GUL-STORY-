@@ -17,43 +17,60 @@
       min-height: 100vh;
     }
     .app-container { max-width: 480px; width: 100%; }
-    .header { text-align: center; margin-bottom: 1rem; padding-top: 1rem; }
+    .header { text-align: center; margin-bottom: 0.8rem; padding-top: 0.8rem; }
     .header h1 { font-size: 2rem; font-weight: 400; letter-spacing: 5px; color: #3a5a3a; text-transform: uppercase; font-family: 'Times New Roman', Georgia, serif; }
     .header .subtitle { font-size: 0.8rem; color: #6b8b6b; letter-spacing: 3px; border-top: 1px solid #c8dac8; padding-top: 0.3rem; display: inline-block; }
 
-    .admin-panel { background: #eaf1e8; border-radius: 15px; padding: 0.7rem; margin-bottom: 1rem; border: 1px solid #c0d4c0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; }
-    .admin-toggle { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.3rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 0.75rem; }
-    .admin-toggle.active { background: #4a6a4a; color: #fff; }
-    .admin-hint { font-size: 0.65rem; color: #6b8b6b; }
+    .refresh-bar { text-align: center; margin-bottom: 0.8rem; }
+    .refresh-btn {
+      background: #2196F3;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: 0.2s;
+    }
+    .refresh-btn:active { transform: scale(0.96); background: #1976D2; }
+    .refresh-status { font-size: 0.65rem; color: #888; margin-top: 0.2rem; }
 
-    .password-popup { background: #fff; border-radius: 15px; padding: 1rem; border: 1px solid #c0d4c0; margin-bottom: 1rem; display: none; }
+    .admin-panel { background: #eaf1e8; border-radius: 15px; padding: 0.6rem; margin-bottom: 0.8rem; border: 1px solid #c0d4c0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.3rem; }
+    .admin-toggle { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.25rem 0.7rem; border-radius: 20px; cursor: pointer; font-size: 0.7rem; }
+    .admin-toggle.active { background: #4a6a4a; color: #fff; }
+
+    .password-popup { background: #fff; border-radius: 15px; padding: 1rem; border: 1px solid #c0d4c0; margin-bottom: 0.8rem; display: none; }
     .password-popup.open { display: block; }
-    .password-popup input { width: 100%; padding: 0.5rem; border: 1.5px solid #d4e2d4; border-radius: 20px; font-size: 0.9rem; outline: none; margin-bottom: 0.5rem; }
-    .pwd-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
-    .pwd-actions button { background: #fff; border: 1.5px solid #5a7a5a; padding: 0.3rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 0.75rem; }
+    .password-popup input { width: 100%; padding: 0.5rem; border: 1.5px solid #d4e2d4; border-radius: 20px; font-size: 0.9rem; outline: none; margin-bottom: 0.4rem; }
+    .pwd-actions { display: flex; gap: 0.4rem; justify-content: flex-end; }
+    .pwd-actions button { background: #fff; border: 1.5px solid #5a7a5a; padding: 0.25rem 0.7rem; border-radius: 20px; cursor: pointer; font-size: 0.7rem; }
     .pwd-actions button.primary { background: #4a6a4a; color: #fff; }
 
-    .server-section { background: #f0f4ff; border-radius: 12px; padding: 0.7rem; margin-bottom: 0.8rem; border: 1px solid #5a7a5a; }
-    .server-section h4 { font-size: 0.75rem; color: #3a5a3a; margin-bottom: 0.4rem; text-align: center; }
-    .server-config input { width: 100%; padding: 0.4rem; border: 1px solid #d4d4d4; border-radius: 8px; font-size: 0.7rem; margin-top: 0.2rem; outline: none; }
-    .server-btn-row { display: flex; gap: 0.3rem; margin-top: 0.3rem; }
-    .server-btn-row button { flex: 1; padding: 0.3rem; border: none; border-radius: 12px; font-size: 0.65rem; cursor: pointer; font-weight: 500; }
-    .btn-sync { background: #4a6a4a; color: #fff; }
-    .btn-load { background: #2196F3; color: #fff; }
-    .btn-sync:active, .btn-load:active { opacity: 0.8; }
-    #syncStatus { font-size: 0.65rem; color: #888; margin-top: 0.3rem; text-align: center; }
+    .server-section { background: #f0f4ff; border-radius: 12px; padding: 0.6rem; margin-bottom: 0.6rem; border: 1px solid #5a7a5a; }
+    .server-section h4 { font-size: 0.7rem; color: #3a5a3a; margin-bottom: 0.3rem; text-align: center; }
+    .server-config input { width: 100%; padding: 0.35rem; border: 1px solid #d4d4d4; border-radius: 8px; font-size: 0.65rem; margin-top: 0.15rem; outline: none; }
+    .btn-sync { width: 100%; padding: 0.35rem; border: none; border-radius: 12px; font-size: 0.7rem; cursor: pointer; font-weight: 500; margin-top: 0.3rem; background: #4a6a4a; color: #fff; }
+    .btn-sync:active { opacity: 0.8; }
 
-    .card { background: #fff; border: 1px solid #dce8dc; border-radius: 18px; padding: 0.7rem; margin-bottom: 0.8rem; box-shadow: 0 4px 15px rgba(60,80,60,0.04); }
-    .product-image { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; background-color: #eaf2e8; position: relative; overflow: hidden; }
+    .card { background: #fff; border: 1px solid #dce8dc; border-radius: 18px; padding: 0.7rem; margin-bottom: 0.7rem; box-shadow: 0 4px 15px rgba(60,80,60,0.04); }
+    .product-image { width: 100%; height: 170px; background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; background-color: #eaf2e8; position: relative; overflow: hidden; }
     .product-emoji { z-index: 2; pointer-events: none; }
     .product-title { font-size: 1rem; font-weight: 500; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem; flex-wrap: wrap; gap: 0.3rem; }
     .price { font-size: 0.9rem; font-weight: 500; color: #3a5a3a; background: #edf5ed; padding: 0.1rem 0.5rem; border-radius: 20px; }
     .description { color: #6b7d6b; font-size: 0.75rem; margin: 0.3rem 0 0.4rem; padding-left: 0.5rem; border-left: 2px solid #b4ccb4; }
-    .details-row { display: flex; justify-content: space-between; align-items: center; gap: 0.3rem; }
+    .details-row { display: flex; justify-content: space-between; align-items: center; gap: 0.3rem; flex-wrap: wrap; }
     .choose-btn { background: #fff; border: 1.5px solid #5a7a5a; color: #3a5a3a; padding: 0.3rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 0.75rem; font-weight: 500; }
     .choose-btn:active { background: #4a6a4a; color: #fff; }
+    .choose-btn:disabled { background: #eee; color: #999; border-color: #ddd; cursor: not-allowed; }
     .remove-btn { background: none; border: 1px solid #c8d8c0; color: #8a7a6a; border-radius: 15px; padding: 0.15rem 0.5rem; font-size: 0.6rem; cursor: pointer; }
     .delete-product-btn { background: #ff5252; color: #fff; border: none; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.65rem; cursor: pointer; }
+    
+    .stock-badge { font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 10px; font-weight: 500; }
+    .stock-in { background: #e8f5e9; color: #2e7d32; }
+    .stock-low { background: #fff3e0; color: #e65100; }
+    .stock-out { background: #ffebee; color: #c62828; }
 
     .photo-upload-input { display: none; }
     .image-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; border-radius: 12px; color: #fff; cursor: pointer; }
@@ -64,16 +81,17 @@
     .admin-edit-input, .admin-edit-textarea { width: 100%; padding: 0.25rem 0.4rem; border: 1.5px dashed #5a7a5a; border-radius: 8px; font-size: 0.75rem; background: #fafff7; outline: none; }
     .admin-edit-textarea { resize: vertical; min-height: 30px; }
     .admin-edit-price { width: 70px; text-align: right; }
+    .admin-edit-stock { width: 50px; text-align: center; }
 
-    .add-product-section { background: #eaf1e8; border-radius: 12px; padding: 0.6rem; margin-bottom: 0.8rem; border: 2px dashed #5a7a5a; text-align: center; }
-    .add-product-btn { background: #4a6a4a; color: #fff; border: none; padding: 0.4rem 1.2rem; border-radius: 20px; font-size: 0.8rem; cursor: pointer; }
+    .add-product-section { background: #eaf1e8; border-radius: 12px; padding: 0.5rem; margin-bottom: 0.6rem; border: 2px dashed #5a7a5a; text-align: center; }
+    .add-product-btn { background: #4a6a4a; color: #fff; border: none; padding: 0.35rem 1rem; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
 
-    .cart-panel { margin-top: 0.8rem; background: #fff; border-radius: 18px; padding: 0.8rem; border: 1px solid #dce8dc; text-align: center; }
+    .cart-panel { margin-top: 0.7rem; background: #fff; border-radius: 18px; padding: 0.7rem; border: 1px solid #dce8dc; text-align: center; }
     .cart-panel h3 { font-size: 0.8rem; color: #5a7a5a; margin-bottom: 0.3rem; }
     .cart-item { background: #f7faf5; border-radius: 10px; padding: 0.4rem 0.5rem; margin: 0.15rem 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; }
     .total-box { margin-top: 0.5rem; font-size: 0.9rem; font-weight: 500; color: #3a5a3a; display: flex; justify-content: space-between; border-top: 1px solid #dce8dc; padding-top: 0.5rem; }
 
-    .pay-box { margin-top: 0.6rem; padding: 0.8rem; background: #fffbe6; border-radius: 12px; border: 2px solid #FFDD2D; text-align: center; }
+    .pay-box { margin-top: 0.6rem; padding: 0.7rem; background: #fffbe6; border-radius: 12px; border: 2px solid #FFDD2D; text-align: center; }
     .pay-box .pay-phone { font-size: 1.3rem; font-weight: 700; color: #000; background: #fff; padding: 0.2rem 0.6rem; border-radius: 10px; display: inline-block; border: 2px dashed #4a6a4a; }
     .pay-box .pay-sum { font-size: 1rem; font-weight: 600; color: #4a6a4a; margin: 0.3rem 0; }
 
@@ -107,12 +125,15 @@
     <div class="subtitle">сумки & платки</div>
   </div>
 
+  <div class="refresh-bar">
+    <button class="refresh-btn" id="refreshBtn">🔄 Обновить товары</button>
+    <div class="refresh-status" id="refreshStatus">Нажми, чтобы загрузить с GitHub</div>
+  </div>
+
   <div class="admin-panel">
-    <span style="font-size:0.75rem;">🔐 Админ</span>
-    <div>
-      <button class="admin-toggle" id="adminToggle">Войти</button>
-      <span class="admin-hint" id="adminStatus">гость</span>
-    </div>
+    <span style="font-size:0.7rem;">🔐 Админ</span>
+    <button class="admin-toggle" id="adminToggle">Войти</button>
+    <span style="font-size:0.6rem;color:#6b8b6b;" id="adminStatus">гость</span>
   </div>
 
   <div class="password-popup" id="passwordPopup">
@@ -125,15 +146,12 @@
   </div>
 
   <div class="server-section" id="serverSection" style="display:none;">
-    <h4>🖥 Синхронизация GitHub</h4>
-    <input type="text" id="ghUser" placeholder="Имя пользователя GitHub">
-    <input type="text" id="ghRepo" placeholder="Название репозитория">
-    <input type="password" id="ghToken" placeholder="Токен GitHub">
-    <div class="server-btn-row">
-      <button class="btn-sync" id="btnSyncToGitHub">📤 Сохранить</button>
-      <button class="btn-load" id="btnLoadFromGitHub">📥 Загрузить</button>
-    </div>
-    <div id="syncStatus"></div>
+    <h4>🖥 GitHub синхронизация</h4>
+    <input type="text" id="ghUser" placeholder="Пользователь GitHub">
+    <input type="text" id="ghRepo" placeholder="Репозиторий">
+    <input type="password" id="ghToken" placeholder="Токен">
+    <button class="btn-sync" id="btnSyncToGitHub">📤 Сохранить на GitHub</button>
+    <div id="syncStatus" style="font-size:0.6rem;color:#888;text-align:center;margin-top:0.2rem;"></div>
   </div>
 
   <div class="category-tabs">
@@ -212,30 +230,50 @@
   loadPhotos();
 
   let baseProducts = loadProducts() || [
-    { id: 1, category: 'bag', title: 'Сумка «Тишина»', price: 8900, desc: 'Мягкая сумка-тоут оливкового оттенка.', emoji: '👜' },
-    { id: 2, category: 'bag', title: 'Сумка «Шалфей»', price: 12400, desc: 'Кросс-боди цвета сухого шалфея.', emoji: '👝' },
-    { id: 3, category: 'scarf', title: 'Платок «Луговой»', price: 4200, desc: 'Нежный платок с принтом. 90×90 см.', emoji: '🧣' },
-    { id: 4, category: 'scarf', title: 'Платок «Мята»', price: 3800, desc: 'Лёгкий платок мятного оттенка.', emoji: '🧣' },
-    { id: 5, category: 'bag', title: 'Сумка «Роща»', price: 7600, desc: 'Структурированная сумка зелёного цвета.', emoji: '👜' },
-    { id: 6, category: 'scarf', title: 'Платок «Ива»', price: 5100, desc: 'Тёплый платок, серебристая полынь.', emoji: '🧣' }
+    { id: 1, category: 'bag', title: 'Сумка «Тишина»', price: 8900, desc: 'Мягкая сумка-тоут оливкового оттенка.', emoji: '👜', stock: 5 },
+    { id: 2, category: 'bag', title: 'Сумка «Шалфей»', price: 12400, desc: 'Кросс-боди цвета сухого шалфея.', emoji: '👝', stock: 3 },
+    { id: 3, category: 'scarf', title: 'Платок «Луговой»', price: 4200, desc: 'Нежный платок с принтом. 90×90 см.', emoji: '🧣', stock: 10 },
+    { id: 4, category: 'scarf', title: 'Платок «Мята»', price: 3800, desc: 'Лёгкий платок мятного оттенка.', emoji: '🧣', stock: 7 },
+    { id: 5, category: 'bag', title: 'Сумка «Роща»', price: 7600, desc: 'Структурированная сумка зелёного цвета.', emoji: '👜', stock: 4 },
+    { id: 6, category: 'scarf', title: 'Платок «Ива»', price: 5100, desc: 'Тёплый платок, серебристая полынь.', emoji: '🧣', stock: 2 }
   ];
-  baseProducts.forEach(p => { if (p.id >= productIdCounter) productIdCounter = p.id + 1; });
+  baseProducts.forEach(p => { if (p.id >= productIdCounter) productIdCounter = p.id + 1; if (p.stock === undefined) p.stock = 0; });
 
   function getProducts() {
     return baseProducts.map(p => {
       const e = productEdits[p.id];
-      return e ? { ...p, title: e.title || p.title, price: e.price || p.price, desc: e.desc || p.desc } : p;
+      if (e) {
+        return { 
+          ...p, 
+          title: e.title || p.title, 
+          price: e.price !== undefined ? e.price : p.price, 
+          desc: e.desc || p.desc,
+          stock: e.stock !== undefined ? e.stock : p.stock
+        };
+      }
+      return p;
     });
   }
   function getProductById(id) { return getProducts().find(p => p.id === id); }
   function getTotal() { return cart.reduce((s, id) => { const p = getProductById(id); return s + (p ? p.price : 0); }, 0); }
 
+  function getStockClass(stock) {
+    if (stock <= 0) return 'stock-out';
+    if (stock <= 2) return 'stock-low';
+    return 'stock-in';
+  }
+  function getStockText(stock) {
+    if (stock <= 0) return 'Нет в наличии';
+    if (stock <= 2) return 'Мало: ' + stock + ' шт.';
+    return 'В наличии: ' + stock + ' шт.';
+  }
+
   // ====== GITHUB ======
   function getGH() {
     return {
-      user: document.getElementById('ghUser').value.trim(),
-      repo: document.getElementById('ghRepo').value.trim(),
-      token: document.getElementById('ghToken').value.trim()
+      user: document.getElementById('ghUser')?.value?.trim() || '',
+      repo: document.getElementById('ghRepo')?.value?.trim() || '',
+      token: document.getElementById('ghToken')?.value?.trim() || ''
     };
   }
   function saveGH(c) { localStorage.setItem('gh_config', JSON.stringify(c)); }
@@ -253,14 +291,11 @@
     if (!c.user || !c.repo || !c.token) { document.getElementById('syncStatus').textContent = '❌ Заполни все поля!'; return; }
     saveGH(c);
     document.getElementById('syncStatus').textContent = '⏳ Сохраняю...';
-
     const data = { products: baseProducts, edits: productEdits, photos: Object.fromEntries(photoMap) };
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
     const url = `https://api.github.com/repos/${c.user}/${c.repo}/contents/data.json`;
-    
     let sha = '';
     try { const r = await fetch(url, { headers: { Authorization: `token ${c.token}` } }); if (r.ok) { const d = await r.json(); sha = d.sha; } } catch(e) {}
-
     try {
       const body = { message: 'update', content: content };
       if (sha) body.sha = sha;
@@ -269,29 +304,50 @@
     } catch(e) { document.getElementById('syncStatus').textContent = '❌ Нет связи'; }
   }
 
-  async function loadFromGH() {
+  async function loadFromGH(showAlert = false) {
     const c = getGH();
-    if (!c.user || !c.repo) { document.getElementById('syncStatus').textContent = '❌ Введи пользователя и репо!'; return; }
-    saveGH(c);
-    document.getElementById('syncStatus').textContent = '⏳ Загружаю...';
-    const url = `https://api.github.com/repos/${c.user}/${c.repo}/contents/data.json`;
+    const cfg = loadGH();
+    const user = c.user || cfg.user;
+    const repo = c.repo || cfg.repo;
+    const token = c.token || cfg.token;
+    
+    if (!user || !repo) {
+      document.getElementById('refreshStatus').textContent = '❌ Сначала настрой GitHub в админке';
+      return;
+    }
+
+    document.getElementById('refreshStatus').textContent = '⏳ Загружаю...';
+    const url = `https://api.github.com/repos/${user}/${repo}/contents/data.json`;
     try {
-      const r = await fetch(url, c.token ? { headers: { Authorization: `token ${c.token}` } } : {});
+      const headers = token ? { Authorization: `token ${token}` } : {};
+      const r = await fetch(url, { headers });
       if (r.ok) {
         const d = await r.json();
         const data = JSON.parse(decodeURIComponent(escape(atob(d.content))));
-        if (data.products) { baseProducts = data.products; productIdCounter = Math.max(...baseProducts.map(p => p.id), 100) + 1; saveProducts(baseProducts); }
+        if (data.products) { 
+          baseProducts = data.products; 
+          baseProducts.forEach(p => { if (p.stock === undefined) p.stock = 0; });
+          productIdCounter = Math.max(...baseProducts.map(p => p.id), 100) + 1; 
+          saveProducts(baseProducts); 
+        }
         if (data.edits) { productEdits = data.edits; saveEdits(productEdits); }
         if (data.photos) { photoMap.clear(); Object.keys(data.photos).forEach(k => photoMap.set(+k, data.photos[k])); savePhotos(); }
         renderCatalog();
-        document.getElementById('syncStatus').textContent = '✅ Загружено!';
-      } else if (r.status === 404) { document.getElementById('syncStatus').textContent = '⚠️ Файл не найден'; }
-      else { document.getElementById('syncStatus').textContent = '❌ Ошибка'; }
-    } catch(e) { document.getElementById('syncStatus').textContent = '❌ Нет связи'; }
+        document.getElementById('refreshStatus').textContent = '✅ Товары обновлены!';
+        if (showAlert) alert('✅ Товары загружены с GitHub!');
+      } else if (r.status === 404) {
+        document.getElementById('refreshStatus').textContent = '⚠️ Файл не найден. Сохрани данные в админке.';
+      } else {
+        document.getElementById('refreshStatus').textContent = '❌ Ошибка загрузки';
+      }
+    } catch(e) {
+      document.getElementById('refreshStatus').textContent = '❌ Нет связи с GitHub';
+    }
   }
 
+  // ====== КНОПКИ ======
+  document.getElementById('refreshBtn').addEventListener('click', () => loadFromGH(true));
   document.getElementById('btnSyncToGitHub').addEventListener('click', syncToGH);
-  document.getElementById('btnLoadFromGitHub').addEventListener('click', loadFromGH);
 
   // ====== АДМИН ======
   document.getElementById('adminToggle').addEventListener('click', () => {
@@ -327,7 +383,8 @@
     if (isNaN(p) || p <= 0) return;
     const d = prompt('Описание:') || '';
     const c = prompt('Категория (bag/scarf):') || 'bag';
-    baseProducts.push({ id: productIdCounter++, category: c === 'scarf' ? 'scarf' : 'bag', title: t, price: p, desc: d, emoji: c === 'scarf' ? '🧣' : '👜' });
+    const s = parseInt(prompt('Количество в наличии:')) || 0;
+    baseProducts.push({ id: productIdCounter++, category: c === 'scarf' ? 'scarf' : 'bag', title: t, price: p, desc: d, emoji: c === 'scarf' ? '🧣' : '👜', stock: s });
     saveProducts(baseProducts);
     renderCatalog();
   }
@@ -346,7 +403,9 @@
 
   function saveEdit(id, field, value) {
     if (!productEdits[id]) productEdits[id] = {};
-    productEdits[id][field] = field === 'price' ? (parseFloat(value) || 0) : value;
+    if (field === 'price') productEdits[id].price = parseFloat(value) || 0;
+    else if (field === 'stock') productEdits[id].stock = parseInt(value) || 0;
+    else productEdits[id][field] = value;
     saveEdits(productEdits);
   }
 
@@ -358,6 +417,10 @@
     filtered.forEach(p => {
       const photo = photoMap.get(p.id);
       const bg = photo ? `background-image:url(${photo});background-size:cover;background-position:center;` : '';
+      const stockClass = getStockClass(p.stock);
+      const stockText = getStockText(p.stock);
+      const outOfStock = p.stock <= 0;
+      
       const card = document.createElement('div');
       card.className = 'card';
       card.innerHTML = `
@@ -373,7 +436,8 @@
         </div>
         ${isAdmin ? `<textarea class="admin-edit-textarea" data-field="desc" data-id="${p.id}">${p.desc}</textarea>` : `<div class="description">${p.desc}</div>`}
         <div class="details-row">
-          <button class="choose-btn" data-id="${p.id}">В корзину</button>
+          ${isAdmin ? `<span style="font-size:0.65rem;">Кол-во: <input class="admin-edit-input admin-edit-stock" type="number" value="${p.stock}" data-field="stock" data-id="${p.id}" min="0"></span>` : `<span class="stock-badge ${stockClass}">${stockText}</span>`}
+          <button class="choose-btn" data-id="${p.id}" ${outOfStock && !isAdmin ? 'disabled' : ''}>${outOfStock && !isAdmin ? 'Нет в наличии' : 'В корзину'}</button>
           ${isAdmin ? `<button class="delete-product-btn" data-id="${p.id}">🗑</button>` : ''}
         </div>
       `;
@@ -395,7 +459,7 @@
         card.querySelector('.delete-product-btn').addEventListener('click', () => deleteProduct(p.id));
       }
       card.querySelector('.choose-btn').addEventListener('click', () => { 
-        if (!cart.includes(p.id)) { cart.push(p.id); saveCart(); renderCart(); } 
+        if (!cart.includes(p.id) && p.stock > 0) { cart.push(p.id); saveCart(); renderCart(); } 
       });
     });
   }
@@ -436,7 +500,7 @@
     document.getElementById('deliveryForm').style.display = 'none';
   });
 
-  // ====== КНОПКИ ======
+  // ====== КНОПКИ ОПЛАТЫ ======
   document.getElementById('copyPhone').addEventListener('click', () => navigator.clipboard.writeText(SELLER_PHONE).then(() => alert('✅ ' + SELLER_PHONE)));
   document.getElementById('copyAll').addEventListener('click', () => navigator.clipboard.writeText(SELLER_PHONE + ' ' + getTotal() + '₽').then(() => alert('✅ Скопировано!')));
   document.getElementById('confirmOrder').addEventListener('click', () => {
@@ -457,6 +521,14 @@
     currentCategory = this.dataset.category;
     renderCatalog();
   }));
+
+  // ====== АВТОЗАГРУЗКА ПРИ ЗАПУСКЕ ======
+  (function() {
+    const cfg = loadGH();
+    if (cfg.user && cfg.repo) {
+      loadFromGH();
+    }
+  })();
 
   renderCatalog();
   renderCart();
